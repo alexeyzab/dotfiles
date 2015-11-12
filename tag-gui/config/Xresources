@@ -1,6 +1,6 @@
 ! vim: ft=xdefaults
-*font: xft:Inconsolata for Powerline-12:antialias=true
-*boldFont: xft:Inconsolata for Powerline-12:antialias=true
+*font: xft:Inconsolata for Powerline-12:antialias=true:autohint=false
+*boldFont: xft:Inconsolata for Powerline-12:antialias=true:bold=true:autohint=false
 Xft.dpi:        96
 Xft.antialias:  true
 Xft.rgba:       rgb
