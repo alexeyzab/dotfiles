@@ -170,3 +170,5 @@ export MANWIDTH=80
 
 setopt inc_append_history
 setopt vi
+
+source /home/alexeyzab/agnoster.zsh-theme
