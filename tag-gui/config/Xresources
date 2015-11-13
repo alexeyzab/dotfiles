@@ -5,12 +5,16 @@ Xft.dpi:        96
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
-Xft.hintstyle:  hintslight
+Xft.hintstyle:  hintfull
 
 URxvt*scrollBar: false
 URxvt*urgentOnBell: true
 URxvt*visualBell: false
 URxvt*termName: rxvt-256color
+URxvt.font:     xft:Inconsolata for Powerline-12:antialias=false:autohint=false
+URxvt.boldFont: xft:Inconsolata for Powerline-12:antialias=false:bold=true:autohint=false
+URxvt*italicFont: xft:Inconsolata for Powerline-12:antialias=true:italic:autohint=true
+URxvt*boldItalicFont: xft:Inconsolata for Powerline-12:antialias=true:bold:italic:autohint=true
 
 
 URxvt.perl-ext: default,url-select
