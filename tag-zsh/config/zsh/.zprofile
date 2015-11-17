@@ -12,7 +12,7 @@
 
 export XDG_CACHE_HOME="$HOME"/.cache
 export XDG_CONFIG_HOME="$HOME"/.config
-export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_DATA_HOME="$HOME"
 
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 export GOPATH="$XDG_CONFIG_HOME"/go
@@ -46,3 +46,5 @@ if [[ $TTY == /dev/tty1 ]] && [[ -z $DISPLAY ]]; then
   # Note: Since Xorg 1.16, redirecting stderr is unsupported.
   exec startx # 2>! "$XDG_RUNTIME_DIR"/xsession-errors
 fi
+
+source /usr/share/chruby/chruby.sh
