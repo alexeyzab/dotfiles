@@ -17,6 +17,7 @@ Config { font = "xft:Inconsolata for Powerline:size=10:bold:antialias:true"
        , overrideRedirect = True
        , commands = [ Run Network "wlp3s0" ["-L","0","-H","32",
                                           "--normal","green","--high","red"] 10
+                    , Run Com "/home/alexeyzab/scripts/wifi-strength.sh" [] "signal" 10
                     , Run Cpu ["-L","3","-H","50",
                                "--normal","green","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
@@ -27,5 +28,5 @@ Config { font = "xft:Inconsolata for Powerline:size=10:bold:antialias:true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %wlp3s0% | <fc=#ffffff>%date%</fc> | Vol: <fc=green>%volume%</fc> "
+       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %signal% | %wlp3s0% | <fc=#ffffff>%date%</fc> | Vol: <fc=green>%volume%</fc> "
        }
