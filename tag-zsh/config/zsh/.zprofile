@@ -1,14 +1,14 @@
-# function start_ssh_agent() {
-#   local ssh_env="$XDG_CACHE_HOME/ssh-env"
-#
-#   if pgrep ssh-agent >/dev/null; then
-#     source "$ssh_env"
-#   else
-#     ssh-agent | grep -Fv echo > "$ssh_env"
-#     source "$ssh_env"
-#     ssh-add
-#   fi
-# }
+function start_ssh_agent() {
+  local ssh_env="$XDG_CACHE_HOME/ssh-env"
+
+  if pgrep ssh-agent >/dev/null; then
+    source "$ssh_env"
+  else
+    ssh-agent | grep -Fv echo > "$ssh_env"
+    source "$ssh_env"
+    ssh-add
+  fi
+}
 
 export XDG_CACHE_HOME="$HOME"/.cache
 export XDG_CONFIG_HOME="$HOME"/.config
@@ -40,7 +40,7 @@ path=(
   $path
 )
 
-# start_ssh_agent
+start_ssh_agent
 
 if [[ $TTY == /dev/tty1 ]] && [[ -z $DISPLAY ]]; then
   # Note: Since Xorg 1.16, redirecting stderr is unsupported.
