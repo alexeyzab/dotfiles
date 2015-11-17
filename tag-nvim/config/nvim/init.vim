@@ -143,8 +143,26 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 " Always use vertical diffs
 set diffopt+=vertical
 
+" Lightline config
+let g:lightline = {
+      \'colorscheme':'solarized_dark',
+      \}
+
 " Tmuxline config
-let g:tmuxline_preset = 'crosshair'
+" let g:tmuxline_preset = 'crosshair'
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'b'    : '#W',
+      \'win'  : '#I: #W',
+      \'cwin' : '#I: #W' ,
+      \'z'    : '#H'}
+let g:tmuxline_separators = {
+      \'left' : '',
+      \'left_alt' : '>',
+      \'right' : '',
+      \'right_alt' : '<',
+      \'space' : ' '}
+
 
 " Remove trailing whitespace
 nnoremap <Leader>tw :%s/\s\+$//e<CR>
