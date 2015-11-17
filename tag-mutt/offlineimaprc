@@ -1,0 +1,31 @@
+[general]
+ui = TTY.TTYUI
+accounts = zabelin.alex
+pythonfile = ~/.offlineimap/config.py
+fsync = False
+maxsyncaccounts = 1
+
+[Account zabelin.alex]
+localrepository = zabelin.alex-Local
+remoterepository = zabelin.alex-Remote
+status_backend = sqlite
+postsynchook = notmuch new
+autorefresh = 5
+quick = 10
+
+[Repository zabelin.alex-Local]
+type = Maildir
+localfolders = ~/.mail/zabelin.alex-gmail.com
+nametrans = local_folder_to_gmail_folder
+
+[Repository zabelin.alex-Remote]
+maxconnections = 1
+type = Gmail
+remoteuser = zabelin.alex@gmail.com
+remotepasseval = get_password("zabelin.alex@gmail.com")
+realdelete = no
+nametrans = gmail_folder_to_local_folder
+folderfilter = should_include_folder
+sslcacertfile = ~/.mutt/Equifax_Secure_CA.cert
+keepalive = 60
+holdconnectionopen = yes
