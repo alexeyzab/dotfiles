@@ -200,6 +200,8 @@ if exists(":Tabularize")
   vmap <Leader>a= :Tabularize /=<CR>
   nmap <Leader>a: :Tabularize /:\zs<CR>
   vmap <Leader>a: :Tabularize /:\zs<CR>
+  nmap <Leader>a-> :Tabularize /-><CR>
+  vmap <Leader>a-> :Tabularize /-><CR>
 endif
 
 " vim2hs disable folding
@@ -227,3 +229,6 @@ autocmd VimEnter * command! Colors
 
 " nohl mapping
 nnoremap <C-n> :nohl<CR>
+
+" Use deoplete
+let g:deoplete#enable_at_startup = 1
