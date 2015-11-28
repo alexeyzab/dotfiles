@@ -1,14 +1,15 @@
 import XMonad
+import XMonad.Layout.CenteredMaster
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run
 import XMonad.Util.EZConfig
 import System.IO
 
-myWorkspaces = ["1:nvim","2:web","3","4","5","6","7","8"]
+myWorkspaces = ["1:terminal","2:web","3","4","5","6","7","8"]
 myManageHook = composeAll
   [ className =? "google-chrome" --> doShift "2:web"
-  , className =? "st" --> doShift "1:nvim"
+  , className =? "urxvtc" --> doShift "1:terminal"
   ]
 
 main :: IO ()
@@ -23,7 +24,7 @@ main = do
           , ppTitle = xmobarColor "white" "" . shorten 50
           , ppLayout = const ""
           }
-      , terminal = "st"
+      , terminal = "urxvtc"
       , workspaces = myWorkspaces
       , normalBorderColor = "#000000"
       , focusedBorderColor = "#ffffff"
