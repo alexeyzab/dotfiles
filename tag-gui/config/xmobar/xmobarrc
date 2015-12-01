@@ -27,7 +27,7 @@ Config { font = "xft:Inconsolata for Powerline:size=10:bold:antialias:true"
                         ["-t", "<acstatus>"
                         , "-L", "10", "-H", "80"
                         , "-l", "red", "-h", "green"
-                        , "--", "-O", "Charging", "-i", "Charging",  "-o", "Battery: <left>% * <timeleft> Hours"
+                        , "--", "-O", "Charging", "-i", "Idling",  "-o", "Battery: <left>% * <timeleft> Hours"
                         ] 30
                     , Run Com "/home/alexeyzab/scripts/volume.sh" [] "volume" 10
                     , Run Com "/home/alexeyzab/scripts/kb-status.sh" [] "kb-status" 10
