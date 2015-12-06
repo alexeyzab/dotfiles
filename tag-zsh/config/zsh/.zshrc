@@ -37,7 +37,7 @@ _load_settings() {
     fi
   fi
 }
-_load_settings "$ZDOTDIR"/configs
+_load_settings "$ZDOTDIR/configs"
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
@@ -52,10 +52,9 @@ fi
 
 # FZF color scheme
 export FZF_DEFAULT_OPTS='
-  --color=dark,hl:33,hl+:37,fg+:235,bg+:136
+  --color=dark,hl:33,hl+:37,fg+:235,bg+:136,fg+:254
   --color info:254,prompt:37,spinner:108,pointer:235,marker:235
 '
-
 
 # NeoVim truecolor support
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
