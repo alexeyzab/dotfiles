@@ -25,6 +25,7 @@ Config { font = "xft:Inconsolata for Powerline:size=10:bold:antialias:true"
                     , Run Date "%a %b %_d %-I:%M %p" "date" 10
                     , Run BatteryP ["BAT0"]
                         ["-t", "<acstatus>"
+                        , "-f", "/sys/class/power_supply/ADP1/online"
                         , "-L", "10", "-H", "80"
                         , "-l", "red", "-h", "green"
                         , "--", "-O", "Charging", "-i", "Idling",  "-o", "Battery: <left>% * <timeleft> Hours"
