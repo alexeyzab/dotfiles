@@ -29,5 +29,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'eagletmt/neco-ghc'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
