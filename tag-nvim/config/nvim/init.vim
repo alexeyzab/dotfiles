@@ -155,6 +155,7 @@ let g:tmuxline_preset = {
       \'b'    : '#W',
       \'win'  : '#I: #W',
       \'cwin' : '#I: #W' ,
+      \'y'    : ['#(echo "Mail:") #(tmuxmail)'],
       \'z'    : '#H'}
 let g:tmuxline_separators = {
       \'left' : '',
@@ -179,9 +180,6 @@ colorscheme solarized
 
 " Default font size
 set guifont=Inconsolata\ for\ Powerline:h12
-
-" LiteDFM keybinding
-nnoremap <Leader>z :LiteDFMToggle<CR>
 
 " Escape insert mode quickly
 imap jj <Esc>
