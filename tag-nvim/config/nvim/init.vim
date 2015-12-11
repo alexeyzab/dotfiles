@@ -155,7 +155,7 @@ let g:tmuxline_preset = {
       \'b'    : '#W',
       \'win'  : '#I: #W',
       \'cwin' : '#I: #W' ,
-      \'y'    : ['#(echo "Mail:") #(tmuxmail)'],
+      \'y'    : ['#(echo "mail:") #(tmuxmail)'],
       \'z'    : '#H'}
 let g:tmuxline_separators = {
       \'left' : '',
