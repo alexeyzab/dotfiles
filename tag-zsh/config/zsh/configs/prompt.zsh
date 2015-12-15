@@ -1,6 +1,6 @@
 # modify the prompt to contain git branch name if applicable
 git_prompt_info() {
-  current_branch=$(git current-branch 2> /dev/null)
+  current_branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
   if [[ -n $current_branch ]]; then
     echo " %{$fg_bold[green]%}$current_branch%{$reset_color%}"
   fi
