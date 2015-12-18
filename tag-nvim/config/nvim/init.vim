@@ -133,8 +133,8 @@ if has('nvim')
 endif
 
 " configure syntastic syntax checking to check on open as well as save
-let g:syntastic_check_on_open=1
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+" let g:syntastic_check_on_open=1
+" let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
@@ -145,11 +145,24 @@ set diffopt+=vertical
 
 " Lightline config
 let g:lightline = {
-      \'colorscheme':'solarized_dark',
+      \'colorscheme':'gruvbox',
       \}
+" let g:lightline = {}
+" let g:lightline.colorscheme = 'gruvbox'
 
 " Tmuxline config
 " let g:tmuxline_preset = 'crosshair'
+let g:tmuxline_theme = {
+      \'a'    : [ 230, 7 ],
+      \'b'    : [ 230, 8 ],
+      \'c'    : [ 230, 228 ],
+      \'win'  : [ 230, 8 ],
+      \'cwin' : [ 230, 7 ],
+      \'x'    : [ 230, 228 ],
+      \'y'    : [ 230, 8 ],
+      \'z'    : [ 230, 7 ],
+      \'bg'   : [ 230, 8 ],
+      \}
 let g:tmuxline_preset = {
       \'a'    : '#S',
       \'b'    : '#W',
@@ -169,17 +182,19 @@ let g:tmuxline_separators = {
 nnoremap <Leader>tw :%s/\s\+$//e<CR>
 
 " Rspec and Tslime settings
-let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
+" let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("be rspec {spec}\n")'
 
 let g:rspec_runner = "os_x_iterm"
 
 " Color scheme
 syntax enable
-set background=dark
-colorscheme solarized
+set background=light
+colorscheme gruvbox
+let g:gruvbox_contrast_light = "soft"
 
 " Default font size
-set guifont=Inconsolata\ for\ Powerline:h12
+set guifont=Fantasque\ Sans\ Mono:h12
 
 " Escape insert mode quickly
 imap jj <Esc>
@@ -230,3 +245,10 @@ nnoremap <C-n> :nohl<CR>
 
 " Use deoplete
 let g:deoplete#enable_at_startup = 1
+
+" Neomake
+autocmd! BufWritePost * Neomake
+let g:neomake_haskell_enabled_makers = ['ghcmod']
+let g:neomake_ruby_enabled_makers = ['rubocop']
+let g:neomake_javascript_enabled_makers = ['jshint']
+let g:neomake_sh_enabled_makers = ['shellcheck']
