@@ -30,8 +30,9 @@ set sidebar_width   = 24
 
 # Status Bar -----------------------------------------
 set status_chars  = " *%A"
-set status_format = "---[ Folder: %f ]---[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]---%>-%?p?( %p postponed )?---"
-set ascii_chars = yes
+# set status_format = "---[ Folder: %f ]---[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]---%>-%?p?( %p postponed )?---"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+# set ascii_chars = yes
 
 # Header Options -------------------------------------
 ignore *                                # ignore all headers
@@ -144,7 +145,8 @@ set sendmail_wait = 0
 unset record
 
 
-source .mutt/mutt-colors-solarized-dark-16.muttrc
+# source .mutt/mutt-colors-solarized-dark-16.muttrc
+source .mutt/mutt-colors-gruvbox-16.muttrc
 
 folder-hook gmail/*       source ~/.mutt/accounts/gmail
 source ~/.mutt/gpg
