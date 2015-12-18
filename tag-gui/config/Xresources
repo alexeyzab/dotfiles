@@ -1,6 +1,6 @@
 ! nvim: ft=xdefaults
-*font: xft:Inconsolata for Powerline-13:antialias=true:autohint=false
-*boldFont: xft:Inconsolata for Powerline-13:antialias=true:bold:autohint=false
+*font: xft:Fantasque Sans Mono-12:antialias=true:autohint=false
+*boldFont: xft:Fantasque Sans Mono-12:antialias=true:bold:autohint=false
 Xft.dpi:        96
 Xft.antialias:  true
 Xft.rgba:       rgb
@@ -11,12 +11,18 @@ URxvt*scrollBar: false
 URxvt*urgentOnBell: true
 URxvt*visualBell: false
 URxvt*termName: rxvt-256color
-URxvt.font:     xft:Inconsolata for Powerline-13:antialias=true:autohint=false
-URxvt.boldFont: xft:Inconsolata for Powerline-13:bold:antialias=true:autohint=false
-URxvt*italicFont: xft:Inconsolata for Powerline-13:antialias=true:italic:autohint=false
-URxvt*boldItalicFont: xft:Inconsolata for Powerline-13:bold:italic:antialias=true:autohint=false
+URxvt.font:     xft:Fantasque Sans Mono-12:antialias=true:autohint=false
+URxvt.boldFont: xft:Fantasque Sans Mono-12:bold:antialias=true:autohint=false
+URxvt*italicFont: xft:Fantasque Sans Mono-12:antialias=true:italic:autohint=false
+URxvt*boldItalicFont: xft:Fantasque Sans Mono-12:bold:italic:antialias=true:autohint=false
 
 
+URxvt.perl-ext-common: default,clipboard
+URxvt.iso14755: False
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.clipboard.copycmd:  xsel -ib
+URxvt.clipboard.pastecmd: xsel -ob
 URxvt.perl-ext: default,url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.matcher.button: 1
@@ -25,4 +31,4 @@ URxvt.url-select.underline: true
 URxvt.intensityStyles: false
 URxvt.letterSpace: -1
 
-#include "/home/alexeyzab/.config/xthemes/Solarized"
+#include "/home/alexeyzab/.config/xthemes/Gruvbox"
