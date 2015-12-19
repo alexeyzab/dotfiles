@@ -1,6 +1,6 @@
 ! nvim: ft=xdefaults
-*font: xft:Fantasque Sans Mono-12:antialias=true:autohint=false
-*boldFont: xft:Fantasque Sans Mono-12:antialias=true:bold:autohint=false
+*font: xft:Fantasque Sans Mono:pixelsize=18:hinting=true:antialias=true:autohint=false
+*boldFont: xft:Fantasque Sans Mono-14:antialias=true:bold:autohint=false
 Xft.dpi:        96
 Xft.antialias:  true
 Xft.rgba:       rgb
@@ -11,10 +11,10 @@ URxvt*scrollBar: false
 URxvt*urgentOnBell: true
 URxvt*visualBell: false
 URxvt*termName: rxvt-256color
-URxvt.font:     xft:Fantasque Sans Mono-12:antialias=true:autohint=false
-URxvt.boldFont: xft:Fantasque Sans Mono-12:bold:antialias=true:autohint=false
-URxvt*italicFont: xft:Fantasque Sans Mono-12:antialias=true:italic:autohint=false
-URxvt*boldItalicFont: xft:Fantasque Sans Mono-12:bold:italic:antialias=true:autohint=false
+URxvt.font:     xft:Fantasque Sans Mono-14:antialias=true:autohint=false,xft:Fira Mono for Powerline:size=14
+URxvt.boldFont: xft:Fantasque Sans Mono-14:bold:antialias=true:autohint=false
+URxvt*italicFont: xft:Fantasque Sans Mono-14:antialias=true:italic:autohint=false
+URxvt*boldItalicFont: xft:Fantasque Sans Mono-14:bold:italic:antialias=true:autohint=false
 
 
 URxvt.perl-ext-common: default,clipboard
