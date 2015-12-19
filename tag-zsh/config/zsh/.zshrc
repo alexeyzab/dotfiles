@@ -45,7 +45,7 @@ _load_settings "$ZDOTDIR/configs"
 # tmuxline workaround
 if pgrep "tmux" > /dev/null
   then
-    tmux source-file ~/.tmux.snapshot
+    $(tmux source-file ~/.tmux.snapshot)
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -72,6 +72,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # Add scripts folder to path
 export PATH="$HOME/scripts/:$PATH"
+export PATH="$HOME/bin/:$PATH"
 
 export BROWSER='google-chrome-stable'
 export GPG_TTY="$(tty)"
