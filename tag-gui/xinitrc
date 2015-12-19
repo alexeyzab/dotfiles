@@ -1,6 +1,6 @@
 #!/bin/sh
 
-feh --bg-scale ~/wallpaper.png
+feh --bg-scale ~/wallpaper2.png
 
 [[ -f ~/.config/Xresources ]] && xrdb ~/.config/Xresources
 xset s off
