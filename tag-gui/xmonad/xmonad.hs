@@ -35,6 +35,9 @@ main = do
       , ("<XF86AudioRaiseVolume>", spawn "amixer sset Master 5%+")
       , ("<XF86AudioLowerVolume>", spawn "amixer sset Master 5%-")
       , ("<XF86AudioMute>", spawn "amixer sset Master 1+ toggle")
+      , ("M-f", spawn "amixer sset Master 5%+")
+      , ("M-d", spawn "amixer sset Master 5%-")
+      , ("M-t", spawn "amixer sset Master 1+ toggle")
       ]
 
 
