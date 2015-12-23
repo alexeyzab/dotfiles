@@ -1,6 +1,6 @@
 #!/bin/sh
 
-feh --bg-scale ~/wallpaper2.png
+feh --bg-scale ~/.local/share/wallpaper_gruvbox.png
 
 [[ -f ~/.config/Xresources ]] && xrdb ~/.config/Xresources
 xset s off
