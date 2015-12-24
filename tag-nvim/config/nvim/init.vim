@@ -145,24 +145,25 @@ set diffopt+=vertical
 
 " Lightline config
 let g:lightline = {
-      \'colorscheme':'gruvbox',
+      \'colorscheme':'solarized_light',
       \}
 " let g:lightline = {}
 " let g:lightline.colorscheme = 'gruvbox'
 
 " Tmuxline config
 " let g:tmuxline_preset = 'crosshair'
-let g:tmuxline_theme = {
-      \'a'    : [ 230, 7 ],
-      \'b'    : [ 230, 8 ],
-      \'c'    : [ 230, 228 ],
-      \'win'  : [ 230, 8 ],
-      \'cwin' : [ 230, 7 ],
-      \'x'    : [ 230, 228 ],
-      \'y'    : [ 230, 8 ],
-      \'z'    : [ 230, 7 ],
-      \'bg'   : [ 230, 8 ],
-      \}
+" gruvbox preset
+" let g:tmuxline_theme = {
+"       \'a'    : [ 230, 7 ],
+"       \'b'    : [ 230, 8 ],
+"       \'c'    : [ 230, 228 ],
+"       \'win'  : [ 230, 8 ],
+"       \'cwin' : [ 230, 7 ],
+"       \'x'    : [ 230, 228 ],
+"       \'y'    : [ 230, 8 ],
+"       \'z'    : [ 230, 7 ],
+"       \'bg'   : [ 230, 8 ],
+"       \}
 let g:tmuxline_preset = {
       \'a'    : '#S',
       \'b'    : '#W',
@@ -190,8 +191,8 @@ let g:rspec_runner = "os_x_iterm"
 " Color scheme
 syntax enable
 set background=light
-colorscheme gruvbox
-let g:gruvbox_contrast_light = "soft"
+colorscheme solarized
+" let g:gruvbox_contrast_light = "soft"
 
 " Default font size
 set guifont=Fantasque\ Sans\ Mono:h12

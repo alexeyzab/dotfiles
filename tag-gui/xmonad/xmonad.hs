@@ -21,8 +21,8 @@ main = do
       , layoutHook = avoidStruts $ layoutHook defaultConfig
       , logHook = dynamicLogWithPP xmobarPP
           { ppOutput = hPutStrLn xmproc
-          , ppCurrent = xmobarColor "#9d0006" ""
-          , ppTitle = xmobarColor "#3C3836" "" . shorten 50
+          , ppCurrent = xmobarColor "#268BD2" ""
+          , ppTitle = xmobarColor "#657B83" "" . shorten 50
           , ppLayout = const ""
           }
       , terminal = "st"

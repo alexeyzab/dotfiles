@@ -2,8 +2,8 @@ Config { font = "xft:Fantasque Sans Mono:size=10:bold:antialias:true"
        , additionalFonts = []
        , borderColor = "white"
        , border = NoBorder
-       , bgColor = "#F2E5BC"
-       , fgColor = "#3C3836"
+       , bgColor = "#FDF6E3"
+       , fgColor = "#657B83"
        , alpha = 255
        , position = Top
        , textOffset = -1
@@ -16,10 +16,10 @@ Config { font = "xft:Fantasque Sans Mono:size=10:bold:antialias:true"
        , allDesktops = True
        , overrideRedirect = True
        , commands = [ Run Network "wlp3s0" ["-L","0","-H","32",
-                                          "--normal","#79740e","--high","#9d0006"] 10
+                                          "--normal","#859900","--high","#DC322F"] 10
                     , Run Com "/home/alexeyzab/scripts/wifi-strength" [] "signal" 10
                     , Run Cpu ["-L","3","-H","50",
-                               "--normal","#79740e","--high","#9d0006"] 10
+                               "--normal","#859900","--high","#DC322F"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
                     , Run Date "%a %b %_d %-I:%M %p" "date" 10
@@ -27,7 +27,7 @@ Config { font = "xft:Fantasque Sans Mono:size=10:bold:antialias:true"
                         ["-t", "<acstatus>"
                         , "-f", "/sys/class/power_supply/ADP1/online"
                         , "-L", "10", "-H", "80"
-                        , "-l", "red", "-h", "#79740e"
+                        , "-l", "red", "-h", "#859900"
                         , "--", "-O", "Charging", "-i", "Idling",  "-o", "Battery: <left>% * <timeleft> Hours"
                         ] 30
                     , Run Com "/home/alexeyzab/scripts/volume" [] "volume" 10
@@ -36,5 +36,5 @@ Config { font = "xft:Fantasque Sans Mono:size=10:bold:antialias:true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %signal% | %wlp3s0% | %kb-status% | Vol: <fc=#79740e>%volume%</fc> | <fc=#3C3836>%date%</fc> | %battery% "
+       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %signal% | %wlp3s0% | %kb-status% | Vol: <fc=#859900>%volume%</fc> | <fc=#657B83>%date%</fc> | %battery% "
        }

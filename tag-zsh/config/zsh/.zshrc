@@ -45,7 +45,7 @@ _load_settings "$ZDOTDIR/configs"
 # tmuxline workaround
 if pgrep "tmux" > /dev/null
   then
-    $(tmux source-file ~/.tmux.snapshot)
+    $(tmux source-file ~/.tmux.snapshot_solarized_light)
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
