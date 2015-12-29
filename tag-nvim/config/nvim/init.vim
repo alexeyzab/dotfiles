@@ -252,4 +252,5 @@ autocmd! BufWritePost * Neomake
 let g:neomake_haskell_enabled_makers = ['ghcmod']
 let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_javascript_enabled_makers = ['jshint']
+let g:neomake_json_enabled_makers = ['jsonlint']
 let g:neomake_sh_enabled_makers = ['shellcheck']
