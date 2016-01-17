@@ -30,7 +30,7 @@ Plug 'eagletmt/neco-ghc'
 Plug 'junegunn/goyo.vim'
 Plug 'benekastah/neomake'
 Plug 'morhetz/gruvbox'
-" Plug 'bling/vim-airline'
 Plug 'itchyny/lightline.vim'
+Plug 'junegunn/gv.vim'
 
 call plug#end()
