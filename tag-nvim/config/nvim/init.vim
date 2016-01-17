@@ -147,11 +147,7 @@ set diffopt+=vertical
 let g:lightline = {
       \'colorscheme':'solarized_light',
       \}
-" let g:lightline = {}
-" let g:lightline.colorscheme = 'gruvbox'
-
 " Tmuxline config
-" let g:tmuxline_preset = 'crosshair'
 " gruvbox preset
 " let g:tmuxline_theme = {
 "       \'a'    : [ 230, 7 ],
@@ -254,3 +250,6 @@ let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_json_enabled_makers = ['jsonlint']
 let g:neomake_sh_enabled_makers = ['shellcheck']
+
+" Matching brackets fix
+set matchtime=0
