@@ -8,7 +8,7 @@ import System.IO
 
 myWorkspaces = ["1:terminal","2:web","3","4","5","6","7","8"]
 myManageHook = composeAll
-  [ className =? "google-chrome" --> doShift "2:web"
+  [ className =? "chromium" --> doShift "2:web"
   , className =? "st" --> doShift "1:terminal"
   ]
 

@@ -72,7 +72,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 export PATH="$HOME/scripts/:$PATH"
 export PATH="$HOME/bin/:$PATH"
 
-export BROWSER='google-chrome-stable'
+export BROWSER='chromium'
 export GPG_TTY="$(tty)"
 export MANWIDTH=80
 
