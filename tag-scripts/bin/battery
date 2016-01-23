@@ -1,0 +1,7 @@
+#!/bin/sh
+# Calculates the amount of bars to display in xmobar, similar to
+# wifi-strength.sh
+
+bat=`acpi | cut -d',' -f2`
+
+echo "Batt:" $bat
