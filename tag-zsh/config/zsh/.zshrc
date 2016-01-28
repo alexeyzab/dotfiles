@@ -69,8 +69,8 @@ source /usr/local/share/chruby/auto.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Add scripts folder to path
-export PATH="$HOME/scripts/:$PATH"
-export PATH="$HOME/bin/:$PATH"
+export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.dotfiles/tag-scripts/bin:$PATH"
 
 export BROWSER='chromium'
 export GPG_TTY="$(tty)"
