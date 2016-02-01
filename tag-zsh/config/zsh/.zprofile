@@ -1,21 +1,22 @@
-function start_ssh_agent() {
-  local ssh_env="$XDG_CACHE_HOME/ssh-env"
-
-  if pgrep ssh-agent >/dev/null; then
-    source "$ssh_env"
-  else
-    ssh-agent | grep -Fv echo > "$ssh_env"
-    source "$ssh_env"
-    ssh-add
-  fi
-}
+# function start_ssh_agent() {
+#   local ssh_env="$XDG_CACHE_HOME/ssh-env"
+#
+#   if pgrep ssh-agent >/dev/null; then
+#     source "$ssh_env"
+#   else
+#     ssh-agent | grep -Fv echo > "$ssh_env"
+#     source "$ssh_env"
+#     ssh-add
+#   fi
+# }
 
 export XDG_CACHE_HOME="$HOME"/.cache
 export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_DATA_HOME="$HOME"
 
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
-export GOPATH="$XDG_CONFIG_HOME"/go
+export GOPATH="$XDG_DATA_HOME"/code/go
+export PATH="$PATH:$GOPATH"/bin
 export LESSHISTFILE="$XDG_CACHE_HOME"/lesshist
 export NOTITLE=1 # avoid broken grml precmd hook
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuchrc
@@ -40,7 +41,7 @@ path=(
   $path
 )
 
-start_ssh_agent
+# start_ssh_agent
 
 if [[ $TTY == /dev/tty1 ]] && [[ -z $DISPLAY ]]; then
   # Note: Since Xorg 1.16, redirecting stderr is unsupported.
