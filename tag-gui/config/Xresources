@@ -30,5 +30,3 @@ URxvt.url-select.launcher: /usr/bin/chromium
 URxvt.url-select.underline: true
 URxvt.intensityStyles: false
 URxvt.letterSpace: -1
-
-#include "/home/alexeyzab/.config/xthemes/Gruvbox"
