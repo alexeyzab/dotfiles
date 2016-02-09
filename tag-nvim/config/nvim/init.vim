@@ -261,7 +261,7 @@ let g:deoplete#enable_at_startup = 1
 
 " Neomake
 autocmd! BufWritePost * Neomake
-let g:neomake_haskell_enabled_makers = ['ghcmod']
+let g:neomake_haskell_enabled_makers = ['ghcmod', 'hlint']
 let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_json_enabled_makers = ['jsonlint']
