@@ -72,8 +72,16 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.dotfiles/tag-scripts/bin:$PATH"
 
-export BROWSER='chromium'
+export BROWSER='google-chrome-stable'
 export GPG_TTY="$(tty)"
 export MANWIDTH=80
 
 setopt vi
+
+# Stack autocompletion
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+eval "$(stack --bash-completion-script stack)"
+
+# Add local bin to path
+export PATH="$HOME/.local/bin:$PATH"
