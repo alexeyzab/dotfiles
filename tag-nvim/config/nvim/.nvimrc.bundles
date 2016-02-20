@@ -30,5 +30,7 @@ Plug 'eagletmt/ghcmod-vim'
 Plug 'benekastah/neomake'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/gv.vim'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'Shougo/vimproc.vim'
 
 call plug#end()
