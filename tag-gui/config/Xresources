@@ -1,6 +1,6 @@
 ! nvim: ft=xdefaults
-*font: xft:Fantasque Sans Mono:pixelsize=18:hinting=true:antialias=true:autohint=false
-*boldFont: xft:Fantasque Sans Mono-14:antialias=true:bold:autohint=false
+! *font: xft:Fantasque Sans Mono-14:hinting=true:antialias=true:autohint=false
+! *boldFont: xft:Fantasque Sans Mono-14:antialias=true:bold:autohint=false
 Xft.dpi:        96
 Xft.antialias:  true
 Xft.rgba:       rgb
@@ -26,7 +26,7 @@ URxvt.clipboard.pastecmd: xsel -ob
 URxvt.perl-ext: default,url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.matcher.button: 1
-URxvt.url-select.launcher: /usr/bin/chromium
+URxvt.url-select.launcher: /usr/bin/google-chrome-stable
 URxvt.url-select.underline: true
 URxvt.intensityStyles: false
 URxvt.letterSpace: -1
