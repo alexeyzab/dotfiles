@@ -1,6 +1,6 @@
 #!/bin/sh
 
-feh --bg-scale ~/.local/share/wallpaper_new.jpg
+feh --bg-scale ~/.local/share/wallpaper_solarized_new.jpg
 
 [[ -f ~/.config/Xresources ]] && xrdb ~/.config/Xresources
 xset s off
@@ -14,7 +14,7 @@ if [ -s ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
 fi
 
-st &
+termite &
 
 chromium &
 
