@@ -9,7 +9,7 @@ import System.IO
 myWorkspaces = ["1:terminal","2:web","3","4","5","6","7","8"]
 myManageHook = composeAll
   [ className =? "chromium" --> doShift "2:web"
-  , className =? "st" --> doShift "1:terminal"
+  , className =? "termite" --> doShift "1:terminal"
   ]
 
 main :: IO ()
