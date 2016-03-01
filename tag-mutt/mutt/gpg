@@ -1,5 +1,5 @@
 # nvim: ft=muttrc:
-source /usr/share/doc/mutt/samples/gpg.rc
+source /usr/share/doc/mutt-patched/samples/gpg.rc
 
 set pgp_sign_as = 478324E9
 set pgp_use_gpg_agent = yes
