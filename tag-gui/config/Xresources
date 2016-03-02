@@ -1,11 +1,13 @@
 ! nvim: ft=xdefaults
-! *font: xft:Fantasque Sans Mono-14:hinting=true:antialias=true:autohint=false
-! *boldFont: xft:Fantasque Sans Mono-14:antialias=true:bold:autohint=false
+*font: xft:Fantasque Sans Mono-14:hinting=true:antialias=true:autohint=false
+*boldFont: xft:Fantasque Sans Mono-14:antialias=true:bold:autohint=false
 Xft.dpi:        96
-Xft.antialias:  true
+Xft.autohint:   0
+Xft.lcdfilter:  lcddefault
+Xft.antialias:  1
 Xft.rgba:       rgb
 Xft.hinting:    true
-Xft.hintstyle:  hintfull
+Xft.hintstyle:  hintslight
 
 URxvt*scrollBar: false
 URxvt*urgentOnBell: true
