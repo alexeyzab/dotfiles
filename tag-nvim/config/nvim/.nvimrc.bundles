@@ -25,12 +25,12 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/vimproc.vim'
 Plug 'eagletmt/neco-ghc'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'benekastah/neomake'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/gv.vim'
-Plug 'frankier/neovim-colors-solarized-truecolor-only'
-Plug 'Shougo/vimproc.vim'
+Plug 'wellle/targets.vim'
 
 call plug#end()
