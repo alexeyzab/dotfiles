@@ -25,19 +25,20 @@ main = do
           , ppTitle = xmobarColor "#657B83" "" . shorten 50
           , ppLayout = const ""
           }
-      , terminal = "st"
+      , terminal = "termite"
       , workspaces = myWorkspaces
       , normalBorderColor = "#000000"
       , focusedBorderColor = "#ffffff"
       } `additionalKeysP`
       [ ("M-p", spawn "gmrun")
       , ("M-S-l", spawn "slock")
+      , ("M-b", sendMessage ToggleStruts)
       , ("<XF86AudioRaiseVolume>", spawn "amixer sset Master 5%+")
       , ("<XF86AudioLowerVolume>", spawn "amixer sset Master 5%-")
       , ("<XF86AudioMute>", spawn "amixer sset Master 1+ toggle")
       , ("M-f", spawn "amixer sset Master 5%+")
       , ("M-d", spawn "amixer sset Master 5%-")
-      , ("M-t", spawn "amixer sset Master 1+ toggle")
+      , ("M-e", spawn "amixer sset Master 1+ toggle")
       ]
 
 
