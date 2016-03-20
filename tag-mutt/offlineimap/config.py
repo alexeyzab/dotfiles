@@ -27,7 +27,7 @@ def should_include_folder(folder):
 
 def get_password(name):
     try:
-        output = subprocess.check_output(["/home/alexeyzab/scripts/getnetrc.py", name])
+        output = subprocess.check_output(["/home/alexeyzab/.local/bin/getnetrc", name])
         return output.split("\n")[0]
     except subprocess.CalledProcessError:
         return None
