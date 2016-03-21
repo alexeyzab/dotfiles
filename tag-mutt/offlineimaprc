@@ -19,6 +19,7 @@ localfolders = ~/.mail/zabelin.alex-gmail.com
 nametrans = local_folder_to_gmail_folder
 
 [Repository zabelin.alex-Remote]
+auth_mechanisms = LOGIN
 maxconnections = 1
 type = Gmail
 remoteuser = zabelin.alex@gmail.com
