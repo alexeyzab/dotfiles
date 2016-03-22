@@ -31,7 +31,7 @@ root: ~/code
 
 windows:
   - abc:
-      root: ~/code/twitter_images
+      root:
       layout: 4fad,212x54,0,0[212x43,0,0,0,212x10,0,44{106x10,0,44,1,105x10,107,44,2}]
       panes:
         - clear
@@ -40,10 +40,11 @@ windows:
   - haskell:
       layout: 4fad,212x54,0,0[212x43,0,0,0,212x10,0,44{106x10,0,44,1,105x10,107,44,2}]
       panes:
-        -
-        -
-        -
-        -
+        - cd haskell
+        - cd haskell
+        - cd haskell
   - mutt: mutt
   - pianobar: pianobar
   - hangouts: hangups
+  - weechat: weechat
+  - hledger:
