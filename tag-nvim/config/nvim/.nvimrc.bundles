@@ -32,5 +32,7 @@ Plug 'benekastah/neomake'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/gv.vim'
 Plug 'wellle/targets.vim'
+Plug 'mhinz/vim-startify'
+Plug 'itchyny/vim-haskell-indent'
 
 call plug#end()
