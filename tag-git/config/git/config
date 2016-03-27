@@ -29,6 +29,10 @@
 [commit]
   template = ~/.gitmessage
   gpgsign = true
+[difftool]
+  prompt = false
+[difftool "icdiff"]
+  cmd = icdiff $LOCAL $REMOTE | less -R
 [init]
   templatedir = ~/.config/git/template
 [rebase]
