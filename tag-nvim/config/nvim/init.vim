@@ -238,7 +238,10 @@ let g:haskell_conceal_enumerations = 0
 set nofoldenable
 
 " FZF command
-nnoremap <c-p> :FZF<cr>
+nnoremap <c-p> :call fzf#run({
+      \ 'down': '-40%',
+      \ 'options': '--color=light,fg:240,hl:33,fg:241,bg+:221,hl+:33,info:33,prompt:33,marker:166,spinner:33'
+      \ })<cr>
 
 " This is the default extra key bindings
 let g:fzf_action = {
@@ -247,11 +250,7 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 " Default fzf layout
-let g:fzf_layout = { 'down': '40%' }
-
-" Advanced customization using autoload functions
-autocmd VimEnter * command! Colors
-  \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
+let g:fzf_layout = { 'down': '-40%' }
 
 " nohl mapping
 nnoremap <C-n> :nohl<CR>
