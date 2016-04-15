@@ -1,4 +1,5 @@
 set font "Fantasque Sans Mono"
+set browser "chromium %s"
 
 set default-bg "#fdf6e3"
 set default-fg "#657b83"
