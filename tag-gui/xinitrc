@@ -14,6 +14,8 @@ if [ -s ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
 fi
 
+xbacklight -inc 100
+
 termite &
 
 chromium &

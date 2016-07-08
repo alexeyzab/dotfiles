@@ -16,7 +16,6 @@ Config { font = "xft:Fantasque Sans Mono:size=10:bold:antialias=true"
        , overrideRedirect = True
        , commands = [ Run Network "wlp3s0" ["-L","0","-H","32",
                                           "--normal","#859900","--high","#DC322F"] 10
-                    , Run Com "/home/alexeyzab/.local/bin/wifi-strength" [] "signal" 10
                     , Run Cpu ["-L","3","-H","50",
                                "--normal","#859900","--high","#DC322F"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
@@ -30,10 +29,11 @@ Config { font = "xft:Fantasque Sans Mono:size=10:bold:antialias=true"
                         , "--", "-O", "Charging", "-i", "Idling",  "-o", "Battery: <left>% * <timeleft> Hours"
                         ] 30
                     , Run Com "/home/alexeyzab/.local/bin/volume" [] "volume" 10
+                    , Run Com "/home/alexeyzab/.local/bin/brightness" [] "brightness" 10
                     , Run Com "/home/alexeyzab/.local/bin/kb-status" [] "kb-status" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %signal% | %wlp3s0% | %kb-status% | Vol: <fc=#859900>%volume%</fc> | <fc=#657B83>%date%</fc> | %battery% "
+       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %wlp3s0% | %kb-status% | Vol: <fc=#859900>%volume%</fc> | Br: <fc=#859900>%brightness%</fc> | <fc=#657B83>%date%</fc> | %battery% "
        }
