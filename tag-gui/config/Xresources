@@ -1,6 +1,6 @@
-! nvim: ft=xdefaults
-*font: xft:Fantasque Sans Mono-14:hinting=true:antialias=true:autohint=false
-*boldFont: xft:Fantasque Sans Mono-14:antialias=true:bold:autohint=false
+nvim: ft=xdefaults
+*font: xft:Fantasque Sans Mono-15:hinting=true:antialias=true:autohint=false
+*boldFont: xft:Fantasque Sans Mono-15:antialias=true:bold:autohint=false
 Xft.dpi:        96
 Xft.autohint:   0
 Xft.lcdfilter:  lcddefault
@@ -8,15 +8,15 @@ Xft.antialias:  1
 Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
-
-URxvt*scrollBar: false
-URxvt*urgentOnBell: true
-URxvt*visualBell: false
-URxvt*termName: rxvt-256color
-URxvt.font:     xft:Fantasque Sans Mono-14:antialias=true:autohint=false,xft:Fira Mono for Powerline:size=14
-URxvt.boldFont: xft:Fantasque Sans Mono-14:bold:antialias=true:autohint=false
-URxvt*italicFont: xft:Fantasque Sans Mono-14:antialias=true:italic:autohint=false
-URxvt*boldItalicFont: xft:Fantasque Sans Mono-14:bold:italic:antialias=true:autohint=false
+!
+! URxvt*scrollBar: false
+! URxvt*urgentOnBell: true
+! URxvt*visualBell: false
+! URxvt*termName: rxvt-256color
+! URxvt.font:     xft:Fantasque Sans Mono-14:antialias=true:autohint=false,xft:Fira Mono for Powerline:size=14
+! URxvt.boldFont: xft:Fantasque Sans Mono-14:bold:antialias=true:autohint=false
+! URxvt*italicFont: xft:Fantasque Sans Mono-14:antialias=true:italic:autohint=false
+! URxvt*boldItalicFont: xft:Fantasque Sans Mono-14:bold:italic:antialias=true:autohint=false
 
 
 URxvt.perl-ext-common: default,clipboard
