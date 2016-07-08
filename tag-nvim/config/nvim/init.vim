@@ -220,15 +220,12 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
-" Tabular settings
-if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-  nmap <Leader>a-> :Tabularize /-><CR>
-  vmap <Leader>a-> :Tabularize /-><CR>
-endif
+" vim-easy-align settings
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap <Leader>ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap <Leader>ga <Plug>(EasyAlign)
 
 " vim2hs disable folding
 let g:haskell_conceal = 0
@@ -240,7 +237,6 @@ set nofoldenable
 " FZF command
 nnoremap <c-p> :call fzf#run({
       \ 'down': '-40%',
-      \ 'options': '--color=light,fg:240,hl:33,fg:241,bg+:221,hl+:33,info:33,prompt:33,marker:166,spinner:33'
       \ })<cr>
 
 " This is the default extra key bindings
@@ -260,7 +256,7 @@ let g:deoplete#enable_at_startup = 1
 
 " Neomake
 autocmd! BufWritePost * Neomake
-let g:neomake_haskell_enabled_makers = ['ghcmod', 'hlint']
+let g:neomake_haskell_enabled_makers = ['hlint']
 let g:neomake_ruby_enabled_makers = ['rubocop']
 let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_json_enabled_makers = ['jsonlint']
@@ -268,3 +264,12 @@ let g:neomake_sh_enabled_makers = ['shellcheck']
 
 " Matching brackets fix
 set matchtime=0
+
+" Hdevtools Integration
+au FileType haskell nnoremap <buffer> <leader>d :HdevtoolsType<CR>
+au FileType haskell nnoremap <buffer> <silent> <leader>m :HdevtoolsClear<CR>
+let g:hdevtools_options = '-g-Wall'
+
+" Haskell-vim indentation
+let g:haskell_indent_if = 2
+let g:haskell_indent_guard = 2
