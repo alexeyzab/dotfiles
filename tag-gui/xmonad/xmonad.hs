@@ -1,10 +1,10 @@
-import XMonad
-import XMonad.Layout.CenteredMaster
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageDocks
-import XMonad.Util.Run
-import XMonad.Util.EZConfig
-import System.IO
+import           System.IO
+import           XMonad
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Layout.CenteredMaster
+import           XMonad.Util.EZConfig
+import           XMonad.Util.Run
 
 myWorkspaces = ["1:terminal","2:web","3","4","5","6","7","8"]
 myManageHook = composeAll
@@ -18,6 +18,7 @@ main = do
 
     xmonad $ defaultConfig
       { manageHook = myManageHook <+> manageDocks <+> manageHook defaultConfig
+      , handleEventHook = docksEventHook <+> handleEventHook defaultConfig
       , layoutHook = avoidStruts $ layoutHook defaultConfig
       , logHook = dynamicLogWithPP xmobarPP
           { ppOutput = hPutStrLn xmproc
@@ -25,6 +26,7 @@ main = do
           , ppTitle = xmobarColor "#657B83" "" . shorten 50
           , ppLayout = const ""
           }
+      , modMask = mod4Mask
       , terminal = "termite"
       , workspaces = myWorkspaces
       , normalBorderColor = "#000000"
@@ -39,6 +41,6 @@ main = do
       , ("M-f", spawn "amixer sset Master 5%+")
       , ("M-d", spawn "amixer sset Master 5%-")
       , ("M-m", spawn "amixer sset Master 1+ toggle")
+      , ("M-c", spawn "xbacklight -dec 10")
+      , ("M-v", spawn "xbacklight -inc 10")
       ]
-
-
