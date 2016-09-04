@@ -23,7 +23,10 @@ Plug 'tpope/vim-vinegar'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
-Plug 'Shougo/deoplete.nvim'
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Shougo/vimproc.vim'
 Plug 'benekastah/neomake'
 Plug 'itchyny/lightline.vim'
@@ -39,5 +42,7 @@ Plug 'bitc/vim-hdevtools'
 Plug 'junegunn/vim-easy-align'
 Plug 'nbouscal/vim-stylish-haskell'
 Plug 'Numkil/ag.nvim'
+Plug 'parsonsmatt/intero-neovim'
+Plug 'octol/vim-hindent'
 
 call plug#end()
