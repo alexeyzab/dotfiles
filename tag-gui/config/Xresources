@@ -1,4 +1,3 @@
-nvim: ft=xdefaults
 *font: xft:Fantasque Sans Mono-15:hinting=true:antialias=true:autohint=false
 *boldFont: xft:Fantasque Sans Mono-15:antialias=true:bold:autohint=false
 Xft.dpi:        96
@@ -8,6 +7,8 @@ Xft.antialias:  1
 Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
+
+Emacs.font: Fantasque\ Sans\ Mono-13
 !
 ! URxvt*scrollBar: false
 ! URxvt*urgentOnBell: true
@@ -19,16 +20,16 @@ Xft.hintstyle:  hintslight
 ! URxvt*boldItalicFont: xft:Fantasque Sans Mono-14:bold:italic:antialias=true:autohint=false
 
 
-URxvt.perl-ext-common: default,clipboard
-URxvt.iso14755: False
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-URxvt.clipboard.copycmd:  xsel -ib
-URxvt.clipboard.pastecmd: xsel -ob
-URxvt.perl-ext: default,url-select
-URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.matcher.button: 1
-URxvt.url-select.launcher: /usr/bin/google-chrome-stable
-URxvt.url-select.underline: true
-URxvt.intensityStyles: false
-URxvt.letterSpace: -1
+! URxvt.perl-ext-common: default,clipboard
+! URxvt.iso14755: False
+! URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+! URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+! URxvt.clipboard.copycmd:  xsel -ib
+! URxvt.clipboard.pastecmd: xsel -ob
+! URxvt.perl-ext: default,url-select
+! URxvt.keysym.M-u: perl:url-select:select_next
+! URxvt.matcher.button: 1
+! URxvt.url-select.launcher: /usr/bin/google-chrome-stable
+! URxvt.url-select.underline: true
+! URxvt.intensityStyles: false
+! URxvt.letterSpace: -1
