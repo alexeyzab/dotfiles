@@ -1,6 +1,7 @@
 [core]
   excludesfile = ~/.config/git/ignore
   autocrlf = input
+  editor = 'nvim'
 [color]
   ui = auto
 [help]
