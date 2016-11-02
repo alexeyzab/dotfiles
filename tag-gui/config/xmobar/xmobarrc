@@ -1,8 +1,8 @@
 Config { font = "xft:Fantasque Sans Mono:size=10:bold:antialias=true"
        , borderColor = "white"
        , border = NoBorder
-       , bgColor = "#FDF6E3"
-       , fgColor = "#657B83"
+       , bgColor = "#002B36"
+       , fgColor = "#839496"
        , alpha = 255
        , position = Top
        , textOffset = -1
@@ -35,5 +35,5 @@ Config { font = "xft:Fantasque Sans Mono:size=10:bold:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %wlp3s0% | %kb-status% | Vol: <fc=#859900>%volume%</fc> | Br: <fc=#859900>%brightness%</fc> | <fc=#657B83>%date%</fc> | %battery% "
+       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %wlp3s0% | %kb-status% | Vol: <fc=#859900>%volume%</fc> | Br: <fc=#859900>%brightness%</fc> | <fc=#839496>%date%</fc> | %battery% "
        }

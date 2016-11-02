@@ -142,7 +142,8 @@ set sendmail_wait = 0
 unset record
 
 
-source ~/.mutt/mutt-colors-solarized-light-256_alt.muttrc
+# source ~/.mutt/mutt-colors-solarized-light-256_alt.muttrc
+source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
 
 folder-hook gmail/*       source ~/.mutt/accounts/gmail
 source ~/.mutt/gpg
