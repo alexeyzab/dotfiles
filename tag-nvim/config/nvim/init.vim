@@ -3,7 +3,7 @@ let mapleader = " "
 
 " Color scheme
 syntax enable
-set background=light
+set background=dark
 colorscheme solarized
 
 " Make <c-h> work like <c-h> again (this is a problem with libterm)
@@ -92,12 +92,6 @@ endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <S-Tab> <c-n>
 
-" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
-let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
-
-" Index ctags from any project, including those outside Rails
-map <Leader>ct :!ctags -R .<CR>
-
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
@@ -158,10 +152,10 @@ nnoremap <Leader>tw :%s/\s\+$//e<CR>
 
 " Easymotion settings for h j k l
 map <Leader><Leader> <Plug>(easymotion-prefix)
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>l <Plug>(easymotion-lineforward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><Leader>h <Plug>(easymotion-linebackward)
 
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
@@ -220,6 +214,9 @@ let g:neomake_javascript_enabled_makers = ['jshint']
 let g:neomake_json_enabled_makers = ['jsonlint']
 let g:neomake_sh_enabled_makers = ['shellcheck']
 
+" Options for Haskell Syntax Check
+let g:neomake_haskell_ghc_mod_args = '-g-Wall'
+
 " Matching brackets fix
 set matchtime=0
 
@@ -274,19 +271,19 @@ set undodir=~/.config/nvim/undo
 
 " Hoogle {{{
 " Hoogle the word under the cursor
-nnoremap <silent> <leader>hg :Hoogle<CR>
+nnoremap <silent> <leader>og :Hoogle<CR>
 
 " Hoogle and prompt for input
-nnoremap <leader>hG :Hoogle
+nnoremap <leader>oG :Hoogle
 
 " Hoogle for detailed documentation (e.g. "Functor")
-nnoremap <silent> <leader>hi :HoogleInfo<CR>
+nnoremap <silent> <leader>oi :HoogleInfo<CR>
 
 " Hoogle for detailed documentation and prompt for input
-nnoremap <leader>hI :HoogleInfo
+nnoremap <leader>oI :HoogleInfo
 
 " Hoogle, close the Hoogle window
-nnoremap <silent> <leader>hz :HoogleClose<CR>
+nnoremap <silent> <leader>oz :HoogleClose<CR>
 
 " }}}
 
@@ -398,3 +395,7 @@ nmap <leader>sh :leftabove  vnew<CR>
 nmap <leader>sl :rightbelow vnew<CR>
 nmap <leader>sk :leftabove  new<CR>
 nmap <leader>sj :rightbelow new<CR>
+
+" Location list shortcuts
+nmap <leader>l :lop <CR>
+nmap <leader>q :lcl <CR>
