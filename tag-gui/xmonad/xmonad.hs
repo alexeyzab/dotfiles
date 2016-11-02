@@ -12,9 +12,12 @@ import           XMonad.Util.Run
 
 myWorkspaces = ["1:terminal","2:web","3","4","5","6","7","8"]
 myManageHook = composeAll
-    [ className =? "chromium" --> doShift "2:web"
+    [ className =? "Gimp-2.8" --> doShift "*"
+    , (className =? "Gimp-2.8" <&&> fmap ("tool" `isSuffixOf`) role) --> doFloat
+    , className =? "chromium" --> doShift "2:web"
     , className =? "termite" --> doShift "1:terminal"
     ]
+  where role = stringProperty "WM_WINDOW_ROLE"
 
 main :: IO ()
 main = do
@@ -36,7 +39,7 @@ main = do
       , terminal = "termite"
       , workspaces = myWorkspaces
       , normalBorderColor = "#000000"
-      , focusedBorderColor = "#ffffff"
+      , focusedBorderColor = "#839496"
       } `additionalKeysP`
       [ ("M-p", spawn "gmrun")
       , ("M-S-l", spawn "slock")
@@ -49,8 +52,8 @@ main = do
       , ("M-f", spawn "amixer sset Master 5%+")
       , ("M-d", spawn "amixer sset Master 5%-")
       , ("M-m", spawn "amixer sset Master 1+ toggle")
-      , ("M-c", spawn "xbacklight -dec 10")
-      , ("M-v", spawn "xbacklight -inc 10")
+      , ("M-i", spawn "xbacklight -dec 10")
+      , ("M-o", spawn "xbacklight -inc 10")
       ]
 
 scratchpads :: [NamedScratchpad]
