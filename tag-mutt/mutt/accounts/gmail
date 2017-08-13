@@ -1,5 +1,0 @@
-# nvim: ft=muttrc
-set from          = "zabelin.alex@gmail.com"
-set sendmail      = "/usr/bin/msmtp -a gmail"
-set mbox          = "zabelin.alex-gmail/archive"
-set postponed     = "zabelin.alex-gmail/drafts"

@@ -1,9 +1,0 @@
-#!/bin/sh
-
-kb=`xinput --list-props 11 | grep "Device Enabled" | cut -d':' -f2`
-
-if [ $kb == 0 ]; then
-  xinput set-int-prop 11 "Device Enabled" 8 1
-else
-  xinput set-int-prop 11 "Device Enabled" 8 0
-fi

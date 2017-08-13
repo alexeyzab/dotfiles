@@ -1,5 +1,0 @@
-#!/bin/bash
-# Set maildir
-maildir="$HOME/.mail/zabelin.alex-gmail.com/INBOX/new/"
-
-find $maildir -type f | wc -l
