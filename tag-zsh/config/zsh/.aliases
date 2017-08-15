@@ -1,0 +1,33 @@
+# Unix
+alias ll="ls -al"
+alias ln="ln -v"
+alias mkdir="mkdir -p"
+alias e="$EDITOR"
+alias v="$VISUAL"
+
+# Bundler
+alias b="bundle"
+alias be="b exec"
+
+# Rails
+alias migrate="rake db:migrate db:rollback && rake db:migrate db:test:prepare"
+
+# Pretty print the path
+alias path='echo $PATH | tr -s ":" "\n"'
+
+# Forcibly quit a process
+alias pk="pkill -9 -f"
+
+# Make emacs -nw have proper colors
+#alias emacs="TERM=screen-16color emacs -nw"
+
+# Cleanup time
+alias bb="sudo bleachbit --clean system.cache system.localizations system.trash system.tmp"
+alias cc="sudo cacheclean 1"
+
+# Copy and paste
+#alias pbcopy='xclip -selection clipboard'
+#alias pbpaste='xclip -selection clipboard -o'
+
+# Hasktags for Emacs
+alias hk='hasktags --ignore-close-implementation --etags .'
