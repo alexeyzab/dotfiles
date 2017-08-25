@@ -39,8 +39,6 @@ _load_settings() {
 }
 _load_settings "$ZDOTDIR/configs"
 
-[[ -e /etc/profile.d/vte.sh ]] && source /etc/profile.d/vte.sh
-
 zstyle ':completion:*:sudo:*' command-path $path
 
 HISTSIZE=50000
