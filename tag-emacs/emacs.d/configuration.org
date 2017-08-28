@@ -726,6 +726,10 @@ more!), =rainbow-delimiters= to color matching parentheses, and highlighting the
 whole expression when point is on a paren.
 
 #+BEGIN_SRC emacs-lisp
+  (use-package paredit
+    :ensure t)
+  (use-package rainbow-delimiters
+    :ensure t)
   (setq lispy-mode-hooks
         '(clojure-mode-hook
           emacs-lisp-mode-hook
@@ -844,6 +848,8 @@ Use =web-mode= with embedded Ruby files, regular HTML, and PHP.
 I like to see an outline of pretty bullets instead of a list of asterisks.
 
 #+BEGIN_SRC emacs-lisp
+  (use-package org-bullets
+    :ensure t)
   (add-hook 'org-mode-hook
             (lambda ()
               (org-bullets-mode t)))
@@ -1463,7 +1469,10 @@ Assume that I always want to kill the current buffer when hitting =C-x k=.
 ** Use =company-mode= everywhere
 
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'after-init-hook 'global-company-mode)
+  (use-package company-mode
+    :ensure t
+    :config
+    (add-hook 'after-init-hook 'global-company-mode))
 #+END_SRC
 
 ** Always indent with spaces
