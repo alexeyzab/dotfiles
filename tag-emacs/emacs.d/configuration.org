@@ -1665,6 +1665,19 @@ Make sure backups go into a separate dir, don't clobber symlinks, and use versio
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 #+END_SRC
+** Zap up to char
+
+Better than zap-to-char
+
+#+BEGIN_SRC emacs-lisp
+  (autoload 'zap-up-to-char "misc"
+    "Kill up to, but not including ARGth occurrence of CHAR.
+
+  \(fn arg char)"
+    'interactive)
+
+  (global-set-key "\M-z" 'zap-up-to-char)
+#+END_SRC
 * Set custom keybindings
 
 Just a few handy functions.
