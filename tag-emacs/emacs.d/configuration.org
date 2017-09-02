@@ -773,18 +773,13 @@ Enable spellchecking when writing commit messages:
 
 ** Projectile
 
-Projectile's default binding of =projectile-ag= to =C-c p s s= is clunky enough
-that I rarely use it (and forget it when I need it). This binds the
-easier-to-type =C-c C-v= and =C-c v= to useful searches.
+Use ripgrep for projectile.
 
 #+BEGIN_SRC emacs-lisp
-  (defun az/search-project-for-symbol-at-point ()
-    "Use `projectile-ag' to search the current project for `symbol-at-point'."
-    (interactive)
-    (rg-project (projectile-symbol-at-point)))
-
-  (global-set-key (kbd "C-c v") 'rg-project)
-  (global-set-key (kbd"C-c C-v") 'az/search-project-for-symbol-at-point)
+  (use-package ripgrep
+    :ensure t)
+  (use-package projectile-ripgrep
+    :ensure t)
 #+END_SRC
 
 When I visit a project with =projectile-switch-project=, the default action is
