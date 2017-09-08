@@ -269,6 +269,11 @@ Haskell-mode.
 		("C-c C-." . haskell-mode-format-imports))
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+  (use-package company-ghc
+    :ensure t)
+#+END_SRC
+
 Disable haskell-mode indentation.
 
 #+BEGIN_SRC emacs-lisp
@@ -291,10 +296,18 @@ Fix ghci bug: https://github.com/haskell/haskell-mode/issues/1455.
 #+END_SRC
 
 *** Rust
+
 Rust-mode.
 
 #+BEGIN_SRC emacs-lisp
   (use-package rust-mode
+    :ensure t)
+#+END_SRC
+
+Use company.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company-racer
     :ensure t)
 #+END_SRC
 
@@ -333,6 +346,8 @@ Completion.
 Minor cargo-mode.
 
 #+BEGIN_SRC emacs-lisp
+  (use-package cargo
+    :ensure t)
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
 #+END_SRC
 
@@ -499,24 +514,70 @@ Why not?
   (global-prettify-symbols-mode t)
 #+END_SRC
 
-** Use spacemacs-dark theme
+** Theme setup
+
+# #+BEGIN_SRC emacs-lisp
+#   (use-package spacemacs-theme
+#     :ensure t)
+#   (defun az/apply-spacemacs-theme ()
+#     (load-theme 'spacemacs-dark t))
+# #+END_SRC
+
+# If this code is being evaluated by =emacs --daemon=, ensure that each subsequent
+# frame is themed appropriately.
+
+# #+BEGIN_SRC emacs-lisp
+#   (if (daemonp)
+#       (add-hook 'after-make-frame-functions
+#                 (lambda (frame)
+#                     (az/apply-spacemacs-theme)))
+#     (az/apply-spacemacs-theme))
+# #+END_SRC
+
+Doom theme.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package spacemacs-theme
+  (use-package doom-themes
     :ensure t)
-  (defun az/apply-spacemacs-theme ()
-    (load-theme 'spacemacs-dark t))
+
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
+  ;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
+  ;; may have their own settings.
+  (load-theme 'doom-one t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config)
 #+END_SRC
 
-If this code is being evaluated by =emacs --daemon=, ensure that each subsequent
-frame is themed appropriately.
+Solaire-mode.
 
 #+BEGIN_SRC emacs-lisp
-  (if (daemonp)
-      (add-hook 'after-make-frame-functions
-                (lambda (frame)
-                    (az/apply-spacemacs-theme)))
-    (az/apply-spacemacs-theme))
+  (use-package solaire-mode
+    :ensure t)
+
+  ;; brighten buffers (that represent real files)
+  (add-hook 'after-change-major-mode-hook #'turn-on-solaire-mode)
+  ;; To enable solaire-mode unconditionally for certain modes:
+  (add-hook 'ediff-prepare-buffer-hook #'solaire-mode)
+
+  ;; ...if you use auto-revert-mode:
+  (add-hook 'after-revert-hook #'turn-on-solaire-mode)
+
+  ;; highlight the minibuffer when it is activated:
+  (add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
+
+  ;; if the bright and dark background colors are the wrong way around, use this
+  ;; to switch the backgrounds of the `default` and `solaire-default-face` faces.
+  ;; This should be used *after* you load the active theme!
+  ;;
+  ;; NOTE: This is necessary for themes in the doom-themes package!
+  (solaire-mode-swap-bg)
 #+END_SRC
 
 ** Disable visual bell
@@ -1465,9 +1526,8 @@ Assume that I always want to kill the current buffer when hitting =C-x k=.
 
 #+BEGIN_SRC emacs-lisp
   (use-package company-mode
-    :ensure t
-    :config
-    (add-hook 'after-init-hook 'global-company-mode))
+    :ensure t)
+  (add-hook 'after-init-hook 'global-company-mode)
 #+END_SRC
 
 ** Always indent with spaces
