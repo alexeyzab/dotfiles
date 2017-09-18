@@ -1,6 +1,5 @@
 ;; I like to see an outline of pretty bullets instead of a list of asterisks.
-(use-package org-bullets
-  :ensure t)
+(use-package org-bullets)
 (add-hook 'org-mode-hook
           (lambda ()
             (org-bullets-mode t)))
@@ -135,6 +134,17 @@
   (end-of-buffer))
 
 (global-set-key (kbd "C-c i") 'open-index-file)
+
+;; Open project-specific todo list
+(setq org-project-todo (org-file-path "todo-projectile.org"))
+
+(defun open-project-todo ()
+  (interactive)
+  (find-file org-project-todo)
+  (flycheck-mode -1)
+  (end-of-buffer))
+
+(global-set-key (kbd "C-c o") 'open-project-todo)
 
 ;; Hit =M-n= to quickly open up a capture template for a new todo.
 (defun org-capture-todo ()
