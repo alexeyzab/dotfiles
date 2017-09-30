@@ -71,6 +71,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#282C34" :foreground "#bbc2cf" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Fantasque Sans Mono"))))
  '(scroll-bar ((t (:background "dark slate gray")))))
 
 (set-default-font "Fantasque Sans Mono-13")
@@ -106,7 +107,7 @@
  '(hl-sexp-background-color "#efebe9")
  '(package-selected-packages
    (quote
-    (multi-term dumb-jump async dash with-editor diminish ivy swiper spinner seq s f queue popup epl pkg-info org-bullets magit-popup git-commit flycheck haskell-mode deferred expand-region hungry-delete counsel try use-package cider clojure-mode minitest enh-ruby-mode undo-tree shm dash-at-point lsp-mode lsp-haskell lsp-rust exec-path-from-shell column-marker fzf company-racer company smooth-scrolling ace-window smartparens wrap-region purescript-mode gruvbox-theme rainbow-delimiters quack which-key tabbar hamlet-mode markdown-mode langtool flyspell-correct-helm flyspell-correct flycheck-rust cargo racer company-flx blank-mode toml-mode rust-mode spacemacs-theme dracula-theme pinentry intero company-ghc eyebrowse shell-pop solarized-theme simpleclip powerline magit hindent)))
+    (markdown-preview-mode pdf-tools w3m org-projectile paredit multi-term dumb-jump async dash with-editor diminish ivy swiper spinner seq s f queue popup epl pkg-info org-bullets magit-popup git-commit flycheck haskell-mode deferred expand-region hungry-delete counsel try use-package cider clojure-mode minitest enh-ruby-mode undo-tree shm dash-at-point lsp-mode lsp-haskell lsp-rust exec-path-from-shell column-marker fzf company-racer company smooth-scrolling ace-window smartparens wrap-region purescript-mode gruvbox-theme rainbow-delimiters quack which-key tabbar hamlet-mode markdown-mode langtool flyspell-correct-helm flyspell-correct flycheck-rust cargo racer company-flx blank-mode toml-mode rust-mode spacemacs-theme dracula-theme pinentry intero company-ghc eyebrowse shell-pop solarized-theme simpleclip powerline magit hindent)))
  '(purescript-mode-hook
    (quote
     (turn-on-purescript-indent turn-on-purescript-indentation)))

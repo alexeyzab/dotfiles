@@ -32,9 +32,7 @@
 
 ;; Theme setup
 ;; Doom theme.
-
-(use-package doom-themes
-  :ensure t)
+(use-package doom-themes)
 
 ;; Global settings (defaults)
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
@@ -51,9 +49,8 @@
 (doom-themes-org-config)
 
 ;; Solaire-mode.
-
-(use-package solaire-mode
-  :ensure t)
+(use-package solaire-mode)
+(solaire-mode-swap-bg)
 
 ;; brighten buffers (that represent real files)
 (add-hook 'after-change-major-mode-hook #'turn-on-solaire-mode)
@@ -198,7 +195,6 @@
 
 (use-package swiper
   :init (ivy-mode 1)
-  :ensure t
   :config
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
@@ -385,6 +381,7 @@ directory to make multiple eshell windows easier."
 ;; Projectile
 (use-package projectile)
 (use-package counsel-projectile)
+(counsel-projectile-on)
 
 ;; Use ripgrep for projectile.
 (use-package ripgrep)
@@ -488,6 +485,40 @@ directory to make multiple eshell windows easier."
   (setenv "PATH" (concat (getenv "PATH") ":" path))
   (add-to-list 'exec-path path))
 (az/append-to-path "/usr/local/bin")
+
+;; Use paredit
+(use-package paredit)
+
+;; Org-capture for projectile
+(use-package org-projectile
+  :bind ("C-c n p" . org-projectile-project-todo-completing-read)
+  :config
+  (progn
+    (setq org-projectile-projects-file
+          "/Users/alexeyzab/org/todo-projectile.org")
+    (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+    (push (org-projectile-project-todo-entry) org-capture-templates))
+  :ensure t)
+
+;; Kill current-buffer
+  (defun az/kill-current-buffer ()
+    "Kill the current buffer without prompting."
+    (interactive)
+    (kill-buffer (current-buffer)))
+
+(global-set-key (kbd "C-x k") 'az/kill-current-buffer)
+
+;; ace-window
+(use-package ace-window
+  :bind ("M-p" . ace-window))
+
+;; avy
+(use-package avy
+  :bind
+  ("C-:" . avy-goto-char)
+  ("C-'" . avy-goto-char-2)
+  ("M-g f" . avy-goto-line))
+(avy-setup-default)
 
 ;; Misc keybindigns
 (global-set-key (kbd "C-c g") 'align-regexp)
