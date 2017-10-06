@@ -83,7 +83,7 @@
 ;; Note that this overrides the default font-related keybindings from
 ;; =sensible-defaults=.
 (setq az/default-font "Fantasque Sans Mono")
-(setq az/default-font-size 13)
+(setq az/default-font-size 12)
 (setq az/current-font-size az/default-font-size)
 
 (setq az/font-change-increment 1.1)
@@ -294,12 +294,12 @@
 (global-set-key (kbd "C-c p") 'paste-from-x-clipboard)
 
 ;; LSP
-(add-to-list 'load-path "/Users/alexeyzab/code/lsp-mode")
-(with-eval-after-load 'lsp-mode
-  (require 'lsp-flycheck))
-(require 'lsp-mode)
-(add-hook 'haskell-mode #'lsp-mode)
-(add-hook 'rust-mode #'lsp-mode)
+;; (add-to-list 'load-path "/Users/alexeyzab/code/lsp-mode")
+;; (with-eval-after-load 'lsp-mode
+;;   (require 'lsp-flycheck))
+;; (require 'lsp-mode)
+;; (add-hook 'haskell-mode #'lsp-mode)
+;; (add-hook 'rust-mode #'lsp-mode)
 
 ;; undo-tree
 (use-package undo-tree

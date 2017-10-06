@@ -60,6 +60,6 @@
 (add-hook 'rust-mode-hook #'rainbow-delimiters-mode)
 
 ;; lsp-rust
-(use-package lsp-rust
-  :config
-  (add-to-list 'load-path "/Users/alexeyzab/code/lsp-rust"))
+;; (use-package lsp-rust
+;;   :config
+;;   (add-to-list 'load-path "/Users/alexeyzab/code/lsp-rust"))

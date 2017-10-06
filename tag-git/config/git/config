@@ -2,6 +2,7 @@
   excludesfile = ~/.config/git/ignore
   autocrlf = input
   editor = "emacs -nw"
+  filemode = false
 [color]
   ui = auto
 [help]
@@ -27,7 +28,7 @@
 [fetch]
   prune = true
 [commit]
-  template = ~/.gitmessage
+  template = ~/.config/git/gitmessage
   gpgsign = true
 [difftool]
   prompt = false
@@ -38,6 +39,6 @@
 [rebase]
   autosquash = true
 [credential]
-  helper = cache --timeout=31536000
+	helper = cache --timeout=52560000
 [gpg]
-  program = gpg
+  program = /usr/bin/gpg
