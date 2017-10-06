@@ -58,7 +58,7 @@
 (sensible-defaults/bind-keys-to-change-text-size)
 
 ;; My-site-start config
-(autoload 'my-site-start "~/.emacs.d/my-site-start/my-site-start" nil t)
+(autoload 'my-site-start "~/.emacs.d/my-site-start" nil t)
 (my-site-start "~/.emacs.d/site-start.d/")
 (setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
 
