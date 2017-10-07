@@ -29,6 +29,7 @@
 (require 'use-package)
 
 ;; Always compile packages, and use the newest version available.
+(setenv "GNUPGHOME" "~/.config/gnupg")
 (use-package auto-compile
   :config (auto-compile-on-load-mode))
 (setq load-prefer-newer t)
@@ -58,7 +59,7 @@
 (sensible-defaults/bind-keys-to-change-text-size)
 
 ;; My-site-start config
-(autoload 'my-site-start "~/.emacs.d/my-site-start" nil t)
+(autoload 'my-site-start "~/.emacs.d/my-site-start/my-site-start" nil t)
 (my-site-start "~/.emacs.d/site-start.d/")
 (setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
 
@@ -98,7 +99,7 @@
     ("83db918b06f0b1df1153f21c0d47250556c7ffb5b5e6906d21749f41737babb7" "6007e03860ebfafc4675fe7f420a259b5aea3b6fbc77e88218b531972d0a363d" "d29231b2550e0d30b7d0d7fc54a7fb2aa7f47d1b110ee625c1a56b30fea3be0f" "14c62607fb78d5fcfc03f23430423e9a3910f2beada81be6e0deb051129e8cca" "77b450ea9ee4dd9b0b5094a6eaac7fb13976b2dbb25d789a65f8ae53f5d42207" "5dc0ae2d193460de979a463b907b4b2c6d2c9c4657b2e9e66b8898d2592e3de5" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "10e231624707d46f7b2059cc9280c332f7c7a530ebc17dba7e506df34c5332c4" "98cc377af705c0f2133bb6d340bf0becd08944a588804ee655809da5d8140de6" "eb0a314ac9f75a2bf6ed53563b5d28b563eeba938f8433f6d1db781a47da1366" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" default)))
  '(dumb-jump-rg-cmd "/usr/local/bin/rg")
  '(electric-pair-mode t)
- '(epg-gpg-program "/usr/local/bin/gpg")
+ '(epg-gpg-program "/usr/bin/gpg")
  '(exec-path-from-shell-check-startup-files nil)
  '(fci-rule-color "#ECEFF1")
  '(hl-paren-colors

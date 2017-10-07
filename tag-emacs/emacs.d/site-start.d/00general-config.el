@@ -290,8 +290,8 @@
        1))
    ))
 
-(global-set-key (kbd "C-c y") 'copy-to-x-clipboard)
-(global-set-key (kbd "C-c p") 'paste-from-x-clipboard)
+(global-set-key (kbd "C-x C-c") 'copy-to-x-clipboard)
+(global-set-key (kbd "C-x C-p") 'paste-from-x-clipboard)
 
 ;; LSP
 ;; (add-to-list 'load-path "/Users/alexeyzab/code/lsp-mode")
