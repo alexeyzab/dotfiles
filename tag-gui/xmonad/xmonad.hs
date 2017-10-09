@@ -27,7 +27,7 @@ myManageHook =
 
 main :: IO ()
 main = do
-    xmproc <- spawnPipe "/home/alexeyzab/.local/bin/xmobar /home/alexeyzab/.config/xmobar/xmobarrc"
+    xmproc <- spawnPipe "/run/current-system/sw/bin/xmobar /home/alexeyzab/.config/xmobar/xmobarrc"
 
     xmonad $ ewmh def
       { manageHook = myManageHook <+> manageDocks
