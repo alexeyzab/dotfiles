@@ -39,6 +39,7 @@
 [rebase]
   autosquash = true
 [credential]
-	helper = cache --timeout=52560000
+  helper = gnome-keyring
+  helper = cache --timeout 52560000
 [gpg]
-  program = /usr/bin/gpg
+  program = /run/current-system/sw/bin/gpg
