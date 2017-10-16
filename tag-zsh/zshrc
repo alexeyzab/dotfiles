@@ -1,4 +1,0 @@
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# added by travis gem
-[ -f /Users/alexeyzab/.travis/travis.sh ] && source /Users/alexeyzab/.travis/travis.sh

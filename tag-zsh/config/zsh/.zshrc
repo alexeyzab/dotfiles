@@ -81,5 +81,4 @@ _gen_fzf_default_opts() {
 _gen_fzf_default_opts
 
 fpath=(/usr/local/share/zsh-completions $fpath)
-
-source /Users/alexeyzab/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/alexeyzab/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
