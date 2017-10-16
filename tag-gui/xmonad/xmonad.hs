@@ -27,7 +27,7 @@ myManageHook =
 
 main :: IO ()
 main = do
-    xmproc <- spawnPipe "/run/current-system/sw/bin/xmobar /home/alexeyzab/.config/xmobar/xmobarrc"
+    xmproc <- spawnPipe "/home/alexeyzab/.nix-profile/bin/xmobar /home/alexeyzab/.config/xmobar/xmobarrc"
 
     xmonad $ ewmh def
       { manageHook = myManageHook <+> manageDocks
@@ -49,8 +49,8 @@ main = do
       , focusedBorderColor = "#839496"
       } `additionalKeysP`
       [ ("M-p", spawn "rofi -show run -m -4 -font 'fantasque sans mono 12'")
-      , ("M-S-l", spawn "slock")
-      , ("M-b", sendMessage ToggleStruts)
+      , ("M-S-l", spawn "~/.local/bin/better-slock")
+      , ("M-b", spawn "~/.local/bin/toggle_stalonetray" >> sendMessage ToggleStruts)
       , ("M-s", namedScratchpadAction scratchpads "scratch")
       , ("M-u", namedScratchpadAction scratchpads "mail")
       , ("M-z", namedScratchpadAction scratchpads "zeal")
