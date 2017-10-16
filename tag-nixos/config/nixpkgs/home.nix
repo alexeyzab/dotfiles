@@ -10,6 +10,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    # Waiting for this to be updated
     # rescuetime
     arandr
     arc-theme
@@ -27,6 +28,7 @@ in
     feh
     fzf
     ghc
+    gitAndTools.hub
     gnome3.gnome-tweak-tool
     gnome3.nautilus
     gnumake
@@ -43,6 +45,7 @@ in
     mirage
     mpv
     ncdu
+    networkmanagerapplet
     nix-prefetch-git
     nix-repl
     nix-zsh-completions
@@ -74,7 +77,6 @@ in
     urxvt_perls
     vim
     zathura
-    networkmanagerapplet
   ];
 
   programs.home-manager.enable = true;

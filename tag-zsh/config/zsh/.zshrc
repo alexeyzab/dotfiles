@@ -56,6 +56,9 @@ my-backward-delete-word() {
 zle -N my-backward-delete-word
 bindkey '^W' my-backward-delete-word
 
+# Hub
+eval "$(hub alias -s)"
+
 # fzf settings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
