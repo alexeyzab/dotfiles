@@ -28,10 +28,10 @@
 ;; Enable spell-checking in Org-mode.
 (add-hook 'org-mode-hook 'flyspell-mode)
 
-;; Store my org files in =~/org=, maintain an inbox in Dropbox, define the location
+;; Store my org files in =~/Dropbox/org=, maintain a separate inbox Dropbox, define the location
 ;; of an index file (my main todo list), and archive finished tasks in
-;; =~/org/archive.org=.
-(setq org-directory "~/org")
+;; =~/Dropbox/org/archive.org=.
+(setq org-directory "~/Dropbox/org")
 
 (defun org-file-path (filename)
   "Return the absolute address of an org file, given its relative name."
@@ -44,7 +44,7 @@
 
 ;; MobileOrg setup.
 ;; Set to the name of the file where new notes will be stored
-(setq org-mobile-inbox-for-pull "~/org/index.org")
+(setq org-mobile-inbox-for-pull "~/Dropbox/org/index.org")
 ;; Set to <your Dropbox root directory>/MobileOrg.
 (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
 
@@ -76,7 +76,7 @@
 ;; Set default column view headings: Task Total-Time Time-Stamp
 (setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA")
 
-;; I store all my todos in =~/org/index.org=, so I'd like to derive my agenda from
+;; I store all my todos in =~/Dropbox/org/index.org=, so I'd like to derive my agenda from
 ;; there.
 (setq org-agenda-files (list org-index-file))
 
@@ -96,8 +96,8 @@
 
 ;; Define a few common tasks as capture templates. Specifically, I frequently:
 
-;; - Record ideas for future blog posts in =~/org/blog-ideas.org=,
-;; - Maintain a todo list in =~/org/index.org=.
+;; - Record ideas for future blog posts in =~/Dropbox/org/blog-ideas.org=,
+;; - Maintain a todo list in =~/Dropbox/org/index.org=.
 (setq org-capture-templates
       '(("b" "Blog idea"
          entry

@@ -82,7 +82,7 @@
 
 ;; Note that this overrides the default font-related keybindings from
 ;; =sensible-defaults=.
-(setq az/default-font "Fantasque Sans Mono")
+(setq az/default-font "Iosevka")
 (setq az/default-font-size 12)
 (setq az/current-font-size az/default-font-size)
 
@@ -495,7 +495,7 @@ directory to make multiple eshell windows easier."
   :config
   (progn
     (setq org-projectile-projects-file
-          "/Users/alexeyzab/org/todo-projectile.org")
+          "~/Dropbox/org/todo-projectile.org")
     (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
     (push (org-projectile-project-todo-entry) org-capture-templates))
   :ensure t)
