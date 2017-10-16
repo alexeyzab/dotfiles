@@ -1,7 +1,7 @@
 #!/bin/sh
 
-/bin/bash ~/.local/bin/default_layout.sh
-feh --bg-scale ~/.local/share/wallpaper_mountains.jpg
+#sh ~/.local/bin/default_layout.sh
+#feh --bg-scale ~/.local/share/wallpaper_mountains.jpg
 
 [[ -f ~/.Xresources ]] && xrdb ~/.Xresources
 xset s off
@@ -10,11 +10,11 @@ urxvtd -q -f -o
 
 xinput --set-prop "Logitech USB Trackball" "libinput Button Scrolling Button" 8
 
-stalonetray &
-rescuetime &
+#stalonetray &
+#rescuetime &
 
 urxvtc &
 
-google-chrome-browser &
+chromium &
 
-exec stack exec xmonad
+#exec stack exec xmonad
