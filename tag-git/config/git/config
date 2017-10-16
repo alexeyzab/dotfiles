@@ -39,6 +39,6 @@
 [rebase]
   autosquash = true
 [credential]
-	helper = cache --timeout 52560000
+  helper = cache --timeout 52560000
 [gpg]
-  program = /run/current-system/sw/bin/gpg
+  program = /home/alexeyzab/.nix-profile/bin/gpg
