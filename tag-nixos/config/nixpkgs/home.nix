@@ -40,6 +40,7 @@ in
     haskellPackages.threadscope
     haskellPackages.xmobar
     haskellPackages.xmonad
+    # taffybar
     htop
     lxappearance
     mirage
@@ -53,6 +54,7 @@ in
     nodePackages.npm
     nodejs
     pinentry
+    tldr
     postgresql
     python27Packages.udiskie
     rcm
