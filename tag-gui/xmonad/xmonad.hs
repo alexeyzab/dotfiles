@@ -14,11 +14,11 @@ import           XMonad.Util.EZConfig
 import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.Run
 
-myWorkspaces = ["1:terminal","2:web","3","4","5","6","7","8"]
+myWorkspaces = ["1","2","3","4","5","6","7","8"]
 myManageHook =
   composeAll
-    [ className =? "google-chrome-stable" --> doShift "2:web"
-    , className =? "urxvtc" --> doShift "1:terminal"
+    [ className =? "chromium-browser" --> doShift "2"
+    , className =? "urxvtc" --> doShift "1"
     , className =? "Gimp-2.8" --> doShift "*"
     , (className =? "Gimp-2.8" <&&> fmap ("tool" `isSuffixOf`) role) --> doFloat
     ]
@@ -38,8 +38,8 @@ main = do
       , logHook = updatePointer (0.5, 0.5) (0, 0) >>
         dynamicLogWithPP xmobarPP
           { ppOutput = hPutStrLn xmproc
-          , ppCurrent = xmobarColor "#bfbfbf" ""
-          , ppTitle = xmobarColor "#2d2d2d" "" . shorten 50
+          , ppCurrent = xmobarColor "#839496" ""
+          , ppTitle = xmobarColor "#bfbfbf" "" . shorten 50
           , ppLayout = const ""
           }
       , modMask = mod4Mask
@@ -54,9 +54,12 @@ main = do
       , ("M-s", namedScratchpadAction scratchpads "scratch")
       , ("M-u", namedScratchpadAction scratchpads "mail")
       , ("M-z", namedScratchpadAction scratchpads "zeal")
-      -- , ("<XF86AudioRaiseVolume>", spawn "amixer sset IEC958 5%+")
-      -- , ("<XF86AudioLowerVolume>", spawn "amixer sset IEC958 5%-")
-      -- , ("<XF86AudioMute>", spawn "amixer sset Master 1+ toggle")
+      , ("M-f", spawn "amixer -q set Master 5%+")
+      , ("M-d", spawn "amixer -q set Master 5%-")
+      , ("M-c", spawn "amixer -q set Master 1+ toggle")
+      , ("<XF86AudioRaiseVolume>", spawn "amixer -q set Master 5%+")
+      , ("<XF86AudioLowerVolume>", spawn "amixer -q set Master 5%-")
+      , ("<XF86AudioMute>", spawn "amixer -q set Master 1+ toggle")
       -- , ("M-f", spawn "pactl set-sink-volume 1 +5%")
       -- , ("M-d", spawn "pactl set-sink-volume 1 -5%")
       -- , ("M-c", spawn "pactl set-sink-mute 1 toggle")
