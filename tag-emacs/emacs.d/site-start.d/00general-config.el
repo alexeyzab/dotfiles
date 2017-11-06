@@ -82,7 +82,7 @@
 
 ;; Note that this overrides the default font-related keybindings from
 ;; =sensible-defaults=.
-(setq az/default-font "Iosevka")
+(setq az/default-font "Fantasque Sans Mono")
 (setq az/default-font-size 12)
 (setq az/current-font-size az/default-font-size)
 
@@ -520,6 +520,9 @@ directory to make multiple eshell windows easier."
   ("M-g f" . avy-goto-line))
 (avy-setup-default)
 
+;; PDF reading
+(use-package pdf-tools)
+
 ;; Misc keybindigns
 (global-set-key (kbd "C-c g") 'align-regexp)
 (global-set-key (kbd "C-c C-w RET") 'whitespace-cleanup)
@@ -528,3 +531,4 @@ directory to make multiple eshell windows easier."
 (global-set-key (kbd "C-c TAB") 'indent-buffer)
 (global-set-key (kbd "M-q") 'indent-region)
 (global-set-key (kbd "C-x p") 'paredit-splice-sexp)
+(global-set-key (kbd "C-c r") 'replace-string)
