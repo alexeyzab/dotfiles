@@ -38,9 +38,8 @@ in
     haskellPackages.hlint
     haskellPackages.hpack
     haskellPackages.threadscope
-    haskellPackages.xmobar
     haskellPackages.xmonad
-    # taffybar
+    haskellPackages.styx
     htop
     lxappearance
     mirage
@@ -54,9 +53,9 @@ in
     nodePackages.npm
     nodejs
     pinentry
-    tldr
     postgresql
     python27Packages.udiskie
+    ranger
     rcm
     rcm
     ripgrep
@@ -71,6 +70,7 @@ in
     stack
     stalonetray
     texlive.combined.scheme-full
+    tldr
     tmux
     tree
     unzip
@@ -104,8 +104,8 @@ in
       xinput --set-prop "Logitech USB Trackball" "Evdev Middle Button Emulation Button" 9
       xrdb ~/.Xresources
       xset s off -dpms
-      xsetroot -cursor_name left_ptr;
-      stalonetray &
+      xsetroot -cursor_name left_ptr
+      source ~/.config/zsh/.zshenv
       rescuetime &
       dropbox &
       nm-applet &

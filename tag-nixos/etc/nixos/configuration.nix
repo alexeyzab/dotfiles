@@ -35,6 +35,8 @@ with lib;
     };
   };
 
+  #powerManagement.enable = true;
+
   networking = {
     hostName = "nixos-air";
     networkmanager = {
@@ -56,6 +58,7 @@ with lib;
       options snd_hda_intel index=0 model=intel-mac-auto id=PCH
       options snd_hda_intel index=1 model=intel-mac-auto id=HDMI
       options hid_apple fnmode=2
+      options hid_apple iso_layout=0
   '';
   };
 
@@ -85,6 +88,8 @@ with lib;
     journald.extraConfig = "SystemMaxUse=500M";
 
     timesyncd.enable = true;
+    #tlp.enable = true;
+    teamviewer.enable = true;
 
     gnome3.gnome-keyring.enable = true;
     postgresql = {
@@ -94,9 +99,13 @@ with lib;
     xserver = {
       layout = "us";
       autorun = true;
+      xkbVariant = "mac";
+      #xkbOptions = "grp:alt_space_toggle, ctrl:swapcaps";
       libinput = {
         enable = true;
 	middleEmulation = true;
+	buttonMapping = "1 2 3";
+	clickMethod = "buttonareas";
 	# naturalScrolling = true;
       };
       enable = true;
@@ -182,16 +191,25 @@ with lib;
     chromium = {
       enablePepperFlash = true;
       enablePepperPDF = true;
+      # enableWideVine = true;
+    };
+
+    google-chrome = {
+      enablePepperFlash = true;
+      enablePepperPDF = true;
+      enableWideVine = true;
     };
   };
 
   # System-wide packages
   environment = {
     systemPackages = with pkgs; [
+      teamviewer
       autocutsel
       binutils
       blueman
       chromium
+      google-chrome
       curl
       fontconfig
       gitAndTools.gitFull
