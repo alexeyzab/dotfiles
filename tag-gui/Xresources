@@ -60,8 +60,8 @@
 ! Other settings !
 !!!!!!!!!!!!!!!!!!
 
-*font: xft:Iosevka-ss01:weight=medium:pixelsize=16
-*boldFont: xft:Iosevka-ss01:weight=medium:pixelsize=16
+*font: xft:Fantasque Sans Mono:weight=medium:pixelsize=16
+*boldFont: xft:Fantasque Sans Mono:weight=medium:pixelsize=16
 Xft.dpi:        96
 Xft.autohint:   0
 Xft.lcdfilter:  lcddefault
@@ -82,15 +82,16 @@ rofi.color-normal: #21242B, #c1c1c1, #273238, #394249, #ffffff
 rofi.color-active: #21242B, #80cbc4, #273238, #394249, #80cbc4
 rofi.color-urgent: #21242B, #ff1844, #273238, #394249, #ff1844
 
-rofi.font: Iosevka 12
+rofi.font: Fantasque Sans Mono 12
 rofi.terminal: urxvtc
 rofi.width: 30
 
 URxvt*scrollBar: false
 URxvt*urgentOnBell: true
 URxvt*visualBell: false
-URxvt.font:     xft:Iosevka-ss01:weight=medium:pixelsize=16
-URxvt.boldFont: xft:Iosevka-ss01:weight=medium:pixelsize=16
+URxvt.iconFile: /home/alexeyzab/urxvtc.ico
+URxvt.font:     xft:Fantasque Sans Mono:weight=medium:pixelsize=16
+URxvt.boldFont: xft:Fantasque Sans Mono:weight=medium:pixelsize=16
 URxvt.perl-ext-common: default,matcher,clipboard,url-select
 URxvt.url-launcher: /run/current-system/sw/bin/xdg-open
 URxvt.matcher.button: 1
