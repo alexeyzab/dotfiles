@@ -35,11 +35,14 @@ in
     gnupg
     haskellPackages.codex
     haskellPackages.hasktags
+    haskellPackages.hindent
     haskellPackages.hlint
+    haskellPackages.hoogle
     haskellPackages.hpack
+    haskellPackages.stylish-haskell
+    haskellPackages.styx
     haskellPackages.threadscope
     haskellPackages.xmonad
-    haskellPackages.styx
     htop
     lxappearance
     mirage
