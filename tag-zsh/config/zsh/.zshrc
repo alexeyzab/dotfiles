@@ -59,6 +59,40 @@ bindkey '^W' my-backward-delete-word
 # Hub
 eval "$(hub alias -s)"
 
+nixup() {
+    cwd_name=${PWD##*/}
+
+    cabal2nix . > default.nix
+    cabal2nix . --shell > shell.nix
+    touch ./release.nix
+
+    echo "let
+      config = {
+	packageOverrides = pkgs: rec {
+	  haskellPackages = pkgs.haskellPackages.override {
+	    overrides = haskellPackagesNew: haskellPackagesOld: rec {
+	      $cwd_name =
+		haskellPackagesNew.callPackage ./default.nix { };
+	    };
+	  };
+	};
+      };
+
+    pkgs = import <nixpkgs> { inherit config; };
+
+    in
+      { $cwd_name = pkgs.haskellPackages.$cwd_name;
+      }
+    " > ./release.nix
+}
+
+# Work around the lack of "cabal new" plus add the nix stuff
+hlix() {
+    mcd $1
+    cabal init
+    nixup
+}
+
 # fzf settings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
