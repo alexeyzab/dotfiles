@@ -523,6 +523,10 @@ directory to make multiple eshell windows easier."
 ;; PDF reading
 (use-package pdf-tools)
 
+;; Yasnippet
+(use-package yasnippet)
+(use-package yasnippet-snippets)
+
 ;; Misc keybindigns
 (global-set-key (kbd "C-c g") 'align-regexp)
 (global-set-key (kbd "C-c C-w RET") 'whitespace-cleanup)
