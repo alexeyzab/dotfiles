@@ -42,6 +42,7 @@ in
     haskellPackages.stylish-haskell
     haskellPackages.styx
     haskellPackages.threadscope
+    haskellPackages.weeder
     haskellPackages.xmonad
     htop
     lxappearance
