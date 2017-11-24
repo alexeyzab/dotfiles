@@ -210,6 +210,9 @@
   ("C-c k" . counsel-rg)
   ("C-x l" . counsel-locate))
 
+;; Dumb-jump
+(use-package dumb-jump)
+
 ;; Auto-complete setup with company
 (use-package company
   :config
@@ -488,17 +491,6 @@ directory to make multiple eshell windows easier."
 
 ;; Use paredit
 (use-package paredit)
-
-;; Org-capture for projectile
-(use-package org-projectile
-  :bind ("C-c n p" . org-projectile-project-todo-completing-read)
-  :config
-  (progn
-    (setq org-projectile-projects-file
-          "~/Dropbox/org/todo-projectile.org")
-    (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-    (push (org-projectile-project-todo-entry) org-capture-templates))
-  :ensure t)
 
 ;; Kill current-buffer
   (defun az/kill-current-buffer ()
