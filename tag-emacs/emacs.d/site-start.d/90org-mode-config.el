@@ -1,3 +1,4 @@
+(package-initialize)
 ;; I like to see an outline of pretty bullets instead of a list of asterisks.
 (use-package org-bullets)
 (add-hook 'org-mode-hook

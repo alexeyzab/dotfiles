@@ -47,11 +47,6 @@
 ;; minor cargo-mode
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 
-;; rustfmt
-(use-package rustfmt)
-(add-hook 'rust-mode-hook (lambda () (local-set-key (kbd "C-c <tab>")
-						    #'rust-format-buffer)))
-
 ;; flycheck
 (use-package flycheck-rust)
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)

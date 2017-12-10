@@ -142,6 +142,7 @@
 ;; I'd rather have only a few necessary mode identifiers on my modeline. This
 ;; either hides or "renames" a variety of major or minor modes using the =diminish=
 ;; package.
+(use-package diminish)
 (defmacro diminish-minor-mode (filename mode &optional abbrev)
   `(eval-after-load (symbol-name ,filename)
      '(diminish ,mode ,abbrev)))
@@ -518,6 +519,11 @@ directory to make multiple eshell windows easier."
 ;; Yasnippet
 (use-package yasnippet)
 (use-package yasnippet-snippets)
+
+;; Editor-config
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
 
 ;; Misc keybindigns
 (global-set-key (kbd "C-c g") 'align-regexp)
