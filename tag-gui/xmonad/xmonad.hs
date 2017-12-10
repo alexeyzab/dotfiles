@@ -46,7 +46,7 @@ myConfig = def
       , ("M-y", withFocused (sendMessage . maximizeRestore))
       ]
 
-myWorkspaces = ["1","2","3","4","5","6","7","8", "9"]
+myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
 myManageHook =
   composeAll
     [ className =? "chromium-browser" --> doShift "2"
