@@ -1,0 +1,6 @@
+[submodule "tag-emacs/emacs.d/my-site-start"]
+	path = tag-emacs/emacs.d/my-site-start
+	url = https://github.com/alexeyzab/my-site-start
+[submodule "tag-emacs/emacs.d/sensible-defaults"]
+	path = tag-emacs/emacs.d/sensible-defaults
+	url = https://github.com/alexeyzab/sensible-defaults.el
