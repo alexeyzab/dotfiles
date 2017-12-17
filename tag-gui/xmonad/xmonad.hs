@@ -19,7 +19,7 @@ import           XMonad.Util.Run
 
 main :: IO ()
 main = do
-    xmonad =<< statusBar "~/.local/bin/my-taffybar" defaultPP toggleStrutsKey (ewmh $ docks $ myConfig)
+    xmonad =<< statusBar "" defaultPP toggleStrutsKey (ewmh $ docks $ myConfig)
 
 myConfig = def
       { manageHook = myManageHook <+> manageHook def <+> manageDocks
