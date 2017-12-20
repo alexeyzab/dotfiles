@@ -21,6 +21,7 @@ source $ZDOTDIR/.aliases
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 export LESSHISTFILE="$XDG_CACHE_HOME"/lesshist
 export NOTITLE=1 # avoid broken grml precmd hook
+export GOPATH="$HOME"/code/go
 export PATH=~/.npm-global/bin:$PATH
 export PATH=~/.cargo/bin:$PATH
 export PATH=~/.cargo/env:$PATH
