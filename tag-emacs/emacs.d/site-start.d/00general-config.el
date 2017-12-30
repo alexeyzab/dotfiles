@@ -535,6 +535,12 @@ directory to make multiple eshell windows easier."
   (global-set-key (kbd "C-h v") #'helpful-variable)
   (global-set-key (kbd "C-h k") #'helpful-key))
 
+;; Nix-mode
+(use-package nix-mode)
+
+;; Stop annoying tags-related pop-ups
+(setq tags-add-tables nil)
+
 ;; Misc keybindigns
 (global-set-key (kbd "C-c g") 'align-regexp)
 (global-set-key (kbd "C-c C-w RET") 'whitespace-cleanup)
