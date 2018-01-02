@@ -85,3 +85,5 @@ set "status-left" "#[fg=$onedark_visual_grey,bg=$onedark_green,bold] #S #{prefix
 
 set "window-status-format" "#[fg=#282c34,bg=#282c34,nobold,nounderscore,noitalics]#[fg=$onedark_white,bg=#282c34] #I  #W #[fg=#282c34,bg=#282c34,nobold,nounderscore,noitalics]"
 set "window-status-current-format" "#[fg=#282c34,bg=$onedark_visual_grey,nobold,nounderscore,noitalics]#[fg=$onedark_white,bg=$onedark_visual_grey,nobold] #I  #W #[fg=$onedark_visual_grey,bg=#282c34,nobold,nounderscore,noitalics]"
+# set "window-status-current-format" '#[fg=white,bold]** #{window_index} #[fg=green]#{pane_current_command} #[fg=blue]#(echo "#{pane_current_path}" | rev | cut -d'/' -f-3 | rev) #[fg=white]**|'
+# set "window-status-format" '#[fg=white,bold]#{window_index} #[fg=green]#{pane_current_command} #[fg=blue]#(echo "#{pane_current_path}" | rev | cut -d'/' -f-3 | rev) #[fg=white]|'
