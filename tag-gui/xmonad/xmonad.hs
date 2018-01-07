@@ -1,6 +1,7 @@
 import           Data.List                    (isSuffixOf)
 import qualified Data.Map                     as M
 import           System.IO
+import           Codec.Binary.UTF8.String     as UTF8
 import           XMonad
 import           XMonad.Actions.UpdatePointer
 import           XMonad.Hooks.DynamicLog
@@ -16,18 +17,23 @@ import           XMonad.Util.EZConfig
 import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.Run
 
+import qualified DBus as D
+import qualified DBus.Client as D
+-- import System.Taffybar.Hooks.PagerHints (pagerHints);
+
 
 main :: IO ()
 main = do
-    xmonad =<< statusBar "" defaultPP toggleStrutsKey (ewmh $ docks $ myConfig)
+  xmonad $ docks $ ewmh $ withUrgencyHook NoUrgencyHook $ myConfig
 
 myConfig = def
       { manageHook = myManageHook <+> manageHook def <+> manageDocks
                                   <+> namedScratchpadManageHook scratchpads
       , handleEventHook = docksEventHook <+> handleEventHook def
-      , layoutHook = avoidStrutsOn [U] $ smartBorders $ layoutHook def
+      , layoutHook = avoidStruts $ smartBorders $ layoutHook def
+      , logHook = dynamicLog
       , modMask = mod4Mask
-      , terminal = "urxvtc"
+      , terminal = "alacritty"
       , workspaces = myWorkspaces
       , normalBorderColor = "#000000"
       , focusedBorderColor = "#839496"
@@ -35,6 +41,7 @@ myConfig = def
       [ ("M-p", spawn "rofi -show run -m -4 -font 'fantasque sans mono 12'")
       , ("M-t", spawn "rofi -show window -m -4 -font 'fantasque sans mono 12'")
       , ("M-S-l", spawn "~/.local/bin/better-slock")
+      , ("M-b", sendMessage ToggleStruts)
       , ("M-s", namedScratchpadAction scratchpads "scratch")
       , ("M-u", namedScratchpadAction scratchpads "mail")
       , ("M-z", namedScratchpadAction scratchpads "zeal")
@@ -50,7 +57,8 @@ myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
 myManageHook =
   composeAll
     [ className =? "chromium-browser" --> doShift "2"
-    , className =? "urxvtc" --> doShift "1"
+    , className =? "alacritty" --> doShift "1"
+    , className =? "slack" --> doShift "3"
     , className =? "Gimp-2.8" --> doShift "*"
     , (className =? "Gimp-2.8" <&&> fmap ("tool" `isSuffixOf`) role) --> doFloat
     ]
