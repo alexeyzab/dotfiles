@@ -1,18 +1,27 @@
-module Main where
-
-import System.Information.CPU
-import System.Information.CPU2
-import System.Information.Memory
 import System.Taffybar
-import System.Taffybar.FreedesktopNotifications
-import System.Taffybar.MPRIS
-import System.Taffybar.SimpleClock
+
 import System.Taffybar.Systray
 import System.Taffybar.TaffyPager
-import System.Taffybar.Widgets.PollingBar
-import System.Taffybar.Widgets.VerticalBar
+import System.Taffybar.Pager
+import System.Taffybar.Battery
+import System.Taffybar.SimpleClock
+import System.Taffybar.NetMonitor
+
 import System.Taffybar.Widgets.PollingGraph
-import System.Taffybar.WorkspaceHUD
+
+import System.Taffybar.FreedesktopNotifications
+
+import Graphics.UI.Gtk
+
+import System.Information.CPU
+
+textWidgetNew :: String -> IO Widget
+textWidgetNew str = do
+    box <- hBoxNew False 0
+    label <- labelNew $ Just str
+    boxPackStart box label PackNatural 0
+    widgetShowAll box
+    return $ toWidget box
 
 memCallback = do
   mi <- parseMeminfo
@@ -23,21 +32,34 @@ cpuCallback = do
   return [totalLoad, systemLoad]
 
 main = do
-  let memCfg = defaultGraphConfig { graphDataColors = [(1, 0, 0, 1)]
+    let clock = textClockNew Nothing "<span fgcolor='#bbbbbb'>%-I:%M %p, %A %B %d</span>" 1
+        pager = taffyPagerNew defaultPagerConfig
+            { widgetSep = " :: "
+            , activeWorkspace = colorize "#ffaa00" "" . escape
+            , visibleWorkspace = colorize "#aa5500" "" . escape
+            --, emptyWorkspace = colorize "#444444" "" . escape
+            }
+        tray = systrayNew
+        sep = textWidgetNew " ::"
+        memCfg = defaultGraphConfig { graphDataColors = [(1, 0, 0, 1)]
                                   , graphLabel = Just "mem"
                                   }
-      cpuCfg = defaultGraphConfig { graphDataColors = [ (0, 1, 0, 1)
-                                                      , (1, 0, 1, 0.5)
-                                                      ]
-                                  , graphLabel = Just "cpu"
-                                  }
-  let clock = textClockNew Nothing "<span fgcolor='orange'>%a %b %_d %-I:%M %p</span>" 1
-      pager = taffyPagerHUDNew defaultPagerConfig defaultWorkspaceHUDConfig
-      note = notifyAreaNew defaultNotificationConfig
-      mpris = mprisNew defaultMPRISConfig
-      mem = pollingGraphNew memCfg 1 memCallback
-      cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
-      tray = systrayNew
-  defaultTaffybar defaultTaffybarConfig { startWidgets = [ pager, note ]
-                                        , endWidgets = [ tray, clock, mem, cpu, mpris ]
-                                        }
+        cpuCfg = defaultGraphConfig {
+            graphDataColors = [ (1, 0.1, 0.1, 1) ]
+          , graphBackgroundColor = (0.1, 0.1, 0.1)
+          , graphDirection = RIGHT_TO_LEFT
+          , graphPadding = 3
+          , graphWidth = 25
+          , graphBorderWidth = 0
+          , graphLabel = Nothing
+        }
+        mem = pollingGraphNew memCfg 1 memCallback
+        cpu = pollingGraphNew cpuCfg 1 cpuCallback
+        -- battery = batteryBarNew defaultBatteryConfig 10
+        -- batteryTime = textBatteryNew "| $time$" 10
+        --net = netMonitorNewWith 1k.5 "wlp3s0" 2 (formatNetworkInfo defaultNetFormat)
+        net = netMonitorNew 2 "wlp3s0"
+    defaultTaffybar defaultTaffybarConfig
+                        { startWidgets = [ pager ]
+                        , endWidgets = [ mem, cpu, clock, tray ]
+                        }
