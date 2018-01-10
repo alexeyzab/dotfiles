@@ -538,6 +538,9 @@ directory to make multiple eshell windows easier."
 ;; Nix-mode
 (use-package nix-mode)
 
+;; git-timemachine
+(use-package git-timemachine)
+
 ;; Stop annoying tags-related pop-ups
 (setq tags-add-tables nil)
 
