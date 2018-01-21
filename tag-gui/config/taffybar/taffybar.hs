@@ -33,13 +33,14 @@ cpuCallback = do
   return [totalLoad, systemLoad]
 
 main = do
-    let clock = textClockNew Nothing "<span fgcolor='#bbbbbb'>%-I:%M %p, %D</span>" 1
+    let clock = textClockNew Nothing "<span fgcolor='#dfdfdf'>%-I:%M %p, %D</span>" 1
         pager = taffyPagerNew defaultPagerConfig
             { widgetSep = " :: "
             , activeWorkspace = colorize "#ffaa00" "" . escape
             , visibleWorkspace = colorize "#aa5500" "" . escape
             --, emptyWorkspace = colorize "#444444" "" . escape
             }
+        -- note = notifyAreaNew defaultNotificationConfig
         tray = systrayNew
         sep = textWidgetNew " ::"
         memCfg = defaultGraphConfig { graphDataColors = [ (1, 0.1, 0.1, 1) ]
