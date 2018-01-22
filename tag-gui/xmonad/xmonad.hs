@@ -19,8 +19,6 @@ import           XMonad.Util.Run
 
 import qualified DBus as D
 import qualified DBus.Client as D
--- import System.Taffybar.Hooks.PagerHints (pagerHints);
-
 
 main :: IO ()
 main = do
@@ -70,9 +68,9 @@ toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
 scratchpads :: [NamedScratchpad]
 scratchpads =
-    [ NS "mail" "urxvtc -e mutt" (title =? "mutt")
+    [ NS "mail" "alacritty -e mutt" (title =? "mutt")
         (customFloating $ W.RationalRect 0.05 0.1 0.9 0.8)
-    , NS "scratch" "urxvtc --title scratch" (title =? "scratch")
+    , NS "scratch" "alacritty --title scratch" (title =? "scratch")
         (customFloating $ W.RationalRect 0.3 0.5 0.4 0.2)
     , NS "zeal" "zeal" (className =? "Zeal")
         (customFloating $ W.RationalRect 0.05 0.1 0.9 0.8)
