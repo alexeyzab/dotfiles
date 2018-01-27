@@ -544,6 +544,15 @@ directory to make multiple eshell windows easier."
 ;; Stop annoying tags-related pop-ups
 (setq tags-add-tables nil)
 
+;; Render markdown
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
 ;; Misc keybindigns
 (global-set-key (kbd "C-c g") 'align-regexp)
 (global-set-key (kbd "C-c C-w RET") 'whitespace-cleanup)
