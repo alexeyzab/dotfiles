@@ -5,26 +5,32 @@ let
     packages = self: [
       self.xmonad-contrib
       self.xmonad-extras
+      self.dbus
+      self.utf8-string
+      self.taffybar
     ];
   };
 in
 {
   home.packages = with pkgs; [
-    # Waiting for this to be updated
-    # rescuetime
+    taffybar
+    alacritty
+    go
     arandr
+    arc-icon-theme
     arc-theme
     aspell
     bleachbit
     cabal-install
-    cabal2nix
     ctags
     deluge
     dmenu
     docker
+    docker_compose
     dropbox
     emacs
     evince
+    fd
     feh
     fzf
     ghc
@@ -33,23 +39,26 @@ in
     gnome3.nautilus
     gnumake
     gnupg
+    gtk-engine-murrine
+    haskellPackages.alex
     haskellPackages.codex
     haskellPackages.hasktags
     haskellPackages.hindent
     haskellPackages.hlint
     haskellPackages.hoogle
-    haskellPackages.hpack
     haskellPackages.stylish-haskell
     haskellPackages.styx
     haskellPackages.threadscope
     haskellPackages.weeder
     haskellPackages.xmonad
     htop
+    icdiff
+    libnotify
     lxappearance
     mirage
     mpv
+    mysql-workbench
     ncdu
-    networkmanagerapplet
     nix-prefetch-git
     nix-repl
     nix-zsh-completions
@@ -58,6 +67,8 @@ in
     nodejs
     pinentry
     postgresql
+    psc-package
+    purescript
     python27Packages.udiskie
     ranger
     rcm
@@ -68,10 +79,9 @@ in
     rustup
     rxvt_unicode
     sass
-    skype
+    slack
     slock
     spotify
-    stack
     stalonetray
     texlive.combined.scheme-full
     tldr
@@ -86,11 +96,14 @@ in
   ];
 
   programs.home-manager.enable = true;
+  programs.home-manager.path = "https://github.com/rycee/home-manager/archive/master.tar.gz";
 
-  services.gpg-agent = {
+  services.taffybar = {
     enable = true;
-    defaultCacheTtl = 1800;
-    enableSshSupport = true;
+  };
+
+  gtk.gtk3.extraconfig = {
+    gtk-key-theme-name = "Emacs";
   };
 
   services.network-manager-applet.enable = true;
@@ -98,8 +111,8 @@ in
   xsession = {
     enable = true;
     windowManager.command = "${xmonad}/bin/xmonad";
-    initExtra = ''
-      xrandr --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output eDP1 --off
+    profileExtra = ''
+      xrandr --output VIRTUAL1 --off --output DP3 --off --output eDP1 --off --output DP1 --off --output HDMI3 --off --output HDMI2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI1 --off --output DP2 --off
       xinput --set-button-map "Logitech USB Trackball" 1 8 3 4 5 6 7 2 2
       xinput --set-prop "Logitech USB Trackball" "Evdev Wheel Emulation" 1
       xinput --set-prop "Logitech USB Trackball" "Evdev Wheel Emulation Button" 8
@@ -109,11 +122,20 @@ in
       xrdb ~/.Xresources
       xset s off -dpms
       xsetroot -cursor_name left_ptr
+    '';
+    initExtra = ''
       source ~/.config/zsh/.zshenv
-      rescuetime &
+      gpg-connect-agent /bye
+      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
       dropbox &
       nm-applet &
-      feh --bg-scale ~/.local/share/city_wallpaper.jpg
+      pasystray &
+      blueman-manager &
+      dunst &
+      feh --bg-scale ~/.local/share/city_wallpaper.jpg &
+      alacritty &
+      emacs &
+      chromium-browser &
     '';
   };
 }

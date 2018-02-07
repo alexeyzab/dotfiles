@@ -41,13 +41,14 @@ with lib;
       enable = true;
       connectDisplay = true;
     };
+    bluetooth = {
+      enable = true;
+    };
   };
 
   sound = {
     mediaKeys.enable = true;
   };
-
-  #powerManagement.enable = true;
 
   networking = {
     hostName = "nixos-thinkpad";
@@ -60,18 +61,13 @@ with lib;
   };
 
   boot = {
+    # Switching to the latest Linux Kernel.
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
     cleanTmpDir = true;
-    #extraModprobeConfig = ''
-    #  options libata.force=noncq
-    #  options snd_hda_intel index=0 model=intel-mac-auto id=PCH
-    #  options snd_hda_intel index=1 model=intel-mac-auto id=HDMI
-    #  options hid_apple fnmode=2
-    #  options hid_apple iso_layout=0
-    #'';
   };
 
 
@@ -81,6 +77,7 @@ with lib;
 
   # Locale
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.supportedLocales = ["all"];
 
   # Timezone
   time.timeZone = "America/New_York";
@@ -94,16 +91,25 @@ with lib;
   ############
 
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   services = {
+    #virtualbox.host = {
+    #  enable = true;
+    #  enableHardening = false;
+    #};
     # Only keep the last 500MiB of systemd journal.
     journald.extraConfig = "SystemMaxUse=500M";
 
     timesyncd.enable = true;
     tlp.enable = true;
-    #teamviewer.enable = true;
+    thermald.enable = true;
+    # teamviewer.enable = true;
 
     gnome3.gnome-keyring.enable = true;
+    gnome3.at-spi2-core.enable = true;
+
     postgresql = {
       enable = true;
       package = pkgs.postgresql94;
@@ -111,7 +117,7 @@ with lib;
     mysql = {
       enable = true;
       dataDir = "/var/db/mysql";
-      package = pkgs.mysql;
+      package = pkgs.mysql57;
     };
     xserver = {
       layout = "us";
@@ -133,7 +139,7 @@ with lib;
         enable = true;
 	defaultUser = "alexeyzab";
       };
-      videoDrivers = [ "intel" "nvidia" ];
+      videoDrivers = [ "intel" "vesa" ];
     };
   };
 
@@ -181,11 +187,15 @@ with lib;
       "disk"
       "audio"
       "video"
+      "libvirtd"
+      "kvm"
+      "vboxusers"
     ];
     createHome = true;
     home = "/home/alexeyzab";
     shell = pkgs.zsh;
   };
+  users.extraGroups.vboxusers.members = ["alexeyzab"];
   users.extraGroups.networkmanager.members = ["root"];
 
 
@@ -201,7 +211,6 @@ with lib;
     chromium = {
       enablePepperFlash = true;
       enablePepperPDF = true;
-      # enableWideVine = true;
     };
 
     google-chrome = {
@@ -213,13 +222,16 @@ with lib;
 
   # System-wide packages
   environment = {
+    variables = {
+      GOROOT = [ "${pkgs.go.out}/share/go" ];
+    };
     systemPackages = with pkgs; [
       #teamviewer
+      #virtualbox
       acpi
       linuxPackages.acpi_call
       autocutsel
       binutils
-      blueman
       chromium
       google-chrome
       curl
@@ -238,7 +250,7 @@ with lib;
 
   fonts = {
     fontconfig.enable = true;
-    fontconfig.defaultFonts.monospace = ["Iosevka"];
+    fontconfig.defaultFonts.monospace = ["Fantasque Sans Mono"];
     enableFontDir = true;
     enableCoreFonts = true;
     enableGhostscriptFonts = true;
@@ -266,7 +278,7 @@ with lib;
       enableCompletion = true;
       syntaxHighlighting = {
         enable = true;
-	highlighters = ["main" "brackets" "pattern" "cursor" "root" "line"];
+	      highlighters = ["main" "brackets" "pattern" "cursor" "root" "line"];
       };
     };
   };
