@@ -385,7 +385,7 @@ directory to make multiple eshell windows easier."
 ;; Projectile
 (use-package projectile)
 (use-package counsel-projectile)
-(counsel-projectile-on)
+(counsel-projectile-mode)
 
 ;; Use ripgrep for projectile.
 (use-package ripgrep)

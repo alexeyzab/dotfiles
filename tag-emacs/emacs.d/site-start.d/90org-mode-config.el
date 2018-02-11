@@ -137,15 +137,15 @@
 (global-set-key (kbd "C-c i") 'open-index-file)
 
 ;; Org-capture for projectile
-(use-package org-projectile
-  :bind ("C-c n p" . org-projectile-project-todo-completing-read)
-  :config
-  (progn
-    (setq org-projectile-projects-file
-          "~/Dropbox/org/todo-projectile.org")
-    (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-    (push (org-projectile-project-todo-entry) org-capture-templates))
-  :ensure t)
+;(use-package org-projectile
+;  :bind ("C-c n p" . org-projectile-project-todo-completing-read)
+;  :config
+;  (progn
+;    (setq org-projectile-projects-file
+;          "~/Dropbox/org/todo-projectile.org")
+;    (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+;    (push (org-projectile-project-todo-entry) org-capture-templates))
+;  :ensure t)
 
 ;; Open project-specific todo list
 (setq org-project-todo (org-file-path "todo-projectile.org"))
