@@ -29,15 +29,15 @@ myConfig = def
                                   <+> namedScratchpadManageHook scratchpads
       , handleEventHook = docksEventHook <+> handleEventHook def
       , layoutHook = avoidStruts $ smartBorders $ layoutHook def
-      , logHook = dynamicLog
+      , logHook = dynamicLog >> updatePointer (0.25, 0.25) (0.25, 0.25)
       , modMask = mod4Mask
       , terminal = "alacritty"
       , workspaces = myWorkspaces
       , normalBorderColor = "#000000"
       , focusedBorderColor = "#839496"
       } `additionalKeysP`
-      [ ("M-p", spawn "rofi -show run -m -4 -font 'fantasque sans mono 12'")
-      , ("M-t", spawn "rofi -show window -m -4 -font 'fantasque sans mono 12'")
+      [ ("M-p", spawn "rofi -show run -m -1 -font 'fantasque sans mono 12'")
+      , ("M-S-p", spawn "rofi -show window -m -1 -font 'fantasque sans mono 12'")
       , ("M-S-l", spawn "~/.local/bin/better-slock")
       , ("M-b", sendMessage ToggleStruts)
       , ("M-s", namedScratchpadAction scratchpads "scratch")
