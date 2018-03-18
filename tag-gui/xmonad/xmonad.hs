@@ -17,8 +17,6 @@ import           XMonad.Util.EZConfig
 import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.Run
 
-import qualified DBus as D
-import qualified DBus.Client as D
 
 main :: IO ()
 main = do
@@ -52,11 +50,13 @@ myConfig = def
       ]
 
 myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
+
 myManageHook =
   composeAll
-    [ className =? "chromium-browser" --> doShift "2"
-    , className =? "alacritty" --> doShift "1"
-    , className =? "slack" --> doShift "3"
+    [ className =? "Chromium-browser" --> doShift "2"
+    , className =? "Alacritty" --> doShift "1"
+    , className =? "Emacs" --> doShift "1"
+    , className =? "Slack" --> doShift "3"
     , className =? "Gimp-2.8" --> doShift "*"
     , (className =? "Gimp-2.8" <&&> fmap ("tool" `isSuffixOf`) role) --> doFloat
     ]
