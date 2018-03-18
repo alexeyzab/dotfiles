@@ -553,6 +553,9 @@ directory to make multiple eshell windows easier."
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+;; Turn off electric-indent-mode
+(electric-indent-mode -1)
+
 ;; Misc keybindigns
 (global-set-key (kbd "C-c g") 'align-regexp)
 (global-set-key (kbd "C-c C-w RET") 'whitespace-cleanup)
