@@ -3,8 +3,9 @@ nixup() {
     cwd_name="${PWD##*/}"
 
     printf '%b\n' > ./default.nix \
-                   '{ pkgs ? import <nixpkgs> {} }:' \
-                   '\npkgs.haskellPackages.callCabal2nix \"$cwd_name\" ./. {}"'
+                   '{ pkgs ? import <nixpkgs> {} }:' \ \
+
+    echo "pkgs.haskellPackages.callCabal2nix \"$cwd_name\" ./. {}" >> ./default.nix
 
     echo "(import ./. {}).env" > ./shell.nix
 }
