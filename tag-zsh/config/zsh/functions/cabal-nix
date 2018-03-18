@@ -2,5 +2,5 @@
 cabal-nix() {
     mcd $1
     cabal init
-    nixup
+    cabal2nix --shell . > shell.nix
 }
