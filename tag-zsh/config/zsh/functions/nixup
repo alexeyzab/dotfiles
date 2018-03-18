@@ -1,0 +1,10 @@
+# Minimal default.nix, shell.nix for a Haskell project
+nixup() {
+    cwd_name="${PWD##*/}"
+
+    printf '%b\n' > ./default.nix \
+                   '{ pkgs ? import <nixpkgs> {} }:' \
+                   '\npkgs.haskellPackages.callCabal2nix \"$cwd_name\" ./. {}"'
+
+    echo "(import ./. {}).env" > ./shell.nix
+}

@@ -1,0 +1,6 @@
+# Work around the lack of "cabal new" plus add the nix stuff
+cabal-nix() {
+    mcd $1
+    cabal init
+    nixup
+}
