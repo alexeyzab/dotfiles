@@ -5,7 +5,6 @@ let
     packages = self: [
       self.xmonad-contrib
       self.xmonad-extras
-      self.dbus
       self.utf8-string
       self.taffybar
     ];
@@ -21,19 +20,16 @@ in
     arc-theme
     aspell
     bleachbit
-    cabal-install
     ctags
     deluge
     dmenu
     docker
     docker_compose
-    dropbox
     emacs
     evince
     fd
     feh
     fzf
-    ghc
     gitAndTools.hub
     gnome3.gnome-tweak-tool
     gnome3.nautilus
@@ -41,7 +37,6 @@ in
     gnupg
     gtk-engine-murrine
     haskellPackages.alex
-    haskellPackages.codex
     haskellPackages.hasktags
     haskellPackages.hindent
     haskellPackages.hlint
@@ -65,9 +60,7 @@ in
     nodePackages.gulp
     nodePackages.npm
     nodejs
-    pinentry
     postgresql
-    psc-package
     purescript
     python27Packages.udiskie
     ranger
@@ -75,13 +68,11 @@ in
     rcm
     ripgrep
     rofi
-    rustfmt
     rustup
     rxvt_unicode
     sass
     slack
     slock
-    spotify
     stalonetray
     texlive.combined.scheme-full
     tldr
@@ -112,30 +103,24 @@ in
     enable = true;
     windowManager.command = "${xmonad}/bin/xmonad";
     profileExtra = ''
-      xrandr --output VIRTUAL1 --off --output DP3 --off --output eDP1 --off --output DP1 --off --output HDMI3 --off --output HDMI2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI1 --off --output DP2 --off
-      xinput --set-button-map "Logitech USB Trackball" 1 8 3 4 5 6 7 2 2
-      xinput --set-prop "Logitech USB Trackball" "Evdev Wheel Emulation" 1
-      xinput --set-prop "Logitech USB Trackball" "Evdev Wheel Emulation Button" 8
-      xinput --set-prop "Logitech USB Trackball" "Evdev Wheel Emulation Axes" 6 7 4 5
-      xinput --set-prop "Logitech USB Trackball" "Evdev Middle Button Emulation" 1
-      xinput --set-prop "Logitech USB Trackball" "Evdev Middle Button Emulation Button" 9
+      xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-5 --off --output DP-4 --off --output DP-3 --off --output DP-2 --primary --mode 1920x1080 -r 144 --pos 0x448 --rotate normal --output DP-1 --off --output DP-0 --mode 1920x1080 -r 144 --pos 1920x0 --rotate left
       xrdb ~/.Xresources
+      xmodmap ~/.Xmodmap
       xset s off -dpms
       xsetroot -cursor_name left_ptr
     '';
     initExtra = ''
-      source ~/.config/zsh/.zshenv
       gpg-connect-agent /bye
       export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
       dropbox &
       nm-applet &
       pasystray &
-      blueman-manager &
       dunst &
-      feh --bg-scale ~/.local/share/city_wallpaper.jpg &
+      feh --bg-scale ~/.local/share/nix-wallpaper-simple-dark-gray.png &
       alacritty &
       emacs &
       chromium-browser &
+      slack &
     '';
   };
 }

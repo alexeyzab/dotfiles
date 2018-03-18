@@ -11,6 +11,9 @@ with lib;
   # The NixOS release version.
   system.stateVersion = "17.09";
 
+  # Nix version
+  nix.package = pkgs.nixUnstable;
+
   # Collect nix store garbage and optimise daily.
   nix.gc.automatic = true;
   nix.optimise.automatic = true;
@@ -33,12 +36,13 @@ with lib;
       enable = true;
       package = pkgs.pulseaudioFull;
     };
+    bluetooth = {
+      enable = true;
+    };
   };
 
-  #powerManagement.enable = true;
-
   networking = {
-    hostName = "nixos-air";
+    hostName = "nixos-desktop";
     networkmanager = {
       enable = true;
       insertNameservers = [ "8.8.8.8" "8.8.4.4" ];
@@ -48,18 +52,13 @@ with lib;
   };
 
   boot = {
+    # Switching to the latest Linux Kernel.
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
     cleanTmpDir = true;
-    extraModprobeConfig = ''
-      options libata.force=noncq
-      options snd_hda_intel index=0 model=intel-mac-auto id=PCH
-      options snd_hda_intel index=1 model=intel-mac-auto id=HDMI
-      options hid_apple fnmode=2
-      options hid_apple iso_layout=0
-  '';
   };
 
 
@@ -69,6 +68,7 @@ with lib;
 
   # Locale
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.supportedLocales = ["all"];
 
   # Timezone
   time.timeZone = "America/New_York";
@@ -82,50 +82,47 @@ with lib;
   ############
 
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   services = {
     # Only keep the last 500MiB of systemd journal.
     journald.extraConfig = "SystemMaxUse=500M";
 
     timesyncd.enable = true;
-    #tlp.enable = true;
-    teamviewer.enable = true;
+    tlp.enable = true;
+    thermald.enable = true;
 
     gnome3.gnome-keyring.enable = true;
+    gnome3.at-spi2-core.enable = true;
+
     postgresql = {
       enable = true;
       package = pkgs.postgresql94;
     };
+    mysql = {
+      enable = true;
+      dataDir = "/var/db/mysql";
+      package = pkgs.mysql;
+    };
     xserver = {
+      enable = true;
+      plainX = true;
       layout = "us";
       autorun = true;
-      xkbVariant = "mac";
-      #xkbOptions = "grp:alt_space_toggle, ctrl:swapcaps";
-      libinput = {
-        enable = true;
-	middleEmulation = true;
-	buttonMapping = "1 2 3";
-	clickMethod = "buttonareas";
-	# naturalScrolling = true;
-      };
-      enable = true;
+      synaptics.enable = false;
       desktopManager.xterm.enable = false;
       desktopManager.default = "none";
       displayManager.slim = {
         enable = true;
-	defaultUser = "alexeyzab";
+        theme = pkgs.fetchurl {
+          url = "https://github.com/alexeyzab/nixos-black-theme/archive/v1.1.tar.gz";
+          sha256 = "1rvakyipjlal3kxfm9mw70r03w6m7mrgihani2jvfasmzy52ji3m";
+        };
+	      defaultUser = "alexeyzab";
       };
+      videoDrivers = [ "nvidia" ];
     };
-  };
-
-  systemd.user.services."urxvtd" = {
-    enable = true;
-    description = "rxvt unicode daemon";
-    wantedBy = [ "default.target" ];
-    path = [ pkgs.rxvt_unicode ];
-    serviceConfig.Restart = "always";
-    serviceConfig.RestartSec = 2;
-    serviceConfig.ExecStart = "${pkgs.rxvt_unicode}/bin/urxvtd -q -o";
   };
 
   systemd.user.services."autocutsel" = {
@@ -172,11 +169,16 @@ with lib;
       "disk"
       "audio"
       "video"
+      "libvirtd"
+      "kvm"
+      "vboxusers"
     ];
     createHome = true;
     home = "/home/alexeyzab";
     shell = pkgs.zsh;
   };
+  users.extraGroups.vboxusers.members = ["alexeyzab"];
+  users.extraGroups.networkmanager.members = ["root"];
 
 
   ######################
@@ -191,26 +193,24 @@ with lib;
     chromium = {
       enablePepperFlash = true;
       enablePepperPDF = true;
-      # enableWideVine = true;
-    };
-
-    google-chrome = {
-      enablePepperFlash = true;
-      enablePepperPDF = true;
-      enableWideVine = true;
     };
   };
 
   # System-wide packages
   environment = {
+    variables = {
+      GOROOT = [ "${pkgs.go.out}/share/go" ];
+    };
     systemPackages = with pkgs; [
-      teamviewer
+      acpi
+      linuxPackages.acpi_call
       autocutsel
       binutils
-      blueman
       chromium
       google-chrome
       curl
+      networkmanagerapplet
+      networkmanager_openvpn
       fontconfig
       gitAndTools.gitFull
       openssl
@@ -224,7 +224,7 @@ with lib;
 
   fonts = {
     fontconfig.enable = true;
-    fontconfig.defaultFonts.monospace = ["Iosevka"];
+    fontconfig.defaultFonts.monospace = ["Fantasque Sans Mono"];
     enableFontDir = true;
     enableCoreFonts = true;
     enableGhostscriptFonts = true;
@@ -244,14 +244,16 @@ with lib;
   };
 
   programs = {
+    gnupg.agent.enable = true;
     ssh.startAgent = false;
     slock.enable = true;
     tmux.enable = true;
     zsh = {
+      enable = true;
       enableCompletion = true;
       syntaxHighlighting = {
         enable = true;
-	highlighters = ["main" "brackets" "pattern" "cursor" "root" "line"];
+       	highlighters = ["main" "brackets" "pattern" "root" "line"];
       };
     };
   };
