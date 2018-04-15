@@ -2,8 +2,10 @@
 (use-package haskell-mode
   :config
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+  (unbind-key "C-c C-s" haskell-mode-map)
   :bind
-  ("C-c C-." . haskell-mode-format-imports))
+  ("C-c C-." . haskell-mode-format-imports)
+  ("C-c C-s" . haskell-mode-stylish-buffer))
 
 ;; Disable haskell-mode indentation.
 (haskell-indentation-mode -1)
@@ -32,3 +34,13 @@
 
 ;; rainbow-delimeters for haskell-mode
 (add-hook 'haskell-mode-hook #'rainbow-delimiters-mode)
+
+;; LSP setup for HIE
+;; (use-package lsp-mode
+;;   :straight t
+;;   :commands lsp-mode)
+
+;; (use-package lsp-ui)
+;; (use-package lsp-haskell
+;;   :config
+;;   (add-hook 'haskell-mode-hook))
