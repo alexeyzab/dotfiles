@@ -11,9 +11,6 @@ with lib;
   # The NixOS release version.
   system.stateVersion = "17.09";
 
-  # Nix version
-  nix.package = pkgs.nixUnstable;
-
   # Collect nix store garbage and optimise daily.
   nix.gc.automatic = true;
   nix.optimise.automatic = true;
@@ -107,7 +104,6 @@ with lib;
     };
     xserver = {
       enable = true;
-      plainX = true;
       layout = "us";
       autorun = true;
       synaptics.enable = false;

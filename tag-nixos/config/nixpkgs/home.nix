@@ -51,25 +51,15 @@ in
     libnotify
     lxappearance
     mirage
-    mpv
-    mysql-workbench
     ncdu
     nix-prefetch-git
     nix-repl
     nix-zsh-completions
-    nodePackages.gulp
-    nodePackages.npm
-    nodejs
     postgresql
-    purescript
-    python27Packages.udiskie
     ranger
     rcm
-    rcm
     ripgrep
-    rofi
     rustup
-    rxvt_unicode
     sass
     slack
     slock
@@ -80,8 +70,6 @@ in
     tree
     unzip
     urlview
-    urxvt_autocomplete_all_the_things
-    urxvt_perls
     vim
     zathura
   ];
@@ -110,17 +98,18 @@ in
       xsetroot -cursor_name left_ptr
     '';
     initExtra = ''
-      gpg-connect-agent /bye
-      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
       dropbox &
       nm-applet &
       pasystray &
       dunst &
-      feh --bg-scale ~/.local/share/nix-wallpaper-simple-dark-gray.png &
+      feh --bg-scale ~/.local/share/road.jpg &
       alacritty &
       emacs &
       chromium-browser &
       slack &
+      gpg-agent --daemon &
+      gpg-connect-agent updatestartuptty /bye &
+      greenclip daemon &
     '';
   };
 }
