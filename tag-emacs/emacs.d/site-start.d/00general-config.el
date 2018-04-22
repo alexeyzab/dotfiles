@@ -50,7 +50,6 @@
 
 ;; Solaire-mode.
 (use-package solaire-mode)
-(solaire-mode-swap-bg)
 
 ;; brighten buffers (that represent real files)
 (add-hook 'after-change-major-mode-hook #'turn-on-solaire-mode)
@@ -68,7 +67,7 @@
 ;; This should be used *after* you load the active theme!
 ;;
 ;; NOTE: This is necessary for themes in the doom-themes package!
-(solaire-mode-swap-bg)
+;; (solaire-mode-swap-bg)
 
 ;; =sensible-defaults= replaces the audible bell with a visual one, but I really
 ;; don't even want that (and my Emacs/Mac pair renders it poorly). This disables
@@ -174,6 +173,7 @@
 
 ;; Show line numbers everywhere
 (setq global-linum-mode t)
+(setq linum-mode t)
 
 ;; Magit settings
 ;; The default behavior of =magit= is to ask before pushing. I haven't had any
@@ -211,9 +211,6 @@
   ("C-c k" . counsel-rg)
   ("C-x l" . counsel-locate))
 
-;; Dumb-jump
-(use-package dumb-jump)
-
 ;; Auto-complete setup with company
 (use-package company
   :config
@@ -239,7 +236,7 @@
 (global-set-key (kbd "C-x C-b") 'bs-show)
 
 ;; Switch to ZSH
-(setq explicit-shell-file-name "/usr/local/bin/zsh")
+(setq explicit-shell-file-name "/run/current-system/sw/bin/zsh")
 
 ;; Shell-pop
 (use-package shell-pop
@@ -247,8 +244,9 @@
   ("C-t" . shell-pop-universal-key))
 
 ;; Eyebrowse
-(use-package eyebrowse)
-(eyebrowse-mode t)
+(use-package eyebrowse
+  :config
+  (eyebrowse-mode t))
 
 ;; Indent buffer
 (defun indent-buffer ()
@@ -294,16 +292,8 @@
        1))
    ))
 
-(global-set-key (kbd "C-x C-y") 'copy-to-x-clipboard)
-(global-set-key (kbd "C-x C-p") 'paste-from-x-clipboard)
-
-;; LSP
-;; (add-to-list 'load-path "/Users/alexeyzab/code/lsp-mode")
-;; (with-eval-after-load 'lsp-mode
-;;   (require 'lsp-flycheck))
-;; (require 'lsp-mode)
-;; (add-hook 'haskell-mode #'lsp-mode)
-;; (add-hook 'rust-mode #'lsp-mode)
+(global-set-key (kbd "C-x M-w") 'copy-to-x-clipboard)
+(global-set-key (kbd "C-x C-y") 'paste-from-x-clipboard)
 
 ;; undo-tree
 (use-package undo-tree
@@ -403,12 +393,8 @@ directory to make multiple eshell windows easier."
 (use-package engine-mode)
 
 (defengine stackage
-  "https://www.stackage.org/lts-9.0/hoogle?q=%s"
+  "https://www.stackage.org/lts-11.5/hoogle?q=%s"
   :keybinding "s")
-
-(defengine duckduckgo
-  "https://duckduckgo.com/?q=%s"
-  :keybinding "d")
 
 (defengine github
   "https://github.com/search?ref=simplesearch&q=%s"
@@ -417,9 +403,6 @@ directory to make multiple eshell windows easier."
 (defengine google
   "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
   :keybinding "g")
-
-(defengine rfcs
-  "http://pretty-rfc.herokuapp.com/search?q=%s")
 
 (defengine stack-overflow
   "https://stackoverflow.com/search?q=%s"
@@ -430,10 +413,12 @@ directory to make multiple eshell windows easier."
   :keybinding "w")
 
 (defengine wiktionary
-  "https://www.wikipedia.org/search-redirect.php?family=wiktionary&language=en&go=Go&search=%s")
+  "https://www.wikipedia.org/search-redirect.php?family=wiktionary&language=en&go=Go&search=%s"
+  :keybinding "d")
 
 (defengine youtube
-  "https://www.youtube.com/results?search_query=%s")
+  "https://www.youtube.com/results?search_query=%s"
+  :keybinding "y")
 
 (engine-mode t)
 
@@ -565,3 +550,11 @@ directory to make multiple eshell windows easier."
 (global-set-key (kbd "M-q") 'indent-region)
 (global-set-key (kbd "C-x p") 'paredit-splice-sexp)
 (global-set-key (kbd "C-c r") 'replace-string)
+
+;; Have to unset these otherwise it doesn't work
+(global-unset-key "\C-h")
+(global-unset-key "\C-?")
+(global-unset-key "\M-h")
+(global-set-key (kbd "C-?") 'help-command)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "M-h") 'backward-kill-word)

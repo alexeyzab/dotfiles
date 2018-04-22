@@ -7,11 +7,11 @@
   (setq tab-width 4))
 
 ;; Web-mode
-;(use-package web-mode)
-;(require web-mode)
+(use-package web-mode)
+(require web-mode)
 
 ;; Use web-mode with .jsx files
-;(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
 
 ;; disable jshint since we prefer eslint checking
 (setq-default flycheck-disabled-checkers
@@ -19,7 +19,7 @@
 	  '(javascript-jshint)))
 
 ;; use eslint with web-mode for jsx files
-;(flycheck-add-mode 'javascript-eslint 'web-mode)
+(flycheck-add-mode 'javascript-eslint 'web-mode)
 
 ;; customize flycheck temp file prefix
 (setq-default flycheck-temp-prefix ".flycheck")
