@@ -6,13 +6,6 @@
 (defun my-js-indent-setup ()
   (setq tab-width 4))
 
-;; Web-mode
-(use-package web-mode)
-(require web-mode)
-
-;; Use web-mode with .jsx files
-(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
-
 ;; disable jshint since we prefer eslint checking
 (setq-default flycheck-disabled-checkers
   (append flycheck-disabled-checkers
