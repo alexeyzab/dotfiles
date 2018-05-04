@@ -510,16 +510,6 @@ directory to make multiple eshell windows easier."
   :config
   (editorconfig-mode 1))
 
-;; Helpful
-(use-package helpful
-  :config
-  ;; Note that the built-in `describe-function' includes both functions
-  ;; and macros. `helpful-function' is functions only, so we provide
-  ;; `helpful-callable' as a drop-in replacement.
-  (global-set-key (kbd "C-h f") #'helpful-callable)
-  (global-set-key (kbd "C-h v") #'helpful-variable)
-  (global-set-key (kbd "C-h k") #'helpful-key))
-
 ;; Nix-mode
 (use-package nix-mode)
 
@@ -552,9 +542,9 @@ directory to make multiple eshell windows easier."
 (global-set-key (kbd "C-c r") 'replace-string)
 
 ;; Have to unset these otherwise it doesn't work
-(global-unset-key "\C-h")
 (global-unset-key "\C-?")
 (global-unset-key "\M-h")
 (global-set-key (kbd "C-?") 'help-command)
 (global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "DEL") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'backward-kill-word)
