@@ -37,13 +37,11 @@ in
     gnupg
     gtk-engine-murrine
     haskellPackages.alex
-    haskellPackages.hasktags
     haskellPackages.hindent
     haskellPackages.hlint
     haskellPackages.hoogle
     haskellPackages.stylish-haskell
     haskellPackages.styx
-    haskellPackages.threadscope
     haskellPackages.weeder
     haskellPackages.xmonad
     htop
@@ -76,6 +74,7 @@ in
 
   programs.home-manager.enable = true;
   programs.home-manager.path = "https://github.com/rycee/home-manager/archive/master.tar.gz";
+  # programs.home-manager.path = "https://github.com/rycee/home-manager/archive/release-18.03.tar.gz";
 
   services.taffybar = {
     enable = true;
@@ -98,6 +97,8 @@ in
       xsetroot -cursor_name left_ptr
     '';
     initExtra = ''
+      gpg-agent --daemon &
+      fix-gpg-agent &
       dropbox &
       nm-applet &
       pasystray &
@@ -107,8 +108,6 @@ in
       emacs &
       chromium-browser &
       slack &
-      gpg-agent --daemon &
-      gpg-connect-agent updatestartuptty /bye &
       greenclip daemon &
     '';
   };
