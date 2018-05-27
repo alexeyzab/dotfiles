@@ -97,7 +97,7 @@ hlix() {
 if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/key-bindings.zsh"
 fi
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 _gen_fzf_default_opts() {
   local base03="234"
@@ -120,5 +120,6 @@ _gen_fzf_default_opts() {
 
 _gen_fzf_default_opts
 
+source /usr/share/autojump/autojump.sh
 fpath=(/usr/local/share/zsh-completions $fpath)
 source /home/alexeyzab/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

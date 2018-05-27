@@ -32,3 +32,6 @@ alias cc="sudo cacheclean 1"
 
 # Hasktags for Emacs
 alias hk='hasktags --ignore-close-implementation --etags .'
+
+# Trying to fix missing icon
+alias slack='env XDG_CURRENT_DESKTOP=Unity slack'
