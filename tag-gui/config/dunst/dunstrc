@@ -30,7 +30,7 @@
 [shortcuts]
     close = ctrl+2
     close_all = ctrl+shift+2
-    history = ctrl+5
+    history = ctrl+3
     context = ctrl+shift+5
 
 [urgency_low]

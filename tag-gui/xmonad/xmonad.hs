@@ -16,11 +16,12 @@ import qualified XMonad.StackSet              as W
 import           XMonad.Util.EZConfig
 import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.Run
+import           System.Taffybar.Support.PagerHints (pagerHints)
 
 
 main :: IO ()
 main = do
-  xmonad $ docks $ ewmh $ withUrgencyHook NoUrgencyHook $ myConfig
+  xmonad $ docks $ ewmh $ pagerHints $ myConfig
 
 myConfig = def
       { manageHook = myManageHook <+> manageHook def <+> manageDocks
@@ -36,8 +37,8 @@ myConfig = def
       } `additionalKeysP`
       [ ("M-p", spawn "rofi -show run -m -1 -font 'fantasque sans mono 12'")
       , ("M-S-p", spawn "rofi -show window -m -1 -font 'fantasque sans mono 12'")
-      , ("M-o", spawn "rofi -modi 'clipboard:~/.local/bin/greenclip print' -show clipboard -run-command '{cmd}'")
-      , ("M-S-l", spawn "~/.local/bin/better-slock")
+      , ("M-o", spawn "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'")
+      , ("M-S-l", spawn "slock")
       , ("M-b", sendMessage ToggleStruts)
       , ("M-s", namedScratchpadAction scratchpads "scratch")
       , ("M-u", namedScratchpadAction scratchpads "mail")

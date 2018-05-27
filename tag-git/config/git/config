@@ -42,4 +42,4 @@
 [credential]
   helper = cache --timeout 52560000
 [gpg]
-  program = /home/alexeyzab/.nix-profile/bin/gpg
+  program = /usr/bin/gpg
