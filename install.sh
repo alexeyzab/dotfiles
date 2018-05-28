@@ -9,6 +9,7 @@ mkdir -p ~/.local/bin
 mkdir -p ~/.cargo/bin
 
 # autojump
+sudo apt install autojump
 
 # hub
 cd /home/alexeyzab/.local/bin
@@ -115,3 +116,8 @@ sudo apt-get install moka-icon-theme faba-icon-theme faba-mono-icons
 git clone https://github.com/horst3180/arc-icon-theme --depth 1 && cd arc-icon-theme
 ./autogen.sh --prefix=/usr
 sudo make install
+
+# arc gdm
+cd /home/alexeyzab
+git clone https://github.com/skatrosh/gdm-arc-theme
+sudo cp ./gdm-arc-theme/gnome-shell/gnome-shell-theme.gresource /usr/share/gnome-shell/
