@@ -121,5 +121,5 @@ _gen_fzf_default_opts() {
 _gen_fzf_default_opts
 
 source /usr/share/autojump/autojump.sh
-fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(/home/alexeyxzab/zsh-completions $fpath)
 source /home/alexeyzab/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
