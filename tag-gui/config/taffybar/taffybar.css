@@ -53,7 +53,7 @@
 }
 
 .visible .contents {
-	background-color: @white;
+	background-color: @black;
 }
 
 .window-icon-container {
@@ -70,7 +70,7 @@
 }
 
 .window-icon-container.active {
-	box-shadow: inset 0 -3px @white;
+	box-shadow: inset 0 -3px @black;
 }
 
 .window-icon-container.urgent {
@@ -119,5 +119,5 @@ button:checked, button:hover .Contents:hover {
 }
 
 .taffy-window menuitem:hover > label, menuitem:hover > label {
-	color: @white;
+	color: @black;
 }
