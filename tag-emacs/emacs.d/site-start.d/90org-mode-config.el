@@ -1,3 +1,4 @@
+(with-eval-after-load 'org
 (package-initialize)
 ;; I like to see an outline of pretty bullets instead of a list of asterisks.
 (use-package org-bullets)
@@ -226,3 +227,4 @@
           '(lambda ()
              (delete '("\\.pdf\\'" . default) org-file-apps)
              (add-to-list 'org-file-apps '("\\.pdf\\'" . "evince %s"))))
+)

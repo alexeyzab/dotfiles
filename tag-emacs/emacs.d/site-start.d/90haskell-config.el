@@ -16,9 +16,19 @@
   (add-hook 'haskell-mode-hook #'hindent-mode))
 
 ;; Intero
-(use-package intero
- :config
- (add-hook 'haskell-mode-hook 'intero-mode))
+;; (use-package intero
+;;  :config
+;;  (add-hook 'haskell-mode-hook 'intero-mode))
+
+;; Autocompletion
+;; (use-package company-ghc
+;;   :config
+;;   (add-to-list 'company-backends 'company-ghc))
+;; (use-package ghc-mod
+;;   :config
+;;   (autoload 'ghc-init "ghc" nil t)
+;;   (autoload 'ghc-debug "ghc" nil t)
+;;   (add-hook 'haskell-mode-hook (lambda () (ghc-init))))
 
 ;; Fix ghci bug: https://github.com/haskell/haskell-mode/issues/1455
 (setq haskell-process-args-stack-ghci '("--ghci-options=-ferror-spans"))

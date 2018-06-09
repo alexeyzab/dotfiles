@@ -531,6 +531,9 @@ directory to make multiple eshell windows easier."
 ;; Turn off electric-indent-mode
 (electric-indent-mode -1)
 
+;; Rainbow delimeters
+;; (use-package rainbow-delimeters-mode)
+
 ;; Misc keybindigns
 (global-set-key (kbd "C-c g") 'align-regexp)
 (global-set-key (kbd "C-c C-w RET") 'whitespace-cleanup)
@@ -548,3 +551,6 @@ directory to make multiple eshell windows easier."
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "DEL") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'backward-kill-word)
+
+;; Terminal emacs color fix
+(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
