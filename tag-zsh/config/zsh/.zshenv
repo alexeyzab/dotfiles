@@ -3,8 +3,8 @@ cdpath=( "$HOME" "$HOME/code" $cdpath )
 fpath=( "$ZDOTDIR/functions" $fpath )
 
 export HISTCONTROL=ignoreboth:erasedups
-export VISUAL='emacs -nw -q'
-export EDITOR='emacs -nw -q'
+export VISUAL='TERM=xterm-24bits emacs -nw'
+export EDITOR='TERM=xterm-24bits emacs -nw'
 export BROWSER='chromium-browser'
 export MANWIDTH=80
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
