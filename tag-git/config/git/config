@@ -40,6 +40,8 @@
 [rebase]
   autosquash = true
 [credential]
-  helper = cache --timeout 52560000
+  helper = store
 [gpg]
   program = /usr/bin/gpg
+[github]
+  user = alexeyzab
