@@ -39,6 +39,7 @@ myConfig = def
       , ("M-S-p", spawn "rofi -show window -m -1 -font 'fantasque sans mono 12'")
       , ("M-o", spawn "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'")
       , ("M-S-l", spawn "slock")
+      , ("M-S-s", spawn "gnome-screenshot -a")
       , ("M-b", sendMessage ToggleStruts)
       , ("M-s", namedScratchpadAction scratchpads "scratch")
       , ("M-u", namedScratchpadAction scratchpads "mail")

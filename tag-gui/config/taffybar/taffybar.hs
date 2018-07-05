@@ -114,15 +114,17 @@
 --                    { startWidgets = [ workspaces, layout, windows, note ]
 --                    , endWidgets = [ tray, clock, mem, cpu, mpris ]
 --                    }
-
+{-# LANGUAGE OverloadedStrings #-}
 module Main where
 
+import System.Process
 import System.Taffybar
 import System.Taffybar.Hooks
 import System.Taffybar.Information.CPU
 import System.Taffybar.Information.Memory
 import System.Taffybar.SimpleConfig
 import System.Taffybar.Widget
+import System.Taffybar.Widget.CommandRunner
 import System.Taffybar.Widget.Generic.PollingGraph
 import System.Taffybar.Widget.Generic.PollingLabel
 import System.Taffybar.Widget.Util
@@ -178,6 +180,7 @@ main = do
       cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
       mem = pollingGraphNew memCfg 1 memCallback
       net = networkGraphNew netCfg Nothing
+      batteryPercentage = commandRunnerNew 5 "battery" [] "n/a"
       clock = textClockNew Nothing "<span fgcolor='#dfdfdf'>%-I:%M %p, %D</span>" 1
       layout = layoutNew defaultLayoutConfig
       windows = windowsNew defaultWindowsConfig
@@ -185,7 +188,8 @@ main = do
         { startWidgets =
             workspaces : map (>>= buildContentsBox) [ layout, windows ]
         , endWidgets = map (>>= buildContentsBox)
-          [ batteryIconNew
+          [ batteryPercentage
+          , batteryIconNew
           , cpu
           , mem
           , net
