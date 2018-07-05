@@ -123,3 +123,4 @@ _gen_fzf_default_opts
 source /usr/share/autojump/autojump.sh
 fpath=(/home/alexeyxzab/zsh-completions $fpath)
 source /home/alexeyzab/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+eval "$(denv hook ZSH)"

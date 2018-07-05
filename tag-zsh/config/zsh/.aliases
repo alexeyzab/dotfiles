@@ -35,3 +35,6 @@ alias hk='hasktags --ignore-close-implementation --etags .'
 
 # Trying to fix missing icon
 alias slack='env XDG_CURRENT_DESKTOP=Unity slack'
+
+# for denv
+alias k='kubectl --namespace=${KUBECTL_NAMESPACE:-default}'
