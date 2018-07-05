@@ -2,7 +2,9 @@
 sudo apt install git curl zsh tree rofi autoconf autogen pasystray arc-theme aspell exuberant-ctags deluge feh evince pinentry-gnome3 pass gnome-tweak-tool icdiff lxappearance htop mirage ncdu postgresql ranger suckless-tools tmux tldr dunst blueman unzip urlview zathura autocutsel autojump nm-tray pavucontrol openssl xsel  fonts-fantasque-sans cmake libfreetype6-dev libasound2 libasound2-dev libdbusmenu-glib-dev libdbusmenu-gtk3-dev arandr libfontconfig1-dev xclip emacs chromium-browser libgirepository1.0-dev libwebkit2gtk-4.0-dev libgtksourceview-3.0-dev -y
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
 sudo apt update
-sudo apt install slack-desktop
+sudo apt install gdebi-core wget
+wget -O ~/slack.deb "https://downloads.slack-edge.com/linux_releases/slack-desktop-3.1.0-amd64.deb"
+sudo gdebi --non-interactive ~/slack.deb
 sudo apt install dropbox python3-gpg
 chsh -s /bin/zsh
 mkdir -p ~/.local/bin
