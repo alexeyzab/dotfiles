@@ -373,7 +373,9 @@ directory to make multiple eshell windows easier."
 (global-set-key (kbd "C-x 3") 'az/split-window-right-and-switch)
 
 ;; Projectile
-(use-package projectile)
+(use-package projectile
+  :config
+  (setq projectile-enable-caching t))
 (use-package counsel-projectile)
 (counsel-projectile-mode)
 
@@ -521,7 +523,6 @@ directory to make multiple eshell windows easier."
 
 ;; Render markdown
 (use-package markdown-mode
-  :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
@@ -554,3 +555,55 @@ directory to make multiple eshell windows easier."
 
 ;; Terminal emacs color fix
 (custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
+
+;; Reverse words
+(defun reverse-words (beg end)
+  "Reverse the order of words in region."
+  (interactive "*r")
+  (apply
+   'insert
+    (reverse
+     (split-string
+      (delete-and-extract-region beg end) "\\b"))))
+
+;; Weather from wttr.in
+(use-package wttrin
+  :commands (wttrin)
+  :init
+  (setq wttrin-default-cities '("New York"))
+  (setq wttrin-default-accept-language '("Accept-Language" . "en-US")))
+
+;; zoom
+(use-package zoom
+  :config
+  (custom-set-variables
+   '(zoom-size '(0.618 . 0.618)))
+  (custom-set-variables
+   '(zoom-mode t)))
+
+;; restclient
+(use-package restclient)
+
+;; magithub
+(use-package magithub
+  :after magit
+  :config
+  (magithub-feature-autoinject t)
+  (setq magithub-clone-default-directory "~/code"))
+
+;; ws-butler
+(use-package ws-butler
+  :config
+  (ws-butler-global-mode))
+
+;; browse-kill-ring
+(use-package browse-kill-ring
+  :config
+  (global-set-key "\M-y" 'browse-kill-ring))
+
+;; symon
+(use-package symon)
+
+;; docker.el
+(use-package docker
+  :bind ("C-c d" . docker))

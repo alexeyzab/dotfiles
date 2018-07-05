@@ -2,6 +2,7 @@
 (use-package haskell-mode
   :config
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+  (add-hook 'haskell-mode-hook 'structured-haskell-mode)
   (unbind-key "C-c C-s" haskell-mode-map)
   :bind
   ("C-c C-." . haskell-mode-format-imports)
@@ -38,3 +39,15 @@
 
 ;; rainbow-delimeters for haskell-mode
 (add-hook 'haskell-mode-hook #'rainbow-delimiters-mode)
+
+;; structured-haskell-mode
+(use-package shm)
+
+;; autocompletion
+(use-package auto-complete)
+(use-package ac-haskell-process
+  :config
+  (add-hook 'interactive-haskell-mode-hook 'ac-haskell-process-setup)
+  (add-hook 'haskell-interactive-mode-hook 'ac-haskell-process-setup)
+  (eval-after-load "auto-complete"
+    '(add-to-list 'ac-modes 'haskell-interactive-mode)))
