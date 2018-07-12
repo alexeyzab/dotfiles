@@ -607,3 +607,8 @@ directory to make multiple eshell windows easier."
 ;; docker.el
 (use-package docker
   :bind ("C-c d" . docker))
+
+;; twittering-mode
+(use-package twittering-mode
+  :config
+  (setq twittering-icon-mode t))

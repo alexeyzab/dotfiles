@@ -41,7 +41,7 @@
 (add-hook 'haskell-mode-hook #'rainbow-delimiters-mode)
 
 ;; structured-haskell-mode
-(use-package shm)
+;; (use-package shm)
 
 ;; autocompletion
 (use-package auto-complete)
