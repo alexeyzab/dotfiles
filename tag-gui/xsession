@@ -10,11 +10,12 @@ export PATH="${HOME}/.local/bin:${PATH}"
 # not `bash`, because xinit always runs this file with `sh` (even if a
 # different hashbang is specified).  Some versions of `sh` do know the
 # `source` alias for `.`.
-. "${HOME}/.xmonad/xmonad_build_vars.sh"
+# . "${HOME}/.xmonad/xmonad_build_vars.sh"
 
 # Needed for taffybar.
-xrandr --output HDMI-2 --off --output HDMI-1 --off --output DP-1 --off --output eDP-1 --primary --mode 1920x1080 -r 120 --pos 0x0 --rotate normal --output DP-2 --off
+# xrandr --output HDMI-2 --off --output HDMI-1 --off --output DP-1 --off --output eDP-1 --primary --mode 1920x1080 -r 120 --pos 0x0 --rotate normal --output DP-2 --off
 # xrandr --output HDMI-2 --primary --mode 2560x1440 -r 144 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-1 --off --output eDP-1 --off --output DP-2 --off
+xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-5 --off --output DP-4 --off --output DP-3 --off --output DP-2 --primary --mode 1920x1080 -r 144 --pos 0x376 --rotate normal --output DP-1 --off --output DP-0 --mode 1920x1080 -r 144 --pos 1920x0 --rotate left
 status-notifier-watcher &
 
 # Starting things up
@@ -24,7 +25,7 @@ blueman-applet &
 dropbox start &
 pasystray &
 dunst &
-feh --bg-scale ~/.local/share/road.jpg &
+feh --bg-scale ~/.local/share/wallpaper.jpg &
 xrdb ~/.Xresources
 setxkbmap -option ctrl:nocaps
 xset s off -dpms
@@ -38,12 +39,14 @@ XDG_CURRENT_DESKTOP=Unity slack &
 greenclip daemon &
 
 # Start taffybar.
-PATH="${XMONAD_LOCAL_BIN_PATH}:$PATH" stack exec \
-	--local-bin-path="${XMONAD_LOCAL_BIN_PATH}" \
-	--resolver="${XMONAD_STACK_RESOLVER}" \
-	-- taffybar &
+# PATH="${XMONAD_LOCAL_BIN_PATH}:$PATH" stack exec \
+# 	--local-bin-path="${XMONAD_LOCAL_BIN_PATH}" \
+# 	--resolver="${XMONAD_STACK_RESOLVER}" \
+# 	-- taffybar &
+stack exec /home/alexeyzab/.xmonad/local-bin/taffybar &
 
 # Start xmonad.
-${XMONAD_LOCAL_BIN_PATH}/xmonad &
+# ${XMONAD_LOCAL_BIN_PATH}/xmonad &
+stack exec ~/.xmonad/local-bin/custom-xmonad &
 windowmanagerpid=$!
 wait $windowmanagerpid
