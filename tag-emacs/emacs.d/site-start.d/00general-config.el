@@ -612,3 +612,20 @@ directory to make multiple eshell windows easier."
 (use-package twittering-mode
   :config
   (setq twittering-icon-mode t))
+
+;; sql-mode
+(setq sql-postgres-login-params
+      '((user :default "postgres")
+        (database :default "postgres")
+        (server :default "localhost")
+        (port :default 5432)))
+
+(add-hook 'sql-interactive-mode-hook
+          (lambda ()
+            (toggle-truncate-lines t)))
+
+;; eshell completion
+(add-hook
+ 'eshell-mode-hook
+ (lambda ()
+   (setq pcomplete-cycle-completions nil)))
