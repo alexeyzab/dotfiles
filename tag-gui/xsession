@@ -32,10 +32,11 @@ xset s off -dpms
 xsetroot -cursor_name left_ptr
 
 # Apps.
-alacritty &
+alacritty -e tmux &
 emacs &
-XDG_CURRENT_DESKTOP=Unity chromium-browser &
-XDG_CURRENT_DESKTOP=Unity slack &
+# XDG_CURRENT_DESKTOP=Unity google-chrome &
+XDG_CURRENT_DESKTOP=Unity firefox &
+# XDG_CURRENT_DESKTOP=Unity slack &
 greenclip daemon &
 
 # Start taffybar.
