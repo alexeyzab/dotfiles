@@ -1,0 +1,10 @@
+# Default terminal
+rofi.terminal: alacritty
+
+# Theme
+rofi.theme: nord.rasi
+
+rofi.color-enabled: true
+
+rofi.font: Fantasque Sans Mono 12
+rofi.width: 30
