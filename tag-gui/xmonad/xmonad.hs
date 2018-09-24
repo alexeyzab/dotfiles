@@ -8,6 +8,7 @@ import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
+import           XMonad.Hooks.SetWMName (setWMName)
 import           XMonad.Hooks.UrgencyHook
 import           XMonad.Layout.CenteredMaster
 import           XMonad.Layout.Maximize
@@ -29,6 +30,7 @@ myConfig = def
       , handleEventHook = docksEventHook <+> handleEventHook def
       , layoutHook = avoidStruts $ smartBorders $ layoutHook def
       , logHook = dynamicLog >> updatePointer (0.25, 0.25) (0.25, 0.25)
+      , startupHook = myStartupHook
       , modMask = mod4Mask
       , terminal = "alacritty"
       , workspaces = myWorkspaces
@@ -57,7 +59,8 @@ myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
 
 myManageHook =
   composeAll
-    [ className =? "Chromium-browser" --> doShift "2"
+    [ className =? "Google-chrome" --> doShift "2"
+    , className =? "Firefox" --> doShift "2"
     , className =? "Alacritty" --> doShift "1"
     , className =? "Emacs" --> doShift "1"
     , className =? "Slack" --> doShift "3"
@@ -66,6 +69,10 @@ myManageHook =
     ]
   where
     role = stringProperty "WM_WINDOW_ROLE"
+
+-- Fix for Intellij
+myStartupHook = do
+  setWMName "LG3D"
 
 toggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
