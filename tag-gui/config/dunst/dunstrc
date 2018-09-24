@@ -1,5 +1,5 @@
 [global]
-    font = "Fantasque Sans Mono 10"
+    font = "Iosevka 10"
     markup = yes
     format = "<b>%s</b>\n%b"
     sort = yes
@@ -19,13 +19,13 @@
     separator_height = 2
     padding = 8
     horizontal_padding = 8
-    separator_color = "#585858"
+    separator_color = frame
     startup_notification = false
     # https://github.com/knopwob/dunst/issues/26#issuecomment-36159395
-    #icon_position = left
-    #icon_folders = /usr/share/icons/elementary/actions/16/
+    icon_position = off
+    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
     frame_width = 1
-    frame_color = "#383838"
+    frame_color = "#5e81ac"
 
 [shortcuts]
     close = ctrl+2
@@ -34,16 +34,17 @@
     context = ctrl+shift+5
 
 [urgency_low]
-    background = "#282c34"
-    foreground = "#dfdfdf"
+    background = "#2e3440"
+    foreground = "#d8dee9"
     timeout = 5
 
 [urgency_normal]
-    background = "#282c34"
-    foreground = "#dfdfdf"
+    background = "#2e3440"
+    foreground = "#d8dee9"
     timeout = 20
 
 [urgency_critical]
-    background = "#282c34"
-    foreground = "#dfdfdf"
+    background = "#2e3440"
+    foreground = "#ffffff"
+    frame_color = "#bf616a"
     timeout = 0

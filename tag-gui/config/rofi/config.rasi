@@ -6,7 +6,7 @@ configuration {
 	modi: 			"drun,run";
 	width: 			750;
 	lines: 			13;
-	font: 			"Fantasque Sans Mono 9";
+	font: 			"Iosevka 9";
 	show-match: 		false;
 	separator-style: 	"solid";
 	hide-scrollbar: 	true;
