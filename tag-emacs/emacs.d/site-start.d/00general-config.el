@@ -32,46 +32,34 @@
 
 ;; Theme setup
 ;; Doom theme.
-(use-package doom-themes)
+;; (use-package doom-themes)
 
 ;; Global settings (defaults)
-(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-      doom-themes-enable-italic t) ; if nil, italics is universally disabled
+;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
 
 ;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
 ;; may have their own settings.
-(load-theme 'doom-one t)
+;; (load-theme 'doom-one t)
+(add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
+(load-theme 'nord t)
+(setq nord-uniform-mode-lines t)
 
 ;; Enable flashing mode-line on errors
-(doom-themes-visual-bell-config)
+;; (doom-themes-visual-bell-config)
 
 ;; Corrects (and improves) org-mode's native fontification.
-(doom-themes-org-config)
+;; (doom-themes-org-config)
 
 ;; Solaire-mode.
-(use-package solaire-mode)
+(use-package solaire-mode
+  :hook ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
+  :config
+  (add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
+  (add-hook 'change-major-mode-hook #'turn-on-solaire-mode)
+  (solaire-mode-swap-bg))
 
-;; brighten buffers (that represent real files)
-(add-hook 'after-change-major-mode-hook #'turn-on-solaire-mode)
-;; To enable solaire-mode unconditionally for certain modes:
-(add-hook 'ediff-prepare-buffer-hook #'solaire-mode)
-
-;; ...if you use auto-revert-mode:
-(add-hook 'after-revert-hook #'turn-on-solaire-mode)
-
-;; highlight the minibuffer when it is activated:
-(add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
-
-;; if the bright and dark background colors are the wrong way around, use this
-;; to switch the backgrounds of the `default` and `solaire-default-face` faces.
-;; This should be used *after* you load the active theme!
-;;
-;; NOTE: This is necessary for themes in the doom-themes package!
-;; (solaire-mode-swap-bg)
-
-;; =sensible-defaults= replaces the audible bell with a visual one, but I really
-;; don't even want that (and my Emacs/Mac pair renders it poorly). This disables
-;; the bell altogether.
+;; This disables the visual bell.
 (setq ring-bell-function 'ignore)
 
 ;; The standard =text-scale-= functions just resize the text in the current buffer;
@@ -81,7 +69,7 @@
 
 ;; Note that this overrides the default font-related keybindings from
 ;; =sensible-defaults=.
-(setq az/default-font "Fantasque Sans Mono")
+(setq az/default-font "Iosevka")
 (setq az/default-font-size 12)
 (setq az/current-font-size az/default-font-size)
 
@@ -375,6 +363,8 @@ directory to make multiple eshell windows easier."
 ;; Projectile
 (use-package projectile
   :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  ;; Running C-u s-p f will invalidate the cache prior to prompting you for a file to jump to.
   (setq projectile-enable-caching t))
 (use-package counsel-projectile)
 (counsel-projectile-mode)
@@ -530,7 +520,7 @@ directory to make multiple eshell windows easier."
   :init (setq markdown-command "multimarkdown"))
 
 ;; Turn off electric-indent-mode
-(electric-indent-mode -1)
+;; (electric-indent-mode -1)
 
 ;; Rainbow delimeters
 ;; (use-package rainbow-delimeters-mode)
@@ -629,3 +619,18 @@ directory to make multiple eshell windows easier."
  'eshell-mode-hook
  (lambda ()
    (setq pcomplete-cycle-completions nil)))
+
+;; actionable urls
+(use-package goto-addr
+  :hook ((compilation-mode . goto-address-mode)
+         (prog-mode . goto-address-prog-mode)
+         (eshell-mode . goto-address-mode)
+         (shell-mode . goto-address-mode))
+  :bind (:map goto-address-highlight-keymap
+              ("<RET>" . goto-address-at-point)
+              ("M-<RET>" . newline))
+  :commands (goto-address-prog-mode
+             goto-address-mode))
+
+;; Eglot
+(use-package eglot)

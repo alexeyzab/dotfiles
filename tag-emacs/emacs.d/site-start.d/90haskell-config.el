@@ -2,7 +2,7 @@
 (use-package haskell-mode
   :config
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  (add-hook 'haskell-mode-hook 'structured-haskell-mode)
+  ;; (add-hook 'haskell-mode-hook 'structured-haskell-mode)
   (unbind-key "C-c C-s" haskell-mode-map)
   :bind
   ("C-c C-." . haskell-mode-format-imports)
@@ -51,3 +51,17 @@
   (add-hook 'haskell-interactive-mode-hook 'ac-haskell-process-setup)
   (eval-after-load "auto-complete"
     '(add-to-list 'ac-modes 'haskell-interactive-mode)))
+
+;; (setq haskell-process-args-ghci
+;;       '("-ferror-spans" "-fshow-loaded-modules"))
+
+;; (setq haskell-process-args-cabal-repl
+;;       '("--ghc-options=-ferror-spans -fshow-loaded-modules"))
+
+;; (setq haskell-process-args-stack-ghci
+;;       '("--stack-yaml=/home/alexeyzab/code/work/lanehoney/stack-backend.yaml"
+;;         "--ghci-options=-ferror-spans -fshow-loaded-modules"
+;; 	"--no-build" "--no-load"))
+
+;; (setq haskell-process-args-cabal-new-repl
+;;       '("--ghc-options=-ferror-spans -fshow-loaded-modules"))

@@ -40,9 +40,9 @@
   (concat (file-name-as-directory org-directory) filename))
 
 (setq org-inbox-file "~/Dropbox/inbox.org")
-(setq org-index-file (org-file-path "index.org"))
-(setq org-archive-location
-      (concat (org-file-path "archive.org") "::* From %s"))
+;; (setq org-index-file (org-file-path "index.org"))
+;; (setq org-archive-location
+;;       (concat (org-file-path "archive.org") "::* From %s"))
 
 ;; MobileOrg setup.
 ;; Set to the name of the file where new notes will be stored
@@ -81,6 +81,9 @@
 ;; I store all my todos in =~/Dropbox/org/index.org=, so I'd like to derive my agenda from
 ;; there.
 (setq org-agenda-files (list org-index-file))
+(setq org-agenda-files '("~/Dropbox/org/inbox.org"
+			 "~/Dropbox/org/gtd.org"
+			 "~/Dropbox/org/tickler.org"))
 
 ;; Hitting =C-c C-x C-s= will mark a todo as done and move it to an appropriate
 ;; place in the archive.

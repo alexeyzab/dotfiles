@@ -1,16 +1,33 @@
 ;; rust-mode
 (use-package rust-mode)
 
+;; rustic
+;; (use-package rustic
+;;   :config
+;;   (setq rustic-rls-pkg 'eglot))
+
+;; rustfmt
+(add-hook 'rust-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
+
 ;; toml-mode
 (use-package toml-mode)
 
 ;; racer
-(use-package racer)
+(use-package racer
+  :config
+  (setq racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
+  (setq racer-rust-src-path "/home/alexeyzab/code/rust/src") ;; Rust source code PATH
+  :bind
+  ("M-." . racer-find-definition))
 (use-package company-racer)
 (with-eval-after-load 'company
-      (add-to-list 'company-backends 'company-racer))
+  (add-to-list 'company-backends 'company-racer))
+
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
 
 ;; cargo
 (use-package cargo
@@ -51,5 +68,5 @@
 (use-package flycheck-rust)
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
-;; rainbow-delimeters for haskell-mode
+;; rainbow-delimeters for rust-mode
 (add-hook 'rust-mode-hook #'rainbow-delimiters-mode)

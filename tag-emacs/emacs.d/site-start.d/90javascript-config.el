@@ -1,36 +1,54 @@
 ;; JS-mode
 (use-package js2-mode
   :config
-  (add-hook 'js-mode-hook 'my-js-indent-setup))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  (add-hook 'js2-mode-hook #'js2-imenu-extras-mode)
+  (add-hook 'js2-mode-hook #'js2-refactor-mode)
+  (define-key js-mode-map (kbd "M-.") nil)
+  (define-key js2-mode-map (kbd "C-k") #'js2r-kill)
+  (add-hook 'js2-mode-hook (lambda ()
+  (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t))))
 
-(defun my-js-indent-setup ()
-  (setq tab-width 4))
+(use-package js2-refactor
+  :config
+  (js2r-add-keybindings-with-prefix "C-c C-r")
+  (define-key js2-mode-map (kbd "C-k") #'js2r-kill))
 
-;; disable jshint since we prefer eslint checking
-(setq-default flycheck-disabled-checkers
-  (append flycheck-disabled-checkers
-	  '(javascript-jshint)))
+(use-package xref-js2)
 
-;; use eslint with web-mode for jsx files
-(flycheck-add-mode 'javascript-eslint 'web-mode)
+(use-package company-tern)
 
-;; customize flycheck temp file prefix
-(setq-default flycheck-temp-prefix ".flycheck")
+(add-to-list 'company-backends 'company-tern)
+(add-hook 'js2-mode-hook (lambda ()
+                           (tern-mode)
+                           (company-mode)))
 
-;; disable json-jsonlist checking for json files
-(setq-default flycheck-disabled-checkers
-  (append flycheck-disabled-checkers
-    '(json-jsonlist)))
+;; Disable completion keybindings, as we use xref-js2 instead
+(define-key tern-mode-keymap (kbd "M-.") nil)
+(define-key tern-mode-keymap (kbd "M-,") nil)
 
-;; use local eslint from node_modules before global
-;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
-(defun my/use-eslint-from-node-modules ()
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (eslint (and root
-                      (expand-file-name "node_modules/eslint/bin/eslint.js"
-                                        root))))
-    (when (and eslint (file-executable-p eslint))
-      (setq-local flycheck-javascript-eslint-executable eslint))))
-(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+;; ;; Tide
+;; (defun setup-tide-mode ()
+;;   (interactive)
+;;   (tide-setup)
+;;   (flycheck-mode +1)
+;;   (setq flycheck-check-syntax-automatically '(save mode-enabled))
+;;   (eldoc-mode +1)
+;;   (tide-hl-identifier-mode +1)
+;;   ;; company is an optional dependency. You have to
+;;   ;; install it separately via package-install
+;;   ;; `M-x package-install [ret] company`
+;;   (company-mode +1))
+
+;; ;; aligns annotation to the right hand side
+;; (setq company-tooltip-align-annotations t)
+
+;; ;; formats the buffer before saving
+;; (add-hook 'before-save-hook 'tide-format-before-save)
+
+;; (add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+;; (add-hook 'js2-mode-hook #'setup-tide-mode)
+;; ;; configure javascript-tide checker to run after your default javascript checker
+;; (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
