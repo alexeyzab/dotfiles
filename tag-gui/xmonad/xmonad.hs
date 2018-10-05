@@ -60,7 +60,7 @@ myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
 myManageHook =
   composeAll
     [ className =? "Google-chrome" --> doShift "2"
-    , className =? "Firefox" --> doShift "2"
+    , className =? "Firefox Developer Edition" --> doShift "2"
     , className =? "Alacritty" --> doShift "1"
     , className =? "Emacs" --> doShift "1"
     , className =? "Slack" --> doShift "3"
