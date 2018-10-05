@@ -39,8 +39,8 @@
   "Return the absolute address of an org file, given its relative name."
   (concat (file-name-as-directory org-directory) filename))
 
-(setq org-inbox-file "~/Dropbox/inbox.org")
-;; (setq org-index-file (org-file-path "index.org"))
+;; (setq org-inbox-file "~/Dropbox/org/inbox.org")
+(setq org-index-file (org-file-path "index.org"))
 ;; (setq org-archive-location
 ;;       (concat (org-file-path "archive.org") "::* From %s"))
 

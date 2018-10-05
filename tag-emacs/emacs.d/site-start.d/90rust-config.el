@@ -1,10 +1,12 @@
 ;; rust-mode
-(use-package rust-mode)
+;; (use-package rust-mode)
 
 ;; rustic
-;; (use-package rustic
-;;   :config
-;;   (setq rustic-rls-pkg 'eglot))
+(use-package rustic
+  :config
+  (setq rustic-rls-pkg 'eglot)
+  (autoload 'rustic-mode "rustic-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.rs\\'" . rustic-mode)))
 
 ;; rustfmt
 (add-hook 'rust-mode-hook

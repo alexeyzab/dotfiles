@@ -621,16 +621,24 @@ directory to make multiple eshell windows easier."
    (setq pcomplete-cycle-completions nil)))
 
 ;; actionable urls
-(use-package goto-addr
-  :hook ((compilation-mode . goto-address-mode)
-         (prog-mode . goto-address-prog-mode)
-         (eshell-mode . goto-address-mode)
-         (shell-mode . goto-address-mode))
-  :bind (:map goto-address-highlight-keymap
-              ("<RET>" . goto-address-at-point)
-              ("M-<RET>" . newline))
-  :commands (goto-address-prog-mode
-             goto-address-mode))
+;; (use-package goto-addr
+;;   :hook ((compilation-mode . goto-address-mode)
+;;          (prog-mode . goto-address-prog-mode)
+;;          (eshell-mode . goto-address-mode)
+;;          (shell-mode . goto-address-mode))
+;;   :bind (:map goto-address-highlight-keymap
+;;               ("<RET>" . goto-address-at-point)
+;;               ("M-<RET>" . newline))
+;;   :commands (goto-address-prog-mode
+;;              goto-address-mode))
 
 ;; Eglot
 (use-package eglot)
+
+(global-flycheck-mode)
+;;; 00general-config.el ends here
+
+;; backward-kill-word
+(global-set-key "\C-w" 'backward-kill-word)
+(global-set-key "\C-x\C-k" 'kill-region)
+(global-set-key "\C-c\C-k" 'kill-region)
