@@ -66,6 +66,7 @@ myManageHook =
     , className =? "Slack" --> doShift "3"
     , className =? "Gimp-2.8" --> doShift "*"
     , (className =? "Gimp-2.8" <&&> fmap ("tool" `isSuffixOf`) role) --> doFloat
+    , className =? "zoom" --> doFloat
     ]
   where
     role = stringProperty "WM_WINDOW_ROLE"

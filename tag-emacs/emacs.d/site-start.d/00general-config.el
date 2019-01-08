@@ -123,13 +123,16 @@
   (global-hl-line-mode))
 
 ;; Flycheck.
-(use-package flycheck)
-(use-package flycheck-package)
+(use-package flycheck
+  :defer t)
+(use-package flycheck-package
+  :defer t)
 
 ;; I'd rather have only a few necessary mode identifiers on my modeline. This
 ;; either hides or "renames" a variety of major or minor modes using the =diminish=
 ;; package.
-(use-package diminish)
+(use-package diminish
+  :defer t)
 (defmacro diminish-minor-mode (filename mode &optional abbrev)
   `(eval-after-load (symbol-name ,filename)
      '(diminish ,mode ,abbrev)))
@@ -172,7 +175,8 @@
 (add-hook 'git-commit-mode-hook 'turn-on-flyspell)
 
 ;; Try out packages without installing them
-(use-package try)
+(use-package try
+  :defer t)
 
 ;; Show keybingings for commands
 (use-package which-key
@@ -180,9 +184,11 @@
   (which-key-mode))
 
 ;; Swiper setup
-(use-package counsel)
+(use-package counsel
+  :defer t)
 
 (use-package swiper
+  :defer t
   :init (ivy-mode 1)
   :config
   (setq ivy-use-virtual-buffers t)
@@ -201,21 +207,27 @@
 
 ;; Auto-complete setup with company
 (use-package company
+  ;; :defer t
   :config
-  (add-hook 'after-init-hook 'global-company-mode))
+  (add-hook 'after-init-hook 'global-company-mode)
+  (with-eval-after-load 'company
+  (add-to-list 'company-backends 'company-ghc)))
 
 ;; Expand region binding
 (use-package expand-region
+  :defer t
   :config
   (global-set-key (kbd "C-=") 'er/expand-region))
 
 ;; Simpleclip
 (use-package simpleclip
+  :defer t
   :config
   (simpleclip-mode 1))
 
 ;; Magit for Git
 (use-package magit
+  :defer t
   :bind
   ("C-x g" . magit-status)
   ("C-x M-g" . magit-dispatch-popup))
@@ -228,6 +240,7 @@
 
 ;; Shell-pop
 (use-package shell-pop
+  :defer t
   :bind
   ("C-t" . shell-pop-universal-key))
 
@@ -285,6 +298,7 @@
 
 ;; undo-tree
 (use-package undo-tree
+  :defer t
   :init
   (global-undo-tree-mode))
 
@@ -325,6 +339,9 @@ directory to make multiple eshell windows easier."
 ;; Customzie exec-path
 (setq exec-path (append exec-path '("~/.cargo/bin")))
 
+;; node stuff
+(setq exec-path (append exec-path '("~/.config/nvm/versions/node/v8.10.0/bin/")))
+
 ;; Make sure $PATH is available to Emacs
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
@@ -362,6 +379,7 @@ directory to make multiple eshell windows easier."
 
 ;; Projectile
 (use-package projectile
+  :defer t
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   ;; Running C-u s-p f will invalidate the cache prior to prompting you for a file to jump to.
@@ -370,8 +388,10 @@ directory to make multiple eshell windows easier."
 (counsel-projectile-mode)
 
 ;; Use ripgrep for projectile.
-(use-package ripgrep)
-(use-package projectile-ripgrep)
+(use-package ripgrep
+  :defer t)
+(use-package projectile-ripgrep
+  :defer t)
 
 ;; I'd like to /always/ be able to recursively fuzzy-search for files, not just
 ;; when I'm in a Projecile-defined project. This uses the current directory as a
@@ -382,7 +402,8 @@ directory to make multiple eshell windows easier."
 (projectile-global-mode)
 
 ;; Enable [[https://github.com/hrs/engine-mode][engine-mode]] and define a few useful engines.
-(use-package engine-mode)
+(use-package engine-mode
+  :defer t)
 
 (defengine stackage
   "https://www.stackage.org/lts-11.5/hoogle?q=%s"
@@ -445,7 +466,8 @@ directory to make multiple eshell windows easier."
 (setq company-require-match 'never)
 
 ;; Multiple-cursors
-(use-package multiple-cursors)
+(use-package multiple-cursors
+  :defer t)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -466,9 +488,11 @@ directory to make multiple eshell windows easier."
   (setenv "PATH" (concat (getenv "PATH") ":" path))
   (add-to-list 'exec-path path))
 (az/append-to-path "/usr/local/bin")
+(az/append-to-path "~/.local/bin")
 
 ;; Use paredit
-(use-package paredit)
+(use-package paredit
+  :defer t)
 
 ;; Kill current-buffer
   (defun az/kill-current-buffer ()
@@ -480,10 +504,12 @@ directory to make multiple eshell windows easier."
 
 ;; ace-window
 (use-package ace-window
+  :defer t
   :bind ("M-p" . ace-window))
 
 ;; avy
 (use-package avy
+  :defer t
   :bind
   ("C-:" . avy-goto-char)
   ("C-'" . avy-goto-char-2)
@@ -491,28 +517,31 @@ directory to make multiple eshell windows easier."
 (avy-setup-default)
 
 ;; PDF reading
-(use-package pdf-tools)
+(use-package pdf-tools
+  :defer t)
 
 ;; Yasnippet
-(use-package yasnippet)
-(use-package yasnippet-snippets)
+(use-package yasnippet
+  :defer t)
+(use-package yasnippet-snippets
+  :defer t)
 
 ;; Editor-config
 (use-package editorconfig
+  :defer t
   :config
   (editorconfig-mode 1))
 
-;; Nix-mode
-(use-package nix-mode)
-
 ;; git-timemachine
-(use-package git-timemachine)
+(use-package git-timemachine
+  :defer t)
 
 ;; Stop annoying tags-related pop-ups
 (setq tags-add-tables nil)
 
 ;; Render markdown
 (use-package markdown-mode
+  :defer t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
@@ -523,7 +552,9 @@ directory to make multiple eshell windows easier."
 ;; (electric-indent-mode -1)
 
 ;; Rainbow delimeters
-;; (use-package rainbow-delimeters-mode)
+(use-package rainbow-delimiters
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 ;; Misc keybindigns
 (global-set-key (kbd "C-c g") 'align-regexp)
@@ -558,6 +589,7 @@ directory to make multiple eshell windows easier."
 
 ;; Weather from wttr.in
 (use-package wttrin
+  :defer t
   :commands (wttrin)
   :init
   (setq wttrin-default-cities '("New York"))
@@ -565,6 +597,7 @@ directory to make multiple eshell windows easier."
 
 ;; zoom
 (use-package zoom
+  :defer t
   :config
   (custom-set-variables
    '(zoom-size '(0.618 . 0.618)))
@@ -572,10 +605,12 @@ directory to make multiple eshell windows easier."
    '(zoom-mode t)))
 
 ;; restclient
-(use-package restclient)
+(use-package restclient
+  :defer t)
 
 ;; magithub
 (use-package magithub
+  :defer t
   :after magit
   :config
   (magithub-feature-autoinject t)
@@ -591,15 +626,14 @@ directory to make multiple eshell windows easier."
   :config
   (global-set-key "\M-y" 'browse-kill-ring))
 
-;; symon
-(use-package symon)
-
 ;; docker.el
 (use-package docker
+  :defer t
   :bind ("C-c d" . docker))
 
 ;; twittering-mode
 (use-package twittering-mode
+  :defer t
   :config
   (setq twittering-icon-mode t))
 
@@ -636,9 +670,13 @@ directory to make multiple eshell windows easier."
 (use-package eglot)
 
 (global-flycheck-mode)
-;;; 00general-config.el ends here
+
+;; Yaml
+(use-package yaml-mode
+  :defer t)
 
 ;; backward-kill-word
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
+;;; 00general-config.el ends here

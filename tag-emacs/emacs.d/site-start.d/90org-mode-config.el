@@ -1,7 +1,8 @@
 (with-eval-after-load 'org
 (package-initialize)
 ;; I like to see an outline of pretty bullets instead of a list of asterisks.
-(use-package org-bullets)
+(use-package org-bullets
+  :defer t)
 (add-hook 'org-mode-hook
           (lambda ()
             (org-bullets-mode t)))
@@ -41,8 +42,8 @@
 
 ;; (setq org-inbox-file "~/Dropbox/org/inbox.org")
 (setq org-index-file (org-file-path "index.org"))
-;; (setq org-archive-location
-;;       (concat (org-file-path "archive.org") "::* From %s"))
+(setq org-archive-location
+      (concat (org-file-path "archive.org") "::* From %s"))
 
 ;; MobileOrg setup.
 ;; Set to the name of the file where new notes will be stored
@@ -51,7 +52,6 @@
 (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
 
 ;; Hide :PROPERTIES:.
-
 (defun lawlist-org-cycle-hide-drawers (state)
   "Re-hide all drawers after a visibility state change."
   (when (and (derived-mode-p 'org-mode)
@@ -78,12 +78,13 @@
 ;; Set default column view headings: Task Total-Time Time-Stamp
 (setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA")
 
-;; I store all my todos in =~/Dropbox/org/index.org=, so I'd like to derive my agenda from
-;; there.
-(setq org-agenda-files (list org-index-file))
+;; Agenda config
 (setq org-agenda-files '("~/Dropbox/org/inbox.org"
 			 "~/Dropbox/org/gtd.org"
 			 "~/Dropbox/org/tickler.org"))
+
+;; TODO keywords
+(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
 ;; Hitting =C-c C-x C-s= will mark a todo as done and move it to an appropriate
 ;; place in the archive.
@@ -98,28 +99,48 @@
 ;; Record the time that a todo was archived.
 (setq org-log-done 'time)
 
-
 ;; Define a few common tasks as capture templates. Specifically, I frequently:
 
-;; - Record ideas for future blog posts in =~/Dropbox/org/blog-ideas.org=,
-;; - Maintain a todo list in =~/Dropbox/org/index.org=.
-(setq org-capture-templates
-      '(("b" "Blog idea"
-         entry
-         (file (org-file-path "blog-ideas.org"))
-         "* %?\n")
+;; Capture templates
+(setq org-capture-templates '(("t" "Todo [inbox]" entry
+                               (file+headline "~/Dropbox/org/inbox.org" "Tasks")
+                               "* TODO %i%?")
 
-        ("t" "Todo"
-         entry
-         (file+headline org-index-file "Inbox")
-         "* TODO %?\nCREATED: %u\n")))
+                              ("T" "Tickler" entry
+                               (file+headline "~/Dropbox/org/tickler.org" "Tickler")
+                               "* %i%? \n %U")))
 
+;; Refile targets
+(setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
+                           ("~/Dropbox/org/someday.org" :level . 1)
+                           ("~/Dropbox/org/tickler.org" :maxlevel . 2)))
 
 ;; Bind a few handy keys.
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cc" 'org-capture)
 
+;; Custom agenda
+(setq org-agenda-custom-commands
+      '(("o" "At the office" tags-todo "@office"
+         ((org-agenda-overriding-header "Office")
+          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))))
+
+(defun my-org-agenda-skip-all-siblings-but-first ()
+  "Skip all but the first non-done entry."
+  (let (should-skip-entry)
+    (unless (org-current-is-todo)
+      (setq should-skip-entry t))
+    (save-excursion
+      (while (and (not should-skip-entry) (org-goto-sibling t))
+        (when (org-current-is-todo)
+          (setq should-skip-entry t))))
+    (when should-skip-entry
+      (or (outline-next-heading)
+          (goto-char (point-max))))))
+
+(defun org-current-is-todo ()
+  (string= "TODO" (org-get-todo-state)))
 
 (defun az/copy-tasks-from-inbox ()
   (when (file-exists-p org-inbox-file)
@@ -202,8 +223,7 @@
 
 ;; Exporting to HTML and opening the results triggers =/usr/bin/sensible-browser=,
 ;; which checks the =$BROWSER= environment variable to choose the right browser.
-;; I'd like to always use Chrome, so:
-(setenv "BROWSER" "chrome")
+(setenv "BROWSER" "firefox")
 
 ;; I want to produce PDFs with syntax highlighting in the code. The best way to do
 ;; that seems to be with the =minted= package, but that package shells out to

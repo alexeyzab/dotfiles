@@ -4,7 +4,7 @@
 ;; rustic
 (use-package rustic
   :config
-  (setq rustic-rls-pkg 'eglot)
+  (setq rustic-rls-pkg 'elgot)
   (autoload 'rustic-mode "rustic-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rustic-mode)))
 
@@ -14,16 +14,19 @@
             (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
 
 ;; toml-mode
-(use-package toml-mode)
+(use-package toml-mode
+  :defer t)
 
 ;; racer
 (use-package racer
+  :defer t
   :config
   (setq racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
   (setq racer-rust-src-path "/home/alexeyzab/code/rust/src") ;; Rust source code PATH
   :bind
   ("M-." . racer-find-definition))
-(use-package company-racer)
+(use-package company-racer
+  :defer t)
 (with-eval-after-load 'company
   (add-to-list 'company-backends 'company-racer))
 
@@ -33,6 +36,7 @@
 
 ;; cargo
 (use-package cargo
+  :defer t
   :bind
   ("C-c C-c C-b" . cargo-process-build)
   ("C-c C-c C-r" . cargo-process-run)
@@ -67,7 +71,8 @@
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 
 ;; flycheck
-(use-package flycheck-rust)
+(use-package flycheck-rust
+  :defer t)
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 ;; rainbow-delimeters for rust-mode
