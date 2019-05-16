@@ -1,7 +1,7 @@
 ;; Who am I? Where am I?
 (setq user-full-name "Alexey Zabelin"
       user-mail-address "hello@alexeyzabelin.com"
-      calendar-location-name "New York, NY")
+      calendar-location-name "San Francisco, CA")
 
 ;; Rename file
 (defun az/rename-file (new-name)
@@ -31,25 +31,9 @@
 (global-prettify-symbols-mode t)
 
 ;; Theme setup
-;; Doom theme.
-;; (use-package doom-themes)
-
-;; Global settings (defaults)
-;; (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-;;       doom-themes-enable-italic t) ; if nil, italics is universally disabled
-
-;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
-;; may have their own settings.
-;; (load-theme 'doom-one t)
 (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
 (load-theme 'nord t)
 (setq nord-uniform-mode-lines t)
-
-;; Enable flashing mode-line on errors
-;; (doom-themes-visual-bell-config)
-
-;; Corrects (and improves) org-mode's native fontification.
-;; (doom-themes-org-config)
 
 ;; Solaire-mode.
 (use-package solaire-mode
@@ -70,7 +54,7 @@
 ;; Note that this overrides the default font-related keybindings from
 ;; =sensible-defaults=.
 (setq az/default-font "Iosevka")
-(setq az/default-font-size 12)
+(setq az/default-font-size 16)
 (setq az/current-font-size az/default-font-size)
 
 (setq az/font-change-increment 1.1)
@@ -130,30 +114,9 @@
 ;; either hides or "renames" a variety of major or minor modes using the =diminish=
 ;; package.
 (use-package diminish)
-(defmacro diminish-minor-mode (filename mode &optional abbrev)
-  `(eval-after-load (symbol-name ,filename)
-     '(diminish ,mode ,abbrev)))
-
 (defmacro diminish-major-mode (mode-hook abbrev)
   `(add-hook ,mode-hook
              (lambda () (setq mode-name ,abbrev))))
-
-(diminish-minor-mode 'abbrev 'abbrev-mode)
-(diminish-minor-mode 'simple 'auto-fill-function)
-(diminish-minor-mode 'company 'company-mode)
-(diminish-minor-mode 'eldoc 'eldoc-mode)
-(diminish-minor-mode 'flycheck 'flycheck-mode)
-(diminish-minor-mode 'flyspell 'flyspell-mode)
-(diminish-minor-mode 'global-whitespace 'global-whitespace-mode)
-(diminish-minor-mode 'projectile 'projectile-mode)
-(diminish-minor-mode 'subword 'subword-mode)
-(diminish-minor-mode 'undo-tree 'undo-tree-mode)
-(diminish-minor-mode 'yard-mode 'yard-mode)
-(diminish-minor-mode 'yasnippet 'yas-minor-mode)
-(diminish-minor-mode 'wrap-region 'wrap-region-mode)
-
-(diminish-minor-mode 'paredit 'paredit-mode " π")
-
 (diminish-major-mode 'emacs-lisp-mode-hook "el")
 (diminish-major-mode 'haskell-mode-hook "λ=")
 (diminish-major-mode 'lisp-interaction-mode-hook "λ")
@@ -247,38 +210,70 @@
 (setq-default fill-column 99999)
 
 ;; Sane copy-paste
-(setq *is-a-mac* (eq system-type 'darwin))
-(setq *cygwin* (eq system-type 'cygwin) )
-(setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
-(defun copy-to-x-clipboard ()
-  (interactive)
-  (if (region-active-p)
-      (progn
-        (cond
-         ((and (display-graphic-p) x-select-enable-clipboard)
-          (x-set-selection 'CLIPBOARD (buffer-substring (region-beginning) (region-end))))
-         (t (shell-command-on-region (region-beginning) (region-end)
-                                     (cond
-                                      (*cygwin* "putclip")
-                                      (*is-a-mac* "pbcopy")
-                                      (*linux* "xsel -ib")))
-            ))
-        (message "Yanked region to clipboard!")
-        (deactivate-mark))
-    (message "No region active; can't yank to clipboard!")))
+;; (setq *is-a-mac* (eq system-type 'darwin))
+;; (setq *cygwin* (eq system-type 'cygwin) )
+;; (setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
+;; (defun copy-to-x-clipboard ()
+;;   (interactive)
+;;   (if (region-active-p)
+;;       (progn
+;;         (cond
+;;          ((and (display-graphic-p) x-select-enable-clipboard)
+;;           (x-set-selection 'CLIPBOARD (buffer-substring (region-beginning) (region-end))))
+;;          (t (shell-command-on-region (region-beginning) (region-end)
+;;                                      (cond
+;;                                       (*cygwin* "putclip")
+;;                                       (*is-a-mac* "pbcopy")
+;;                                       (*linux* "xsel -ib")))
+;;             ))
+;;         (message "Yanked region to clipboard!")
+;;         (deactivate-mark))
+;;     (message "No region active; can't yank to clipboard!")))
 
-(defun paste-from-x-clipboard()
-  (interactive)
-  (cond
-   ((and (display-graphic-p) x-select-enable-clipboard)
-    (insert (x-get-selection 'CLIPBOARD)))
-   (t (shell-command
-       (cond
-        (*cygwin* "getclip")
-        (*is-a-mac* "pbpaste")
-        (t "xsel -ob"))
-       1))
-   ))
+;; (defun paste-from-x-clipboard()
+;;   (interactive)
+;;   (cond
+;;    ((and (display-graphic-p) x-select-enable-clipboard)
+;;     (insert (x-get-selection 'CLIPBOARD)))
+;;    (t (shell-command
+;;        (cond
+;;         (*cygwin* "getclip")
+;;         (*is-a-mac* "pbpaste")
+;;         (t "xsel -ob"))
+;;        1))
+;;    ))
+;; (setq *is-a-mac* (eq system-type 'darwin))
+;; (setq *cygwin* (eq system-type 'cygwin) )
+;; (setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
+;; (defun copy-to-x-clipboard ()
+;;   (interactive)
+;;   (if (region-active-p)
+;;       (progn
+;;         (cond
+;;          ((and (display-graphic-p) x-select-enable-clipboard)
+;;           (x-set-selection 'CLIPBOARD (buffer-substring (region-beginning) (region-end))))
+;;          (t (shell-command-on-region (region-beginning) (region-end)
+;;                                      (cond
+;;                                       (*cygwin* "putclip")
+;;                                       (*is-a-mac* "pbcopy")
+;;                                       (*linux* "xsel -ib")))
+;;             ))
+;;         (message "Yanked region to clipboard!")
+;;         (deactivate-mark))
+;;     (message "No region active; can't yank to clipboard!")))
+
+;; (defun paste-from-x-clipboard()
+;;   (interactive)
+;;   (cond
+;;    ((and (display-graphic-p) x-select-enable-clipboard)
+;;     (insert (x-get-selection 'CLIPBOARD)))
+;;    (t (shell-command
+;;        (cond
+;;         (*cygwin* "getclip")
+;;         (*is-a-mac* "pbpaste")
+;;         (t "xsel -ob"))
+;;        1))
+;;    ))
 
 (global-set-key (kbd "C-x M-w") 'copy-to-x-clipboard)
 (global-set-key (kbd "C-x C-y") 'paste-from-x-clipboard)
@@ -485,9 +480,10 @@ directory to make multiple eshell windows easier."
 ;; avy
 (use-package avy
   :bind
-  ("C-:" . avy-goto-char)
+  ("C-;" . avy-goto-char)
   ("C-'" . avy-goto-char-2)
-  ("M-g f" . avy-goto-line))
+  ("M-g f" . avy-goto-line)
+  ("M-s" . avy-goto-word-1))
 (avy-setup-default)
 
 ;; PDF reading
@@ -560,7 +556,7 @@ directory to make multiple eshell windows easier."
 (use-package wttrin
   :commands (wttrin)
   :init
-  (setq wttrin-default-cities '("New York"))
+  (setq wttrin-default-cities '("San Francisco"))
   (setq wttrin-default-accept-language '("Accept-Language" . "en-US")))
 
 ;; zoom
@@ -575,11 +571,14 @@ directory to make multiple eshell windows easier."
 (use-package restclient)
 
 ;; magithub
-(use-package magithub
-  :after magit
-  :config
-  (magithub-feature-autoinject t)
-  (setq magithub-clone-default-directory "~/code"))
+;; (use-package magithub
+;;   :after magit
+;;   :config
+;;   (magithub-feature-autoinject t)
+;;   (setq magithub-clone-default-directory "~/code"))
+
+;; use forge instead of magithub
+(use-package forge)
 
 ;; ws-butler
 (use-package ws-butler
@@ -620,25 +619,52 @@ directory to make multiple eshell windows easier."
  (lambda ()
    (setq pcomplete-cycle-completions nil)))
 
-;; actionable urls
-;; (use-package goto-addr
-;;   :hook ((compilation-mode . goto-address-mode)
-;;          (prog-mode . goto-address-prog-mode)
-;;          (eshell-mode . goto-address-mode)
-;;          (shell-mode . goto-address-mode))
-;;   :bind (:map goto-address-highlight-keymap
-;;               ("<RET>" . goto-address-at-point)
-;;               ("M-<RET>" . newline))
-;;   :commands (goto-address-prog-mode
-;;              goto-address-mode))
-
 ;; Eglot
 (use-package eglot)
 
 (global-flycheck-mode)
-;;; 00general-config.el ends here
+
+;; For modeline
+(use-package moody
+  :config
+  (setq x-underline-at-descent-line t)
+  ;; (setq ns-use-srgb-colorspace nil)
+  ;; (setq moody-slant-function #'moody-slant-apple-rgb)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
+
+(use-package nord-theme
+  :config
+  (load-theme 'nord t)
+  (let ((line (face-attribute 'mode-line :underline)))
+    (set-face-attribute 'mode-line          nil :overline   line)
+    (set-face-attribute 'mode-line-inactive nil :overline   line)
+    (set-face-attribute 'mode-line-inactive nil :underline  line)
+    (set-face-attribute 'mode-line          nil :box        nil)
+    (set-face-attribute 'mode-line-inactive nil :box        nil)))
+
+(use-package minions
+  :config
+  (setq minions-mode-line-lighter ""
+        minions-mode-line-delimiters '("" . ""))
+  (minions-mode 1))
 
 ;; backward-kill-word
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
+
+;; proper modifier key
+(setq mac-option-modifier 'meta)
+
+;; no more annoyin indentation
+(defun az/newline-and-indent-same-level ()
+  "Insert a newline, then indent to the same column as the current line."
+  (interactive)
+  (let ((col (save-excursion
+               (back-to-indentation)
+               (current-column))))
+    (newline)
+    (indent-to-column col)))
+
+(global-set-key (kbd "RET") 'az/newline-and-indent-same-level)
