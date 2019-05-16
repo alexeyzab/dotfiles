@@ -1,8 +1,8 @@
 #!/bin/bash
 brew update
 brew tap caskroom/cask
-brew cask install dropbox firefox-developer-edition google-chrome emacs
-brew install git zsh gnupg tmux htop
+brew cask install dropbox firefox-developer-edition google-chrome emacs karabiner-elements alacritty
+brew install git zsh gnupg tmux htop reattach-to-user-namespace
 
 # zsh configs
 cd /Users/alexeyzab
