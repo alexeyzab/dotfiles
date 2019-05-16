@@ -1,7 +1,7 @@
 [core]
   excludesfile = ~/.config/git/ignore
   autocrlf = input
-  editor = "TERM=xterm-24bits emacs -nw"
+  editor = "vim"
   filemode = false
 [color]
   ui = auto
