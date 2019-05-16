@@ -86,10 +86,14 @@ shift + cmd - 6 : chunkc tiling::window --send-to-desktop 6
 # ctrl + alt - 3  : chunkc tiling::monitor -f 3
 # ctrl + alt - z  : chunkc tiling::monitor -f prev
 # ctrl + alt - c  : chunkc tiling::monitor -f next
+cmd - w  : chunkc tiling::monitor -f prev
+cmd - e  : chunkc tiling::monitor -f next
 
 # send window to monitor and follow focus
 # ctrl + cmd - z  : chunkc tiling::window --send-to-monitor prev; chunkc tiling::monitor -f prev
 # ctrl + cmd - c  : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
+shift + cmd - w  : chunkc tiling::window --send-to-monitor prev; chunkc tiling::monitor -f prev
+shift + cmd - e  : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
 # ctrl + cmd - 1  : chunkc tiling::window --send-to-monitor 1; chunkc tiling::monitor -f 1
 # ctrl + cmd - 2  : chunkc tiling::window --send-to-monitor 2; chunkc tiling::monitor -f 2
 # ctrl + cmd - 3  : chunkc tiling::window --send-to-monitor 3; chunkc tiling::monitor -f 3
@@ -126,7 +130,7 @@ cmd - r : chunkc tiling::desktop --rotate 90
 cmd - y : chunkc tiling::desktop --mirror vertical
 
 # mirror tree x-axis
-cmd - x : chunkc tiling::desktop --mirror horizontal
+# cmd - x : chunkc tiling::desktop --mirror horizontal
 
 # toggle desktop offset
 cmd - a : chunkc tiling::desktop --toggle offset
@@ -144,7 +148,7 @@ shift + cmd - f : chunkc tiling::window --toggle native-fullscreen
 cmd - space : chunkc tiling::window --toggle split
 
 # float / unfloat window
-cmd - t : chunkc tiling::window --toggle float
+shift + cmd - t : chunkc tiling::window --toggle float
 
 # toggle sticky, float and resize to picture-in-picture size
 cmd - s : chunkc tiling::window --toggle sticky;\
@@ -159,3 +163,11 @@ shift + alt - s : chunkc tiling::desktop --layout monocle
 shift + alt - d : chunkc tiling::desktop --layout float
 
 # ctrl + alt - w : chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
+
+# switch to a particular space
+cmd - 1 : chunkc tiling::desktop -f 1
+cmd - 2 : chunkc tiling::desktop -f 2
+cmd - 3 : chunkc tiling::desktop -f 3
+cmd - 4 : chunkc tiling::desktop -f 4
+cmd - 5 : chunkc tiling::desktop -f 5
+cmd - 6 : chunkc tiling::desktop -f 6
