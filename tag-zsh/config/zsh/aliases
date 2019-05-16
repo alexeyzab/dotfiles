@@ -20,7 +20,7 @@ alias path='echo $PATH | tr -s ":" "\n"'
 alias pk="pkill -9 -f"
 
 # Make emacs -nw have proper colors
-alias emacs="TERM=xterm-24bits emacs -nw"
+# alias emacs="TERM=xterm-24bits emacs -nw"
 
 # Cleanup time
 alias bb="sudo bleachbit --clean system.cache system.localizations system.trash system.tmp"

@@ -120,6 +120,11 @@ _gen_fzf_default_opts() {
 
 _gen_fzf_default_opts
 
+if ! pgrep "gpg-agent" > /dev/null
+then
+    gpgconf --launch gpg-agent
+fi
+
 source /usr/share/autojump/autojump.sh
 fpath=(/home/alexeyxzab/zsh-completions $fpath)
 source /home/alexeyzab/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

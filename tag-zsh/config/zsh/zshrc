@@ -120,8 +120,24 @@ _gen_fzf_default_opts() {
 
 _gen_fzf_default_opts
 
-# source /usr/share/autojump/autojump.sh
+export NVM_DIR="$HOME/.config"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# start gpg-agent
+if ! pgrep "gpg-agent" > /dev/null
+then
+    gpgconf --launch gpg-agent
+fi
+
+# nix setup
+. /Users/alexeyzab/.nix-profile/etc/profile.d/nix.sh
+
+# autojump config
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-fpath=(/home/alexeyxzab/zsh-completions $fpath)
+fpath=(/usr/local/share/zsh-completions $fpath)
 source /Users/alexeyzab/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # eval "$(denv hook ZSH)"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

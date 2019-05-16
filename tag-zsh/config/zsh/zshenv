@@ -3,9 +3,9 @@ cdpath=( "$HOME" "$HOME/code" $cdpath )
 fpath=( "$ZDOTDIR/functions" $fpath )
 
 export HISTCONTROL=ignoreboth:erasedups
-export VISUAL='TERM=xterm-24bits emacs -nw'
-export EDITOR='TERM=xterm-24bits emacs -nw'
-export BROWSER='chromium-browser'
+export VISUAL='emacs'
+export EDITOR='emacs'
+export BROWSER='~/.local/bin/chrome'
 export MANWIDTH=80
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export FZF_DEFAULT_OPTS='
@@ -28,9 +28,14 @@ export PATH=~/.cargo/env:$PATH
 export PATH=~/.venv/bin:$PATH
 export PATH=~/.local/bin:$PATH
 export PATH=~/.cabal/bin:$PATH
+export PATH=~/.nix-profile/bin:$PATH
+export PATH=/Users/alexeyzab/Library/Python/3.7/bin:$PATH
 export PATH=/usr/local/Cellar:$PATH
+export PATH=/Users/alexeyzab/.fzf/bin:$PATH
 export XMONAD_DIR="${HOME}/.xmonad"
 export XMONAD_LOCAL_BIN_PATH="${XMONAD_DIR}/local-bin"
 export PATH="$XMONAD_LOCAL_BIN_PATH":$PATH
 export XDG_CURRENT_DESKTOP=Unity
 export GPG_AGENT_INFO=x
+export SSH_AUTH_SOCKET=$XDG_CONFIG_HOME/gnupg/S.gpg-agent.ssh
+export PKG_CONFIG_PATH=/usr/local/Cellar/zlib/1.2.8/lib/pkgconfig:/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig/
