@@ -106,10 +106,6 @@
 (when window-system
   (global-hl-line-mode))
 
-;; Flycheck.
-(use-package flycheck)
-(use-package flycheck-package)
-
 ;; I'd rather have only a few necessary mode identifiers on my modeline. This
 ;; either hides or "renames" a variety of major or minor modes using the =diminish=
 ;; package.
@@ -330,7 +326,12 @@ directory to make multiple eshell windows easier."
   (interactive)
   (find-file "~/.emacs.d/site-start.d/00general-config.el"))
 
+(defun az/visit-work-notes ()
+  (interactive)
+  (find-file "~/Dropbox/org/work/notes.org"))
+
 (global-set-key (kbd "C-c e") 'az/visit-emacs-config)
+(global-set-key (kbd "C-c w") 'az/visit-work-notes)
 
 ;; Assume that I always want to kill the current buffer when hitting =C-x k=.
 (global-set-key (kbd "C-x k") 'az/kill-current-buffer)
@@ -461,6 +462,7 @@ directory to make multiple eshell windows easier."
   (setenv "PATH" (concat (getenv "PATH") ":" path))
   (add-to-list 'exec-path path))
 (az/append-to-path "/usr/local/bin")
+(az/append-to-path "nixpkgs=/Users/alexeyzab/.nix-defexpr/channels/nixpkgs")
 
 ;; Use paredit
 (use-package paredit)
@@ -622,8 +624,6 @@ directory to make multiple eshell windows easier."
 ;; Eglot
 (use-package eglot)
 
-(global-flycheck-mode)
-
 ;; For modeline
 (use-package moody
   :config
@@ -668,3 +668,23 @@ directory to make multiple eshell windows easier."
     (indent-to-column col)))
 
 (global-set-key (kbd "RET") 'az/newline-and-indent-same-level)
+
+;; This works for copying, but not pasting for some reason
+;; (setq select-enable-system-clipboard t)
+
+;; Whatever... it's easy enough to implement that part ourselves
+;; (setq interprogram-paste-function
+;;       (lambda ()
+;;         (shell-command-to-string "pbpaste")))
+
+(defun paste-from-osx ()
+  (shell-command-to-string "pbpaste"))
+
+(defun copy-to-osx (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+
+(setq interprogram-cut-function 'copy-to-osx)
+(setq interprogram-paste-function 'paste-from-osx)

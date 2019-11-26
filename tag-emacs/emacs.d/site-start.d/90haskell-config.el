@@ -32,7 +32,7 @@
 ;;   (add-hook 'haskell-mode-hook (lambda () (ghc-init))))
 
 ;; Fix ghci bug: https://github.com/haskell/haskell-mode/issues/1455
-(setq haskell-process-args-stack-ghci '("--ghci-options=-ferror-spans"))
+;; (setq haskell-process-args-stack-ghci '("--ghci-options=-ferror-spans"))
 
 ;; Misc
 (add-hook 'haskell-mode-hook 'subword-mode)
@@ -65,3 +65,35 @@
 
 ;; (setq haskell-process-args-cabal-new-repl
 ;;       '("--ghc-options=-ferror-spans -fshow-loaded-modules"))
+
+;; LSP
+;; (require 'lsp-mode)
+;; (require 'lsp-haskell)
+;; (require 'lsp-ui)
+;; (add-hook 'haskell-mode-hook #'lsp)
+;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;; (add-hook 'haskell-mode-hook 'flycheck-mode)
+;; (setq lsp-prefer-flymake nil)
+
+;; LSP
+;; (use-package flycheck
+;;   :ensure t
+;;   :init
+;;   (global-flycheck-mode t))
+;; (use-package yasnippet
+;;   :ensure t)
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :hook (haskell-mode . lsp)
+;;   :commands lsp)
+;; (use-package lsp-ui
+;;   :ensure t
+;;   :commands lsp-ui-mode)
+;; (use-package lsp-haskell
+;;  :ensure t
+;;  :config
+;;  (setq lsp-haskell-process-path-hie "ghcide")
+;;  (setq lsp-haskell-process-args-hie '())
+;;  ;; Comment/uncomment this line to see interactions between lsp client/server.
+;;  ;;(setq lsp-log-io t)
+;; )

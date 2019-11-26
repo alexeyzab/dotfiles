@@ -6,13 +6,6 @@ alias mkdir="mkdir -p"
 alias e="$EDITOR"
 alias v="$VISUAL"
 
-# Bundler
-alias b="bundle"
-alias be="b exec"
-
-# Rails
-alias migrate="rake db:migrate db:rollback && rake db:migrate db:test:prepare"
-
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
 
@@ -22,19 +15,11 @@ alias pk="pkill -9 -f"
 # Make emacs -nw have proper colors
 # alias emacs="TERM=xterm-24bits emacs -nw"
 
-# Cleanup time
-alias bb="sudo bleachbit --clean system.cache system.localizations system.trash system.tmp"
-alias cc="sudo cacheclean 1"
-
-# Copy and paste
-#alias pbcopy='xclip -selection clipboard'
-#alias pbpaste='xclip -selection clipboard -o'
-
 # Hasktags for Emacs
 alias hk='hasktags --ignore-close-implementation --etags .'
 
-# Trying to fix missing icon
-alias slack='env XDG_CURRENT_DESKTOP=Unity slack'
+# tmux
+alias tsw='tmuxinator start work'
 
-# for denv
-alias k='kubectl --namespace=${KUBECTL_NAMESPACE:-default}'
+# nix
+alias ns='nix-shell'

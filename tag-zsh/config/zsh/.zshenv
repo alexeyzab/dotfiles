@@ -20,7 +20,6 @@ export ZDOTDIR="$HOME"/.config/zsh
 source $ZDOTDIR/.aliases
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 export LESSHISTFILE="$XDG_CACHE_HOME"/lesshist
-export NOTITLE=1 # avoid broken grml precmd hook
 export GOPATH="$HOME"/code/go
 export PATH=~/.npm-global/bin:$PATH
 export PATH=~/.cargo/bin:$PATH
@@ -30,8 +29,5 @@ export PATH=~/.local/bin:$PATH
 export PATH=~/.cabal/bin:$PATH
 export PATH=~/.nix-profile/bin:$PATH
 export PATH=/Users/alexeyzab/Library/Python/3.7/bin:$PATH
-export XMONAD_DIR="${HOME}/.xmonad"
-export XMONAD_LOCAL_BIN_PATH="${XMONAD_DIR}/local-bin"
-export PATH="$XMONAD_LOCAL_BIN_PATH":$PATH
 export XDG_CURRENT_DESKTOP=Unity
 export GPG_AGENT_INFO=x
