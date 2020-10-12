@@ -1,8 +1,6 @@
 ;; Haskell-mode
 (use-package haskell-mode
   :config
-  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  ;; (add-hook 'haskell-mode-hook 'structured-haskell-mode)
   (unbind-key "C-c C-s" haskell-mode-map)
   :bind
   ("C-c C-." . haskell-mode-format-imports)
@@ -16,32 +14,14 @@
   :config
   (add-hook 'haskell-mode-hook #'hindent-mode))
 
-;; Intero
-;; (use-package intero
-;;  :config
-;;  (add-hook 'haskell-mode-hook 'intero-mode))
-
-;; Autocompletion
-;; (use-package company-ghc
-;;   :config
-;;   (add-to-list 'company-backends 'company-ghc))
-;; (use-package ghc-mod
-;;   :config
-;;   (autoload 'ghc-init "ghc" nil t)
-;;   (autoload 'ghc-debug "ghc" nil t)
-;;   (add-hook 'haskell-mode-hook (lambda () (ghc-init))))
-
-;; Fix ghci bug: https://github.com/haskell/haskell-mode/issues/1455
-;; (setq haskell-process-args-stack-ghci '("--ghci-options=-ferror-spans"))
-
 ;; Misc
 (add-hook 'haskell-mode-hook 'subword-mode)
 
 ;; rainbow-delimeters for haskell-mode
 (add-hook 'haskell-mode-hook #'rainbow-delimiters-mode)
 
-;; structured-haskell-mode
-;; (use-package shm)
+;; flycheck
+(add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
 
 ;; autocompletion
 (use-package auto-complete)
@@ -52,48 +32,69 @@
   (eval-after-load "auto-complete"
     '(add-to-list 'ac-modes 'haskell-interactive-mode)))
 
-;; (setq haskell-process-args-ghci
-;;       '("-ferror-spans" "-fshow-loaded-modules"))
-
-;; (setq haskell-process-args-cabal-repl
-;;       '("--ghc-options=-ferror-spans -fshow-loaded-modules"))
-
-;; (setq haskell-process-args-stack-ghci
-;;       '("--stack-yaml=/home/alexeyzab/code/work/lanehoney/stack-backend.yaml"
-;;         "--ghci-options=-ferror-spans -fshow-loaded-modules"
-;; 	"--no-build" "--no-load"))
-
-;; (setq haskell-process-args-cabal-new-repl
-;;       '("--ghc-options=-ferror-spans -fshow-loaded-modules"))
-
 ;; LSP
-;; (require 'lsp-mode)
-;; (require 'lsp-haskell)
-;; (require 'lsp-ui)
-;; (add-hook 'haskell-mode-hook #'lsp)
-;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-;; (add-hook 'haskell-mode-hook 'flycheck-mode)
-;; (setq lsp-prefer-flymake nil)
+;; (use-package eglot
+;;   :ensure t
+;;   :config
+;;   (add-hook 'haskell-mode-hook 'eglot-ensure)
+;;   ;; (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
+;;   (add-hook 'eglot--managed-mode-hook 'sanityinc/eglot-prefer-flycheck)
+;;   (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
+;;   (add-to-list 'eglot-server-programs '(haskell-mode . ("ghcide" "--lsp"))))
 
-;; LSP
-;; (use-package flycheck
-;;   :ensure t
-;;   :init
-;;   (global-flycheck-mode t))
-;; (use-package yasnippet
-;;   :ensure t)
-;; (use-package lsp-mode
-;;   :ensure t
-;;   :hook (haskell-mode . lsp)
-;;   :commands lsp)
-;; (use-package lsp-ui
-;;   :ensure t
-;;   :commands lsp-ui-mode)
+;; (defvar-local flycheck-eglot-current-errors nil)
+
+;; (defun flycheck-eglot-report-fn (diags &rest _)
+;;   (setq flycheck-eglot-current-errors
+;; 	(mapcar (lambda (diag)
+;; 		  (save-excursion
+;; 		    (goto-char (flymake--diag-beg diag))
+;; 		    (flycheck-error-new-at (line-number-at-pos)
+;; 					   (1+ (- (point) (line-beginning-position)))
+;; 					   (pcase (flymake--diag-type diag)
+;; 					     ('eglot-error 'error)
+;; 					     ('eglot-warning 'warning)
+;; 					     ('eglot-note 'info)
+;; 					     (_ (error "Unknown diag type, %S" diag)))
+;; 					   (flymake--diag-text diag)
+;; 					   :checker 'eglot)))
+;; 		diags))
+;;   (flycheck-buffer))
+
+;; (defun flycheck-eglot--start (checker callback)
+;;   (funcall callback 'finished flycheck-eglot-current-errors))
+
+;; (defun flycheck-eglot--available-p ()
+;;   (bound-and-true-p eglot--managed-mode))
+
+;; (flycheck-define-generic-checker 'eglot
+;;   "Report `eglot' diagnostics using `flycheck'."
+;;   :start #'flycheck-eglot--start
+;;   :predicate #'flycheck-eglot--available-p
+;;   :modes '(prog-mode text-mode))
+
+;; (push 'eglot flycheck-checkers)
+
+;; (defun sanityinc/eglot-prefer-flycheck ()
+;;   (when eglot--managed-mode
+;;     (flycheck-add-mode 'eglot major-mode)
+;;     (flycheck-select-checker 'eglot)
+;;     (flycheck-mode)
+;;     (flymake-mode -1)
+;;     (setq eglot--current-flymake-report-fn 'flycheck-eglot-report-fn)))
+
 ;; (use-package lsp-haskell
 ;;  :ensure t
 ;;  :config
-;;  (setq lsp-haskell-process-path-hie "ghcide")
-;;  (setq lsp-haskell-process-args-hie '())
+;;  (setq lsp-haskell-process-path-hie "haskell-language-server-wrapper")
 ;;  ;; Comment/uncomment this line to see interactions between lsp client/server.
 ;;  ;;(setq lsp-log-io t)
 ;; )
+
+;; (require 'lsp)
+;; (require 'lsp-haskell)
+;; (add-hook 'haskell-mode-hook #'lsp)
+
+(setq-default flycheck-disabled-checkers '(haskell-stack-ghc haskell-ghc))
+
+(load "persistent-mode")

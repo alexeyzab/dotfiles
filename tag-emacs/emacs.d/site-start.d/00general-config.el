@@ -1,7 +1,7 @@
 ;; Who am I? Where am I?
 (setq user-full-name "Alexey Zabelin"
       user-mail-address "hello@alexeyzabelin.com"
-      calendar-location-name "San Francisco, CA")
+      calendar-location-name "Austin, TX")
 
 ;; Rename file
 (defun az/rename-file (new-name)
@@ -36,12 +36,17 @@
 (setq nord-uniform-mode-lines t)
 
 ;; Solaire-mode.
-(use-package solaire-mode
-  :hook ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
-  :config
-  (add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
-  (add-hook 'change-major-mode-hook #'turn-on-solaire-mode)
-  (solaire-mode-swap-bg))
+;; (use-package solaire-mode
+;;   :hook ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
+;;   :config
+;;   (add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
+;;   (add-hook 'change-major-mode-hook #'turn-on-solaire-mode)
+;;   (solaire-mode-swap-bg))
+
+;; doom-modeline
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
 
 ;; This disables the visual bell.
 (setq ring-bell-function 'ignore)
@@ -54,7 +59,7 @@
 ;; Note that this overrides the default font-related keybindings from
 ;; =sensible-defaults=.
 (setq az/default-font "Iosevka")
-(setq az/default-font-size 16)
+(setq az/default-font-size 22)
 (setq az/current-font-size az/default-font-size)
 
 (setq az/font-change-increment 1.1)
@@ -119,19 +124,16 @@
 (diminish-major-mode 'rust-mode-hook "rs")
 
 ;; Show line numbers everywhere
-(setq global-linum-mode t)
-(setq linum-mode t)
+(global-display-line-numbers-mode)
 
 ;; Magit settings
 ;; The default behavior of =magit= is to ask before pushing. I haven't had any
 ;; problems with accidentally pushing, so I'd rather not confirm that every time.
 (setq magit-push-always-verify nil)
+(setq magit-auto-revert-mode nil)
 
 ;; Enable spellchecking when writing commit messages:
 (add-hook 'git-commit-mode-hook 'turn-on-flyspell)
-
-;; Try out packages without installing them
-(use-package try)
 
 ;; Show keybingings for commands
 (use-package which-key
@@ -140,7 +142,6 @@
 
 ;; Swiper setup
 (use-package counsel)
-
 (use-package swiper
   :init (ivy-mode 1)
   :config
@@ -205,72 +206,6 @@
 (global-visual-line-mode 0)
 (setq-default fill-column 99999)
 
-;; Sane copy-paste
-;; (setq *is-a-mac* (eq system-type 'darwin))
-;; (setq *cygwin* (eq system-type 'cygwin) )
-;; (setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
-;; (defun copy-to-x-clipboard ()
-;;   (interactive)
-;;   (if (region-active-p)
-;;       (progn
-;;         (cond
-;;          ((and (display-graphic-p) x-select-enable-clipboard)
-;;           (x-set-selection 'CLIPBOARD (buffer-substring (region-beginning) (region-end))))
-;;          (t (shell-command-on-region (region-beginning) (region-end)
-;;                                      (cond
-;;                                       (*cygwin* "putclip")
-;;                                       (*is-a-mac* "pbcopy")
-;;                                       (*linux* "xsel -ib")))
-;;             ))
-;;         (message "Yanked region to clipboard!")
-;;         (deactivate-mark))
-;;     (message "No region active; can't yank to clipboard!")))
-
-;; (defun paste-from-x-clipboard()
-;;   (interactive)
-;;   (cond
-;;    ((and (display-graphic-p) x-select-enable-clipboard)
-;;     (insert (x-get-selection 'CLIPBOARD)))
-;;    (t (shell-command
-;;        (cond
-;;         (*cygwin* "getclip")
-;;         (*is-a-mac* "pbpaste")
-;;         (t "xsel -ob"))
-;;        1))
-;;    ))
-;; (setq *is-a-mac* (eq system-type 'darwin))
-;; (setq *cygwin* (eq system-type 'cygwin) )
-;; (setq *linux* (or (eq system-type 'gnu/linux) (eq system-type 'linux)) )
-;; (defun copy-to-x-clipboard ()
-;;   (interactive)
-;;   (if (region-active-p)
-;;       (progn
-;;         (cond
-;;          ((and (display-graphic-p) x-select-enable-clipboard)
-;;           (x-set-selection 'CLIPBOARD (buffer-substring (region-beginning) (region-end))))
-;;          (t (shell-command-on-region (region-beginning) (region-end)
-;;                                      (cond
-;;                                       (*cygwin* "putclip")
-;;                                       (*is-a-mac* "pbcopy")
-;;                                       (*linux* "xsel -ib")))
-;;             ))
-;;         (message "Yanked region to clipboard!")
-;;         (deactivate-mark))
-;;     (message "No region active; can't yank to clipboard!")))
-
-;; (defun paste-from-x-clipboard()
-;;   (interactive)
-;;   (cond
-;;    ((and (display-graphic-p) x-select-enable-clipboard)
-;;     (insert (x-get-selection 'CLIPBOARD)))
-;;    (t (shell-command
-;;        (cond
-;;         (*cygwin* "getclip")
-;;         (*is-a-mac* "pbpaste")
-;;         (t "xsel -ob"))
-;;        1))
-;;    ))
-
 (global-set-key (kbd "C-x M-w") 'copy-to-x-clipboard)
 (global-set-key (kbd "C-x C-y") 'paste-from-x-clipboard)
 
@@ -300,14 +235,6 @@ directory to make multiple eshell windows easier."
 
 (global-set-key (kbd "C-!") 'eshell-here)
 
-;; Create directory if it doesn't exist
-;; (defadvice find-file (before make-directory-maybe (filename &optional wildcards) activate)
-;;   "Create parent directory if not exists while visiting file."
-;;   (unless (file-exists-p filename)
-;;     (let ((dir (file-name-directory filename)))
-;;       (unless (file-exists-p dir)
-;; 	(make-directory dir)))))
-
 ;; Make sure $PATH is available to Emacs.
 (use-package exec-path-from-shell)
 (when (memq window-system '(mac ns x))
@@ -315,6 +242,7 @@ directory to make multiple eshell windows easier."
 
 ;; Customzie exec-path
 (setq exec-path (append exec-path '("~/.cargo/bin")))
+(setq exec-path (append exec-path '("/usr/local/bin")))
 
 ;; Make sure $PATH is available to Emacs
 (when (memq window-system '(mac ns x))
@@ -485,15 +413,11 @@ directory to make multiple eshell windows easier."
   ("C-;" . avy-goto-char)
   ("C-'" . avy-goto-char-2)
   ("M-g f" . avy-goto-line)
-  ("M-s" . avy-goto-word-1))
+  ("M-s" . avy-goto-char-timer))
 (avy-setup-default)
 
 ;; PDF reading
 (use-package pdf-tools)
-
-;; Yasnippet
-(use-package yasnippet)
-(use-package yasnippet-snippets)
 
 ;; Editor-config
 (use-package editorconfig
@@ -517,12 +441,6 @@ directory to make multiple eshell windows easier."
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
-;; Turn off electric-indent-mode
-;; (electric-indent-mode -1)
-
-;; Rainbow delimeters
-;; (use-package rainbow-delimeters-mode)
-
 ;; Misc keybindigns
 (global-set-key (kbd "C-c g") 'align-regexp)
 (global-set-key (kbd "C-c C-w RET") 'whitespace-cleanup)
@@ -542,7 +460,7 @@ directory to make multiple eshell windows easier."
 (global-set-key (kbd "M-h") 'backward-kill-word)
 
 ;; Terminal emacs color fix
-(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
+(custom-set-faces (if (not window-system) '(default ((t (:background "#2E3440"))))))
 
 ;; Reverse words
 (defun reverse-words (beg end)
@@ -554,30 +472,21 @@ directory to make multiple eshell windows easier."
      (split-string
       (delete-and-extract-region beg end) "\\b"))))
 
-;; Weather from wttr.in
-(use-package wttrin
-  :commands (wttrin)
-  :init
-  (setq wttrin-default-cities '("San Francisco"))
-  (setq wttrin-default-accept-language '("Accept-Language" . "en-US")))
-
 ;; zoom
 (use-package zoom
   :config
   (custom-set-variables
    '(zoom-size '(0.618 . 0.618)))
   (custom-set-variables
-   '(zoom-mode t)))
+   '(zoom-mode t))
+(custom-set-variables
+   '(zoom-ignored-major-modes '(dired-mode markdown-mode))
+   '(zoom-ignored-buffer-names '("zoom.el" "init.el"))
+   '(zoom-ignored-buffer-name-regexps '("^*calc"))
+   '(zoom-ignore-predicates '((lambda () (> (count-lines (point-min) (point-max)) 20))))))
 
 ;; restclient
 (use-package restclient)
-
-;; magithub
-;; (use-package magithub
-;;   :after magit
-;;   :config
-;;   (magithub-feature-autoinject t)
-;;   (setq magithub-clone-default-directory "~/code"))
 
 ;; use forge instead of magithub
 (use-package forge)
@@ -592,37 +501,11 @@ directory to make multiple eshell windows easier."
   :config
   (global-set-key "\M-y" 'browse-kill-ring))
 
-;; symon
-(use-package symon)
-
-;; docker.el
-(use-package docker
-  :bind ("C-c d" . docker))
-
-;; twittering-mode
-(use-package twittering-mode
-  :config
-  (setq twittering-icon-mode t))
-
-;; sql-mode
-(setq sql-postgres-login-params
-      '((user :default "postgres")
-        (database :default "postgres")
-        (server :default "localhost")
-        (port :default 5432)))
-
-(add-hook 'sql-interactive-mode-hook
-          (lambda ()
-            (toggle-truncate-lines t)))
-
 ;; eshell completion
 (add-hook
  'eshell-mode-hook
  (lambda ()
    (setq pcomplete-cycle-completions nil)))
-
-;; Eglot
-(use-package eglot)
 
 ;; For modeline
 (use-package moody
@@ -669,14 +552,6 @@ directory to make multiple eshell windows easier."
 
 (global-set-key (kbd "RET") 'az/newline-and-indent-same-level)
 
-;; This works for copying, but not pasting for some reason
-;; (setq select-enable-system-clipboard t)
-
-;; Whatever... it's easy enough to implement that part ourselves
-;; (setq interprogram-paste-function
-;;       (lambda ()
-;;         (shell-command-to-string "pbpaste")))
-
 (defun paste-from-osx ()
   (shell-command-to-string "pbpaste"))
 
@@ -688,3 +563,17 @@ directory to make multiple eshell windows easier."
 
 (setq interprogram-cut-function 'copy-to-osx)
 (setq interprogram-paste-function 'paste-from-osx)
+
+;; direnv
+(use-package direnv
+  :init
+  (add-hook 'prog-mode-hook #'direnv-update-environment)
+  :config
+  (direnv-mode))
+
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+
+(add-to-list 'load-path "~/.emacs.d/lisp/")

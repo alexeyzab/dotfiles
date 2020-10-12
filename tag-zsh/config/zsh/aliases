@@ -1,6 +1,7 @@
 # Unix
 #alias ls="ls --color=auto"
-alias ll="ls -al"
+alias ls="exa"
+alias ll="exa -al"
 alias ln="ln -v"
 alias mkdir="mkdir -p"
 alias e="$EDITOR"
@@ -23,3 +24,8 @@ alias tsw='tmuxinator start work'
 
 # nix
 alias ns='nix-shell'
+
+if [ "$(command -v bat)" ]; then
+  unalias -m 'cat'
+  alias cat='bat -pp --theme="Nord"'
+fi

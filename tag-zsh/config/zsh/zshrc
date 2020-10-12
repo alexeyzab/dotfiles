@@ -59,40 +59,6 @@ bindkey '^W' my-backward-delete-word
 # Hub
 eval "$(hub alias -s)"
 
-nixup() {
-    cwd_name=${PWD##*/}
-
-    cabal2nix . > default.nix
-    cabal2nix . --shell > shell.nix
-    touch ./release.nix
-
-    echo "let
-      config = {
-	packageOverrides = pkgs: rec {
-	  haskellPackages = pkgs.haskellPackages.override {
-	    overrides = haskellPackagesNew: haskellPackagesOld: rec {
-	      $cwd_name =
-		haskellPackagesNew.callPackage ./default.nix { };
-	    };
-	  };
-	};
-      };
-
-    pkgs = import <nixpkgs> { inherit config; };
-
-    in
-      { $cwd_name = pkgs.haskellPackages.$cwd_name;
-      }
-    " > ./release.nix
-}
-
-# Work around the lack of "cabal new" plus add the nix stuff
-hlix() {
-    mcd $1
-    cabal init
-    nixup
-}
-
 # fzf settings
 if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/key-bindings.zsh"
@@ -139,7 +105,9 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 source /Users/alexeyzab/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # eval "$(denv hook ZSH)"
 
-eval "$(direnv hook zsh)"
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+eval "$(direnv hook zsh)"
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"

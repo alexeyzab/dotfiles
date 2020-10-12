@@ -27,7 +27,6 @@ export PATH=~/.cargo/env:$PATH
 export PATH=~/.venv/bin:$PATH
 export PATH=~/.local/bin:$PATH
 export PATH=~/.cabal/bin:$PATH
-export PATH=~/.nix-profile/bin:$PATH
 export PATH=/Users/alexeyzab/Library/Python/3.7/bin:$PATH
 export XDG_CURRENT_DESKTOP=Unity
 export GPG_AGENT_INFO=x

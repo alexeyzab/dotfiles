@@ -45,3 +45,5 @@
   program = /usr/local/bin/gpg
 [github]
   user = alexeyzab
+[http]
+	sslVerify = false
