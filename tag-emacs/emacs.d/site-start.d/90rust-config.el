@@ -1,7 +1,8 @@
 ;; rustic
 (use-package rustic
+  :bind (("C-c f"  . lsp-execute-code-action))
   :config
-  (setq rustic-lsp-client 'eglot))
+  (setq rustic-lsp-client 'lsp-mode))
 
 ;; rustfmt
 (add-hook 'rust-mode-hook
