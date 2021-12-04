@@ -29,3 +29,6 @@ if [ "$(command -v bat)" ]; then
   unalias -m 'cat'
   alias cat='bat -pp --theme="Nord"'
 fi
+
+#
+# alias nix-shell='nix-shell --command zsh'

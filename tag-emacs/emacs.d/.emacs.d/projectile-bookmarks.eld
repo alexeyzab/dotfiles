@@ -1,0 +1,1 @@
+("~/code/work/mercury-web-backend/" "~/code/work/infrastructure/" "~/code/work/mercury-web/" "~/.dotfiles/" "~/code/haskellweekly.github.io/" "~/code/stackage/" "~/.config/" "~/hrs-dotfiles/")

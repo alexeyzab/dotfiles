@@ -31,9 +31,22 @@
 (global-prettify-symbols-mode t)
 
 ;; Theme setup
-(add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
-(load-theme 'nord t)
-(setq nord-uniform-mode-lines t)
+;; (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
+;; (load-theme 'nord t)
+;; (setq nord-uniform-mode-lines t)
+
+(quelpa
+ '(quelpa-use-package
+   :fetcher git
+   :url "https://github.com/quelpa/quelpa-use-package.git"))
+(require 'quelpa-use-package)
+
+(use-package nano-theme
+  :ensure nil
+  :defer t
+  :quelpa (nano-theme
+           :fetcher github
+           :repo "rougier/nano-theme"))
 
 ;; Solaire-mode.
 ;; (use-package solaire-mode
@@ -157,7 +170,10 @@
   ("C-x C-f" . counsel-find-file)
   ("C-c j" . counsel-git-grep)
   ("C-c k" . counsel-rg)
-  ("C-x l" . counsel-locate))
+  ("C-x l" . counsel-locate)
+  ("C-x b" . counsel-switch-buffer)
+  ("C-x t" . counsel-switch-buffer-other-window)
+  )
 
 ;; Auto-complete setup with company
 (use-package company
@@ -516,15 +532,15 @@ directory to make multiple eshell windows easier."
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode))
 
-(use-package nord-theme
-  :config
-  (load-theme 'nord t)
-  (let ((line (face-attribute 'mode-line :underline)))
-    (set-face-attribute 'mode-line          nil :overline   line)
-    (set-face-attribute 'mode-line-inactive nil :overline   line)
-    (set-face-attribute 'mode-line-inactive nil :underline  line)
-    (set-face-attribute 'mode-line          nil :box        nil)
-    (set-face-attribute 'mode-line-inactive nil :box        nil)))
+;; (use-package nord-theme
+;;   :config
+;;   (load-theme 'nord t)
+;;   (let ((line (face-attribute 'mode-line :underline)))
+;;     (set-face-attribute 'mode-line          nil :overline   line)
+;;     (set-face-attribute 'mode-line-inactive nil :overline   line)
+;;     (set-face-attribute 'mode-line-inactive nil :underline  line)
+;;     (set-face-attribute 'mode-line          nil :box        nil)
+;;     (set-face-attribute 'mode-line-inactive nil :box        nil)))
 
 (use-package minions
   :config

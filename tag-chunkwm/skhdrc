@@ -30,7 +30,7 @@
 #                                  an EOL character signifies the end of the bind.
 
 # ctrl - w stopped working with the new Atreus
-ctrl - w : skhd -k "alt - backspace"
+# ctrl - w : skhd -k "alt - backspace"
 
 # close focused window
 shift + cmd - c : yabai -m window --close
