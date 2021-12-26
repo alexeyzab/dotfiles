@@ -124,4 +124,4 @@
     :config
     (which-key-mode))
 
-(load "persistent-mode")
+;; (load "persistent-mode")

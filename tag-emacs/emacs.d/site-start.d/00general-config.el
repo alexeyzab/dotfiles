@@ -1,3 +1,5 @@
+(menu-bar-mode t)
+
 ;; Who am I? Where am I?
 (setq user-full-name "Alexey Zabelin"
       user-mail-address "hello@alexeyzabelin.com"
@@ -29,24 +31,6 @@
 
 ;; Use nicer lambdas.
 (global-prettify-symbols-mode t)
-
-;; Theme setup
-;; (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/themes/"))
-;; (load-theme 'nord t)
-;; (setq nord-uniform-mode-lines t)
-
-(quelpa
- '(quelpa-use-package
-   :fetcher git
-   :url "https://github.com/quelpa/quelpa-use-package.git"))
-(require 'quelpa-use-package)
-
-(use-package nano-theme
-  :ensure nil
-  :defer t
-  :quelpa (nano-theme
-           :fetcher github
-           :repo "rougier/nano-theme"))
 
 ;; Solaire-mode.
 ;; (use-package solaire-mode
@@ -532,15 +516,15 @@ directory to make multiple eshell windows easier."
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode))
 
-;; (use-package nord-theme
-;;   :config
-;;   (load-theme 'nord t)
-;;   (let ((line (face-attribute 'mode-line :underline)))
-;;     (set-face-attribute 'mode-line          nil :overline   line)
-;;     (set-face-attribute 'mode-line-inactive nil :overline   line)
-;;     (set-face-attribute 'mode-line-inactive nil :underline  line)
-;;     (set-face-attribute 'mode-line          nil :box        nil)
-;;     (set-face-attribute 'mode-line-inactive nil :box        nil)))
+ (use-package nord-theme
+   :config
+   (load-theme 'nord t)
+   (let ((line (face-attribute 'mode-line :underline)))
+     (set-face-attribute 'mode-line          nil :overline   line)
+     (set-face-attribute 'mode-line-inactive nil :overline   line)
+     (set-face-attribute 'mode-line-inactive nil :underline  line)
+     (set-face-attribute 'mode-line          nil :box        nil)
+     (set-face-attribute 'mode-line-inactive nil :box        nil)))
 
 (use-package minions
   :config
