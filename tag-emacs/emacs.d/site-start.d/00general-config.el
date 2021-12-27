@@ -32,14 +32,6 @@
 ;; Use nicer lambdas.
 (global-prettify-symbols-mode t)
 
-;; Solaire-mode.
-;; (use-package solaire-mode
-;;   :hook ((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
-;;   :config
-;;   (add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
-;;   (add-hook 'change-major-mode-hook #'turn-on-solaire-mode)
-;;   (solaire-mode-swap-bg))
-
 ;; doom-modeline
 (use-package doom-modeline
   :ensure t
