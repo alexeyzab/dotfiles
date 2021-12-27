@@ -39,3 +39,5 @@ export PATH="$XMONAD_LOCAL_BIN_PATH":$PATH
 export XDG_CURRENT_DESKTOP=Unity
 export GPG_AGENT_INFO=x
 export SSH_AUTH_SOCKET=$XDG_CONFIG_HOME/gnupg/S.gpg-agent.ssh
+export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters
+. "$HOME/.cargo/env"

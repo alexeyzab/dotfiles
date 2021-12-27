@@ -97,16 +97,26 @@ then
 fi
 
 # nix setup
-. /Users/alexeyzab/.nix-profile/etc/profile.d/nix.sh
+# . /Users/alexeyzab/.nix-profile/etc/profile.d/nix.sh
 
 # autojump config
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 fpath=(/usr/local/share/zsh-completions $fpath)
-source /Users/alexeyzab/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # eval "$(denv hook ZSH)"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# highlighting
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# autocompletion
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
 
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh)"
