@@ -2,7 +2,7 @@
   pager = delta
   excludesfile = ~/.config/git/ignore
   autocrlf = input
-  editor = "vim"
+  editor = "emacs"
   filemode = false
 [interactive]
     diffFilter = delta --color-only
@@ -35,7 +35,7 @@
 [user]
   email = hello@alexeyzabelin.com
   name = Alexey Zabelin
-  signingkey = 478324E9
+	signingkey = 96DA2C14
 [fetch]
   prune = true
 [commit]
@@ -52,7 +52,7 @@
 [credential]
   helper = store
 [gpg]
-  program = /usr/local/bin/gpg
+  program = /opt/homebrew/bin/gpg
 [github]
   user = alexeyzab
 [http]
