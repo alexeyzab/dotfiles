@@ -124,6 +124,9 @@
 ;; Enable spellchecking when writing commit messages:
 (add-hook 'git-commit-mode-hook 'turn-on-flyspell)
 
+(use-package magit-delta
+  :hook (magit-mode . magit-delta-mode))
+
 ;; Show keybingings for commands
 (use-package which-key
   :config

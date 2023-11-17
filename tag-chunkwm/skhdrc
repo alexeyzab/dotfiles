@@ -33,20 +33,20 @@
 # ctrl - w : skhd -k "alt - backspace"
 
 # close focused window
-shift + cmd - c : yabai -m window --close
+# shift + cmd - c : yabai -m window --close
 
 # focus windows
-cmd - j : yabai -m window --focus prev
-cmd - k : yabai -m window --focus next
+cmd - n : yabai -m window --focus prev
+cmd - e : yabai -m window --focus next
 
 # equalize size of windows
 shift + cmd - 0 : yabai -m space --balance
 
 # swap window
-shift + cmd - h : yabai -m window --swap west
-shift + cmd - j : yabai -m window --swap south
-shift + cmd - k : yabai -m window --swap north
-shift + cmd - l : yabai -m window --swap east
+shift + cmd - m : yabai -m window --swap west
+shift + cmd - n : yabai -m window --swap south
+shift + cmd - e : yabai -m window --swap north
+shift + cmd - i : yabai -m window --swap east
 
 # send window to desktop
 shift + cmd - 1 : yabai -m window --space 1
@@ -57,12 +57,12 @@ shift + cmd - 5 : yabai -m window --space 5
 shift + cmd - 6 : yabai -m window --space 6
 
 # focus monitor
-cmd - w  : yabai -m display --focus prev
-cmd - e  : yabai -m display --focus next
+# cmd - w  : yabai -m display --focus prev
+# cmd - e  : yabai -m display --focus next
 
 # send window to monitor and follow focus
-shift + cmd - w  : yabai -m window --space prev; yabai -m space --focus prev
-shift + cmd - e  : yabai -m window --space next; yabai -m space --focus next
+# shift + cmd - w  : yabai -m window --space prev; yabai -m space --focus prev
+# shift + cmd - e  : yabai -m window --space next; yabai -m space --focus next
 
 # increase/decrease region size at the same time
 # shift + cmd - a : chunkc tiling::window --use-temporary-ratio 0.05 --adjust-window-edge west; chunkc tiling::window --use-temporary-ratio -0.05 --adjust-window-edge east
@@ -93,13 +93,13 @@ shift + cmd - t : yabai -m window --toggle float;\
                   yabai -m window --grid 4:4:1:1:2:2
 
 # toggle sticky, float and resize to picture-in-picture size
-cmd - s : yabai -m window --toggle sticky;\
-          yabai -m window --grid 5:5:4:0:1:1
+# cmd - s : yabai -m window --toggle sticky;\
+#           yabai -m window --grid 5:5:4:0:1:1
 
 # change layout of desktop
-shift + alt - a : yabai -m space --layout bsp
-shift + alt - s : yabai -m space --layout monocle
-shift + alt - d : yabai -m space --layout float
+# shift + alt - a : yabai -m space --layout bsp
+# shift + alt - s : yabai -m space --layout monocle
+# shift + alt - d : yabai -m space --layout float
 
 # switch to a particular space
 cmd - 1 : yabai -m space --focus 1

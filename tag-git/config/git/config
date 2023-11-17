@@ -5,14 +5,15 @@
   editor = "emacs"
   filemode = false
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
+[add.interactive]
+  useBuiltin = false # required for git 2.37.0
+[include]
+  path = /Users/alexeyzab/delta/themes.gitconfig
 [delta]
-    features = side-by-side line-numbers decorations
-    whitespace-error-style = 22 reverse
-[delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
+  features = side-by-side line-numbers chameleon
+  navigate = true    # use n and N to move between diff sections
+  whitespace-error-style = 22 reverse
 [color]
   ui = auto
 [help]
@@ -27,6 +28,9 @@
   ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 [merge]
   ff = only
+  conflictstyle = diff3
+[diff]
+  colorMoved = default
 [push]
   default = current
 [status]
@@ -40,7 +44,7 @@
   prune = true
 [commit]
   template = ~/.config/git/gitmessage
-  gpgsign = true
+  gpgsign = false
 [difftool]
   prompt = false
 [difftool "icdiff"]
